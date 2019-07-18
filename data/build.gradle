@@ -28,6 +28,7 @@ dependencies {
     def testDependency = rootProject.ext.dataTestDependencies
     implementation project(':domain')
     implementation "${dependency.kotlin}"
+    implementation "${dependency.moshi}"
     testImplementation "${testDependency.jUnit}"
     testImplementation "${testDependency.kotlinStdlib}"
     testImplementation "${testDependency.kotlinTestJunit}"
