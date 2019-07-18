@@ -6,3 +6,12 @@ dependencies {
 
 sourceCompatibility = "7"
 targetCompatibility = "7"
+
+dependencies {
+    def dependency = rootProject.ext.domainDependencies
+    def testDependency = rootProject.ext.domainTestDependencies
+    implementation "${dependency.kotlin}"
+    testImplementation "${testDependency.jUnit}"
+    testImplementation "${testDependency.kotlinStdlib}"
+    testImplementation "${testDependency.kotlinTestJunit}"
+}
