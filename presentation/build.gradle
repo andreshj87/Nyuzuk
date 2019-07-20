@@ -31,6 +31,8 @@ dependencies {
     implementation "${dependency.recyclerView}"
     implementation "${dependency.material}"
     implementation "${dependency.cardView}"
+    implementation "${dependency.koin}"
+    implementation "${dependency.koinViewModel}"
     testImplementation "${testDependency.jUnit}"
     testImplementation "${testDependency.kotlinStdlib}"
     testImplementation "${testDependency.kotlinTestJunit}"

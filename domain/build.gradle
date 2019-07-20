@@ -5,6 +5,7 @@ dependencies {
     def testDependency = rootProject.ext.domainTestDependencies
     implementation "${dependency.kotlin}"
     implementation "${dependency.coroutinesCore}"
+    implementation "${dependency.koin}"
     testImplementation "${testDependency.jUnit}"
     testImplementation "${testDependency.kotlinStdlib}"
     testImplementation "${testDependency.kotlinTestJunit}"

@@ -29,6 +29,10 @@ dependencies {
     implementation project(':domain')
     implementation "${dependency.kotlin}"
     implementation "${dependency.moshi}"
+    implementation "${dependency.koin}"
+    implementation "${dependency.retrofit}"
+    implementation "${dependency.retrofitMoshi}"
+    implementation "${dependency.okHttpLogger}"
     testImplementation "${testDependency.jUnit}"
     testImplementation "${testDependency.kotlinStdlib}"
     testImplementation "${testDependency.kotlinTestJunit}"

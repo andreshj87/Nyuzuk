@@ -7,6 +7,11 @@ ext.version = [
         cardView: "1.0.0",
         coroutines: "1.2.1",
         moshi: "1.8.0",
+        koin: "2.0.0-GA6",
+        koinViewModel: "2.0.0-GA6",
+        retrofit: "2.5.0",
+        retrofitMoshi: "2.4.0",
+        okHttpLogger: "3.12.0",
 
         jUnit: "4.12",
         testRunner: "1.3.0-alpha02",
@@ -26,6 +31,11 @@ ext.dependency = [
         coroutinesCore: "org.jetbrains.kotlinx:kotlinx-coroutines-core:${version.coroutines}",
         coroutinesAndroid: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${version.coroutines}",
         moshi: "com.squareup.moshi:moshi:${version.moshi}",
+        koin: "org.koin:koin-android:${version.koin}",
+        koinViewModel: "org.koin:koin-androidx-viewmodel:${version.koinViewModel}",
+        retrofit: "com.squareup.retrofit2:retrofit:${version.retrofit}",
+        retrofitMoshi: "com.squareup.retrofit2:converter-moshi:${version.retrofitMoshi}",
+        okHttpLogger: "com.squareup.okhttp3:logging-interceptor:${version.okHttpLogger}",
 
         jUnit: "junit:junit:${version.jUnit}",
         testRunner: "androidx.test:runner:${version.testRunner}",
@@ -39,7 +49,11 @@ def dependency = ext.dependency
 
 ext.dataDependencies = [
         kotlin: "${dependency.kotlin}",
-        moshi: "${dependency.moshi}"
+        moshi: "${dependency.moshi}",
+        koin: "${dependency.koin}",
+        retrofit: "${dependency.retrofit}",
+        retrofitMoshi: "${dependency.retrofitMoshi}",
+        okHttpLogger: "${dependency.okHttpLogger}"
 ]
 
 ext.dataTestDependencies = [
@@ -50,7 +64,8 @@ ext.dataTestDependencies = [
 
 ext.domainDependencies = [
         kotlin:"${dependency.kotlin}",
-        coroutinesCore: "${dependency.coroutinesCore}"
+        coroutinesCore: "${dependency.coroutinesCore}",
+        koin: "${dependency.koin}"
 ]
 
 ext.domainTestDependencies = [
@@ -65,7 +80,9 @@ ext.presentationDependencies = [
         constraintLayout: "${dependency.constraintLayout}",
         recyclerView: "${dependency.recyclerView}",
         material: "${dependency.material}",
-        cardView: "${dependency.cardView}"
+        cardView: "${dependency.cardView}",
+        koin: "${dependency.koin}",
+        koinViewModel: "${dependency.koinViewModel}"
 ]
 
 ext.presentationTestDependencies = [
