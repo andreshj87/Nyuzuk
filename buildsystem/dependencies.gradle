@@ -82,7 +82,11 @@ ext.presentationDependencies = [
         material: "${dependency.material}",
         cardView: "${dependency.cardView}",
         koin: "${dependency.koin}",
-        koinViewModel: "${dependency.koinViewModel}"
+        koinViewModel: "${dependency.koinViewModel}",
+        moshi: "${dependency.moshi}",
+        retrofit: "${dependency.retrofit}",
+        retrofitMoshi: "${dependency.retrofitMoshi}",
+        okHttpLogger: "${dependency.okHttpLogger}"
 ]
 
 ext.presentationTestDependencies = [

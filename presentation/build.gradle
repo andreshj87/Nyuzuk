@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
+
     defaultConfig {
         applicationId "com.andres.nyuzuk"
         minSdkVersion 15
@@ -12,19 +13,25 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     def dependency = rootProject.ext.presentationDependencies
     def testDependency = rootProject.ext.presentationTestDependencies
-    implementation project(":domain")
-    implementation project(":data")
+    api project(":domain")
+    api project(":data")
     implementation "${dependency.kotlin}"
     implementation "${dependency.appCompat}"
     implementation "${dependency.constraintLayout}"
@@ -33,6 +40,7 @@ dependencies {
     implementation "${dependency.cardView}"
     implementation "${dependency.koin}"
     implementation "${dependency.koinViewModel}"
+
     testImplementation "${testDependency.jUnit}"
     testImplementation "${testDependency.kotlinStdlib}"
     testImplementation "${testDependency.kotlinTestJunit}"
