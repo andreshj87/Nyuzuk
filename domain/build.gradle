@@ -1,6 +1,10 @@
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+}
+
 dependencies {
     def dependency = rootProject.ext.domainDependencies
     def testDependency = rootProject.ext.domainTestDependencies
