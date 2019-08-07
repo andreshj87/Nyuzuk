@@ -3,6 +3,7 @@ package com.andres.nyuzuk.data.di
 import com.andres.nyuzuk.data.BuildConfig
 import com.andres.nyuzuk.data.datasource.ArticleApiDataSource
 import com.andres.nyuzuk.data.remote.ArticleApiService
+import com.andres.nyuzuk.domain.datasource.ArticleRemoteDataSource
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.module.Module
@@ -12,7 +13,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 val dataSourceModule: Module = module {
     single {
-        ArticleApiDataSource(get(), get())
+        ArticleApiDataSource(get(), get()) as ArticleRemoteDataSource
     }
 }
 
@@ -42,7 +43,7 @@ fun provideRetrofit(apiUrl: String, okHttpClient: OkHttpClient): Retrofit {
         .build()
 }
 
-fun provideApiUrl() = "https://newsapi.org/v2"
+fun provideApiUrl() = "https://newsapi.org/v2/"
 
 fun provideOkHttpClient(): OkHttpClient {
     val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()

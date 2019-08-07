@@ -20,6 +20,7 @@ class BaseApplication: Application() {
             androidContext(this@BaseApplication)
             modules(
                 applicationModule,
+                viewModelModule,
                 mapperModule,
                 useCaseModule,
                 repositoryModule,
