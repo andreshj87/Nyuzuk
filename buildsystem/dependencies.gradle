@@ -9,8 +9,8 @@ ext.version = [
         moshi: "1.8.0",
         koin: "2.0.0-GA6",
         koinViewModel: "2.0.0-GA6",
-        retrofit: "2.5.0",
-        retrofitMoshi: "2.4.0",
+        retrofit: "2.6.0",
+        retrofitMoshi: "2.6.1",
         okHttpLogger: "3.12.0",
 
         jUnit: "4.12",
