@@ -6,13 +6,9 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ArticleApiService {
-    companion object {
-        private const val API_URL = "https://newsapi.org/v2"
-    }
-
-    @GET("$API_URL/top-headlines")
+    @GET("/v2/top-headlines?country=us")
     fun getTopHeadlines(): Call<ArticleResponse>
 
-    @GET("$API_URL/everything")
+    @GET("/v2/everything")
     fun searchArticles(@Query("q") query: String): Call<ArticleResponse>
 }
