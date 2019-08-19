@@ -5,7 +5,7 @@ import com.andres.nyuzuk.domain.datasource.ArticleRemoteDataSource
 class ArticleRepository(
     private val articleRemoteDataSource: ArticleRemoteDataSource
 ) {
-    fun getTopHeadlines() = articleRemoteDataSource.getTopHeadlines()
+    suspend fun getTopHeadlines() = articleRemoteDataSource.getTopHeadlines()
 
-    fun searchArticles(query: String) = articleRemoteDataSource.searchArticles(query)
+    suspend fun searchArticles(query: String) = articleRemoteDataSource.searchArticles(query)
 }
