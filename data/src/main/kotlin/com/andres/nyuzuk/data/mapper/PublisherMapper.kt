@@ -7,7 +7,9 @@ class PublisherMapper {
     fun map(publisherRemote: PublisherRemote): Publisher {
         return Publisher(
             publisherRemote.id,
-            publisherRemote.name
+            publisherRemote.name,
+            publisherRemote.description,
+            publisherRemote.url
         )
     }
 }

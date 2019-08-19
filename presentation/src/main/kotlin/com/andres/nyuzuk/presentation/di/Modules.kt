@@ -1,7 +1,7 @@
 package com.andres.nyuzuk.presentation.di
 
 import com.andres.nyuzuk.data.mapper.ArticleMapper
-import com.andres.nyuzuk.data.mapper.PublisherMapper
+import com.andres.nyuzuk.data.mapper.BasePublisherMapper
 import com.andres.nyuzuk.presentation.features.main.MainViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
@@ -19,7 +19,7 @@ val viewModelModule: Module = module {
 
 val mapperModule: Module = module {
     single {
-        PublisherMapper()
+        BasePublisherMapper()
     }
 
     single {

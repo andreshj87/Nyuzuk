@@ -20,7 +20,7 @@ val dataSourceModule: Module = module {
 
 val networkModule: Module = module {
     single {
-        provideApiService(get())
+        provideArticleApiService(get())
     }
 
     single {
@@ -32,7 +32,7 @@ val networkModule: Module = module {
     }
 }
 
-fun provideApiService(retrofit: Retrofit): ArticleApiService {
+fun provideArticleApiService(retrofit: Retrofit): ArticleApiService {
     return retrofit.create(ArticleApiService::class.java)
 }
 
