@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface ArticleApiService {
     @GET("/v2/top-headlines?country=us&pageSize=10")
-    suspend fun getTopHeadlines(): Response<ArticleResponse>
+    suspend fun getTopArticles(): Response<ArticleResponse>
 
     @GET("/v2/everything")
     suspend fun searchArticles(@Query("q") query: String): Response<ArticleResponse>

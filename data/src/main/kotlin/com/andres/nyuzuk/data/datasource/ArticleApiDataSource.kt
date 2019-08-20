@@ -13,8 +13,8 @@ class ArticleApiDataSource(
     private val articleApiService: ArticleApiService,
     private val articleMapper: ArticleMapper
 ): ArticleRemoteDataSource {
-    override suspend fun getTopHeadlines(): Either<Failure, List<Article>> {
-        return fromResponse(articleApiService.getTopHeadlines())
+    override suspend fun getTopArticles(): Either<Failure, List<Article>> {
+        return fromResponse(articleApiService.getTopArticles())
     }
 
     override suspend fun searchArticles(query: String): Either<Failure, List<Article>> {

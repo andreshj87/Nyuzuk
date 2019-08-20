@@ -3,16 +3,16 @@ package com.andres.nyuzuk.presentation.features.toparticles
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.andres.nyuzuk.domain.usecase.GetTopHeadlines
+import com.andres.nyuzuk.domain.usecase.GetTopArticles
 
 class TopArticlesViewModel(
-    private val getTopHeadlines: GetTopHeadlines,
+    private val getTopArticles: GetTopArticles,
     private val articleUiMapper: ArticleUiMapper
 ): ViewModel(), ArticleClickListener {
     val articles = MutableLiveData<List<ArticleUi>>()
 
     fun onInit() {
-        getTopHeadlines(viewModelScope) {
+        getTopArticles(viewModelScope) {
             it.either({
                 // TODO render error
             }, { articles ->
