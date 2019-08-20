@@ -3,7 +3,7 @@ package com.andres.nyuzuk.presentation
 import android.app.Application
 import com.andres.nyuzuk.data.di.dataSourceModule
 import com.andres.nyuzuk.data.di.networkModule
-import com.andres.nyuzuk.domain.di.repositoryModule
+import com.andres.nyuzuk.data.di.repositoryModule
 import com.andres.nyuzuk.domain.di.useCaseModule
 import com.andres.nyuzuk.presentation.di.*
 import org.koin.android.ext.koin.androidContext

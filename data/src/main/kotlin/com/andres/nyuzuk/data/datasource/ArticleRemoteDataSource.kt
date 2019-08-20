@@ -5,19 +5,18 @@ import com.andres.nyuzuk.data.entity.ArticleResponse
 import com.andres.nyuzuk.data.mapper.ArticleMapper
 import com.andres.nyuzuk.data.remote.ArticleApiService
 import com.andres.nyuzuk.domain.Failure
-import com.andres.nyuzuk.domain.datasource.ArticleRemoteDataSource
 import com.andres.nyuzuk.domain.entity.Article
 import retrofit2.Response
 
-class ArticleApiDataSource(
+class ArticleRemoteDataSource(
     private val articleApiService: ArticleApiService,
     private val articleMapper: ArticleMapper
-): ArticleRemoteDataSource {
-    override suspend fun getTopArticles(): Either<Failure, List<Article>> {
+) {
+    suspend fun getTopArticles(): Either<Failure, List<Article>> {
         return fromResponse(articleApiService.getTopArticles())
     }
 
-    override suspend fun searchArticles(query: String): Either<Failure, List<Article>> {
+    suspend fun searchArticles(query: String): Either<Failure, List<Article>> {
         return fromResponse(articleApiService.searchArticles(query))
     }
 

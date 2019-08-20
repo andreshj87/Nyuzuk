@@ -1,11 +1,10 @@
 package com.andres.nyuzuk.domain.repository
 
-import com.andres.nyuzuk.domain.datasource.ArticleRemoteDataSource
+import arrow.core.Either
+import com.andres.nyuzuk.domain.Failure
+import com.andres.nyuzuk.domain.entity.Article
 
-class ArticleRepository(
-    private val articleRemoteDataSource: ArticleRemoteDataSource
-) {
-    suspend fun getTopArticles() = articleRemoteDataSource.getTopArticles()
-
-    suspend fun searchArticles(query: String) = articleRemoteDataSource.searchArticles(query)
+interface ArticleRepository {
+    suspend fun getTopArticles(): Either<Failure, List<Article>>
+    suspend fun searchArticles(query: String): Either<Failure, List<Article>>
 }

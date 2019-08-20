@@ -1,10 +1,11 @@
 package com.andres.nyuzuk.data.di
 
 import com.andres.nyuzuk.data.BuildConfig
-import com.andres.nyuzuk.data.datasource.ArticleApiDataSource
+import com.andres.nyuzuk.data.datasource.ArticleRemoteDataSource
 import com.andres.nyuzuk.data.remote.ArticleApiService
 import com.andres.nyuzuk.data.remote.ArticleApiServiceHeaders
-import com.andres.nyuzuk.domain.datasource.ArticleRemoteDataSource
+import com.andres.nyuzuk.data.repository.ArticleDataRepository
+import com.andres.nyuzuk.domain.repository.ArticleRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.module.Module
@@ -12,9 +13,15 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
+val repositoryModule: Module = module {
+    single {
+        ArticleDataRepository(get()) as ArticleRepository
+    }
+}
+
 val dataSourceModule: Module = module {
     single {
-        ArticleApiDataSource(get(), get()) as ArticleRemoteDataSource
+        ArticleRemoteDataSource(get(), get())
     }
 }
 
