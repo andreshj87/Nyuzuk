@@ -21,7 +21,7 @@ class ArticleMapper(
             articleRemote.content,
             articleRemote.author,
             basePublisherMapper.map(articleRemote.publisher),
-            articleRemote.imageUrl,
+            articleRemote.urlToImage,
             articleRemote.url
         )
     }

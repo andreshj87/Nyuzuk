@@ -4,7 +4,7 @@ import com.andres.nyuzuk.domain.entity.BasePublisher
 
 data class ArticleUi(
   val title: String,
-  val description: String,
+  val description: String?,
   val content: String?,
   val author: String?,
   val publisher: BasePublisher?,

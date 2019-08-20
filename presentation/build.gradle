@@ -47,6 +47,7 @@ dependencies {
     implementation "${dependency.koinViewModel}"
     kapt "${dependency.lifecycleCompiler}"
     implementation "${dependency.lifecycleViewModel}"
+    implementation "${dependency.picasso}"
     testImplementation "${testDependency.jUnit}"
     testImplementation "${testDependency.kotlinStdlib}"
     testImplementation "${testDependency.kotlinTestJunit}"

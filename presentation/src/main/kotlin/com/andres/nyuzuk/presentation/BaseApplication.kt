@@ -25,7 +25,8 @@ class BaseApplication: Application() {
                 useCaseModule,
                 repositoryModule,
                 dataSourceModule,
-                networkModule
+                networkModule,
+                toolsModule
             )
         }
     }
