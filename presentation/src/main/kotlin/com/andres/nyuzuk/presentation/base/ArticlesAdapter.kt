@@ -3,6 +3,8 @@ package com.andres.nyuzuk.presentation.base
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.andres.nyuzuk.presentation.features.toparticles.ArticleClickListener
 import com.andres.nyuzuk.presentation.features.toparticles.ArticleUi
@@ -10,7 +12,7 @@ import com.andres.nyuzuk.presentation.features.toparticles.ArticleUi
 abstract class ArticlesAdapter(
     private val articlesUi: List<ArticleUi>,
     private val articleClickListener: ArticleClickListener
-): RecyclerView.Adapter<ArticlesAdapter.ArticleViewHolder>() {
+): ListAdapter<ArticleUi, ArticlesAdapter.ArticleViewHolder>(DiffCallback()) {
     abstract fun getLayoutResource(): Int
 
     abstract fun getViewHolder(itemView: View): ArticleViewHolder
@@ -40,4 +42,15 @@ abstract class ArticlesAdapter(
             bindItem(articleUi)
         }
     }
+}
+
+class DiffCallback: DiffUtil.ItemCallback<ArticleUi>() {
+    override fun areItemsTheSame(oldItem: ArticleUi, newItem: ArticleUi): Boolean {
+        return oldItem.url == newItem.url
+    }
+
+    override fun areContentsTheSame(oldItem: ArticleUi, newItem: ArticleUi): Boolean {
+        return oldItem == newItem
+    }
+
 }

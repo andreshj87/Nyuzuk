@@ -13,16 +13,26 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class TopArticlesActivity : AppCompatActivity() {
     private val viewModel: TopArticlesViewModel by viewModel()
     private val imageLoader: ImageLoader by inject()
+    private var topArticlesAdapter: TopArticlesAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_top_articles)
         viewModel.onInit()
         viewModel.articles.observe(this, Observer {
-            recyclerview_articles.apply {
-                layoutManager = LinearLayoutManager(context)
-                adapter = TopArticlesAdapter(it, viewModel as ArticleClickListener, imageLoader)
-            }
+            loadList(it)
         })
+    }
+
+    private fun loadList(articlesUi: List<ArticleUi>) {
+        recyclerview_articles.apply {
+            layoutManager = LinearLayoutManager(context)
+            if (topArticlesAdapter == null) {
+                topArticlesAdapter = TopArticlesAdapter(articlesUi, viewModel as ArticleClickListener, imageLoader)
+            } else {
+                topArticlesAdapter?.apply { submitList(articlesUi) }
+            }
+            adapter = topArticlesAdapter
+        }
     }
 }
