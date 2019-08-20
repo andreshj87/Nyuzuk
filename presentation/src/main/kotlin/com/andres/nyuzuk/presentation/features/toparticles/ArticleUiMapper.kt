@@ -1,4 +1,4 @@
-package com.andres.nyuzuk.presentation.features.main
+package com.andres.nyuzuk.presentation.features.toparticles
 
 import com.andres.nyuzuk.domain.entity.Article
 

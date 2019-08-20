@@ -2,8 +2,8 @@ package com.andres.nyuzuk.presentation.di
 
 import com.andres.nyuzuk.data.mapper.ArticleMapper
 import com.andres.nyuzuk.data.mapper.BasePublisherMapper
-import com.andres.nyuzuk.presentation.features.main.ArticleUiMapper
-import com.andres.nyuzuk.presentation.features.main.MainViewModel
+import com.andres.nyuzuk.presentation.features.toparticles.ArticleUiMapper
+import com.andres.nyuzuk.presentation.features.toparticles.TopArticlesViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -14,7 +14,7 @@ val applicationModule = module(override = true) {
 
 val viewModelModule: Module = module {
     viewModel {
-        MainViewModel(get(), get())
+        TopArticlesViewModel(get(), get())
     }
 }
 
