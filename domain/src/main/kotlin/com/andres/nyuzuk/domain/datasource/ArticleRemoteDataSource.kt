@@ -1,6 +1,6 @@
 package com.andres.nyuzuk.domain.datasource
 
-import com.andres.nyuzuk.domain.Either
+import arrow.core.Either
 import com.andres.nyuzuk.domain.Failure
 import com.andres.nyuzuk.domain.entity.Article
 

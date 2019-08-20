@@ -1,6 +1,6 @@
 package com.andres.nyuzuk.domain.usecase
 
-import com.andres.nyuzuk.domain.Either
+import arrow.core.Either
 import com.andres.nyuzuk.domain.Failure
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

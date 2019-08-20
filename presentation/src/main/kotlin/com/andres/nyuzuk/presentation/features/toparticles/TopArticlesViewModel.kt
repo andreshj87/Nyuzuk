@@ -13,7 +13,7 @@ class TopArticlesViewModel(
 
     fun onInit() {
         getTopArticles(viewModelScope) {
-            it.either({
+            it.fold({
                 // TODO render error
             }, { articles ->
                 println(articles.toString())

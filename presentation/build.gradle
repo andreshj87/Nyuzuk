@@ -48,6 +48,7 @@ dependencies {
     kapt "${dependency.lifecycleCompiler}"
     implementation "${dependency.lifecycleViewModel}"
     implementation "${dependency.picasso}"
+    implementation "${dependency.arrowCoreData}"
     testImplementation "${testDependency.jUnit}"
     testImplementation "${testDependency.kotlinStdlib}"
     testImplementation "${testDependency.kotlinTestJunit}"

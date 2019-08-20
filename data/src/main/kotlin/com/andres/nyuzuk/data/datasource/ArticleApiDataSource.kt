@@ -1,9 +1,9 @@
 package com.andres.nyuzuk.data.datasource
 
+import arrow.core.Either
 import com.andres.nyuzuk.data.entity.ArticleResponse
 import com.andres.nyuzuk.data.mapper.ArticleMapper
 import com.andres.nyuzuk.data.remote.ArticleApiService
-import com.andres.nyuzuk.domain.Either
 import com.andres.nyuzuk.domain.Failure
 import com.andres.nyuzuk.domain.datasource.ArticleRemoteDataSource
 import com.andres.nyuzuk.domain.entity.Article
