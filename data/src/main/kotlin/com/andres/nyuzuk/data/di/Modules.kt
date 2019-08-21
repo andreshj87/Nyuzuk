@@ -15,13 +15,13 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 val repositoryModule: Module = module {
     single {
-        ArticleDataRepository(get()) as ArticleRepository
+        ArticleDataRepository(get(), get()) as ArticleRepository
     }
 }
 
 val dataSourceModule: Module = module {
     single {
-        ArticleRemoteDataSource(get(), get())
+        ArticleRemoteDataSource(get())
     }
 }
 
