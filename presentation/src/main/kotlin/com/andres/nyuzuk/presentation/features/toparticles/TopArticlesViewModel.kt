@@ -8,7 +8,7 @@ import com.andres.nyuzuk.domain.usecase.GetTopArticles
 class TopArticlesViewModel(
     private val getTopArticles: GetTopArticles,
     private val articleUiMapper: ArticleUiMapper
-): ViewModel(), ArticleClickListener {
+) : ViewModel(), ArticleClickListener {
     val articles = MutableLiveData<List<ArticleUi>>()
 
     fun onInit() {

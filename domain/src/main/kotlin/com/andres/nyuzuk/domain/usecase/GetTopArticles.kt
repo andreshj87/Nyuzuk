@@ -7,7 +7,7 @@ import com.andres.nyuzuk.domain.repository.ArticleRepository
 
 class GetTopArticles(
     private val articleRepository: ArticleRepository
-): UseCase<List<Article>, UseCase.None>() {
+) : UseCase<List<Article>, UseCase.None>() {
     override suspend fun execute(params: None): Either<Failure, List<Article>> {
         return articleRepository.getTopArticles()
     }

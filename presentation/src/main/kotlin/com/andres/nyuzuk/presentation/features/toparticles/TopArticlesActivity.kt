@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andres.nyuzuk.R
 import com.andres.nyuzuk.presentation.base.ImageLoader
-import kotlinx.android.synthetic.main.activity_top_articles.recyclerview_articles
+import kotlinx.android.synthetic.main.activity_top_articles.recyclerview_top_articles
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,7 +25,7 @@ class TopArticlesActivity : AppCompatActivity() {
     }
 
     private fun loadList(articlesUi: List<ArticleUi>) {
-        recyclerview_articles.apply {
+        recyclerview_top_articles.apply {
             layoutManager = LinearLayoutManager(context)
             if (topArticlesAdapter == null) {
                 topArticlesAdapter = TopArticlesAdapter(articlesUi, viewModel as ArticleClickListener, imageLoader)

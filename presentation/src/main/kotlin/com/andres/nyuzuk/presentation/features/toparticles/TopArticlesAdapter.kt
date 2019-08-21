@@ -4,35 +4,37 @@ import android.view.View
 import com.andres.nyuzuk.R
 import com.andres.nyuzuk.presentation.base.ArticlesAdapter
 import com.andres.nyuzuk.presentation.base.ImageLoader
-import kotlinx.android.synthetic.main.item_article_card.view.*
+import kotlinx.android.synthetic.main.item_article_card.view.image_article
+import kotlinx.android.synthetic.main.item_article_card.view.text_article_title
+import kotlinx.android.synthetic.main.item_article_card.view.view_article_card
 
 class TopArticlesAdapter(
-  articlesUi: List<ArticleUi>,
-  articleClickListener: ArticleClickListener,
-  private val imageLoader: ImageLoader
-): ArticlesAdapter(articlesUi, articleClickListener) {
-  override fun getLayoutResource(): Int {
-    return R.layout.item_article_card
-  }
-
-  override fun getViewHolder(itemView: View): ArticleViewHolder {
-    return TopArticleViewHolder(itemView)
-  }
-
-  inner class TopArticleViewHolder(itemView: View): ArticleViewHolder(itemView) {
-    private val articleCardView = itemView.view_article_card
-    private val articleImage = itemView.image_article
-    private val articleTitleText = itemView.text_article_title
-
-    override fun bindItem(articleUi: ArticleUi) {
-      articleUi.imageUrl?.let {
-        imageLoader.load(it, articleImage)
-      }
-      articleTitleText.text = articleUi.title
+    articlesUi: List<ArticleUi>,
+    articleClickListener: ArticleClickListener,
+    private val imageLoader: ImageLoader
+) : ArticlesAdapter(articlesUi, articleClickListener) {
+    override fun getLayoutResource(): Int {
+        return R.layout.item_article_card
     }
 
-    override fun getClickableView(): View {
-      return articleCardView
+    override fun getViewHolder(itemView: View): ArticleViewHolder {
+        return TopArticleViewHolder(itemView)
     }
-  }
+
+    inner class TopArticleViewHolder(itemView: View) : ArticleViewHolder(itemView) {
+        private val articleCardView = itemView.view_article_card
+        private val articleImage = itemView.image_article
+        private val articleTitleText = itemView.text_article_title
+
+        override fun bindItem(articleUi: ArticleUi) {
+            articleUi.imageUrl?.let {
+                imageLoader.load(it, articleImage)
+            }
+            articleTitleText.text = articleUi.title
+        }
+
+        override fun getClickableView(): View {
+            return articleCardView
+        }
+    }
 }

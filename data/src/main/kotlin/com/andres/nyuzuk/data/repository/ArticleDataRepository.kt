@@ -5,7 +5,7 @@ import com.andres.nyuzuk.domain.repository.ArticleRepository
 
 class ArticleDataRepository(
     private val articleRemoteDataSource: ArticleRemoteDataSource
-): ArticleRepository {
+) : ArticleRepository {
     override suspend fun getTopArticles() = articleRemoteDataSource.getTopArticles()
 
     override suspend fun searchArticles(query: String) = articleRemoteDataSource.searchArticles(query)

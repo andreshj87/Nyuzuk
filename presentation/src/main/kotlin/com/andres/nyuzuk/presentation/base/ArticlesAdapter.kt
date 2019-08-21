@@ -12,7 +12,7 @@ import com.andres.nyuzuk.presentation.features.toparticles.ArticleUi
 abstract class ArticlesAdapter(
     private val articlesUi: List<ArticleUi>,
     private val articleClickListener: ArticleClickListener
-): ListAdapter<ArticleUi, ArticlesAdapter.ArticleViewHolder>(DiffCallback()) {
+) : ListAdapter<ArticleUi, ArticlesAdapter.ArticleViewHolder>(DiffCallback()) {
     abstract fun getLayoutResource(): Int
 
     abstract fun getViewHolder(itemView: View): ArticleViewHolder
@@ -32,7 +32,7 @@ abstract class ArticlesAdapter(
         holder.bind(articleUi)
     }
 
-    abstract inner class ArticleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    abstract inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         abstract fun bindItem(articleUi: ArticleUi)
 
         abstract fun getClickableView(): View
@@ -44,7 +44,7 @@ abstract class ArticlesAdapter(
     }
 }
 
-class DiffCallback: DiffUtil.ItemCallback<ArticleUi>() {
+class DiffCallback : DiffUtil.ItemCallback<ArticleUi>() {
     override fun areItemsTheSame(oldItem: ArticleUi, newItem: ArticleUi): Boolean {
         return oldItem.url == newItem.url
     }
@@ -52,5 +52,4 @@ class DiffCallback: DiffUtil.ItemCallback<ArticleUi>() {
     override fun areContentsTheSame(oldItem: ArticleUi, newItem: ArticleUi): Boolean {
         return oldItem == newItem
     }
-
 }
