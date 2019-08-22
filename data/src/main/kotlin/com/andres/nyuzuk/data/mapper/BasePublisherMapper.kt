@@ -1,6 +1,6 @@
 package com.andres.nyuzuk.data.mapper
 
-import com.andres.nyuzuk.data.entity.BasePublisherRemote
+import com.andres.nyuzuk.data.entity.remote.BasePublisherRemote
 import com.andres.nyuzuk.domain.entity.BasePublisher
 
 class BasePublisherMapper {

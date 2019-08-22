@@ -1,4 +1,4 @@
-package com.andres.nyuzuk.data.remote
+package com.andres.nyuzuk.data.datasource.remote.api
 
 import okhttp3.Interceptor
 import okhttp3.Request

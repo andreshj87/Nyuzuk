@@ -1,6 +1,6 @@
 package com.andres.nyuzuk.data.mapper
 
-import com.andres.nyuzuk.data.entity.ArticleRemote
+import com.andres.nyuzuk.data.entity.remote.ArticleRemote
 import com.andres.nyuzuk.domain.entity.Article
 
 class ArticleMapper(

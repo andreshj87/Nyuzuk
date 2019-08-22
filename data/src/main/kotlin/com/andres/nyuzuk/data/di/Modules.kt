@@ -1,9 +1,9 @@
 package com.andres.nyuzuk.data.di
 
 import com.andres.nyuzuk.data.BuildConfig
-import com.andres.nyuzuk.data.datasource.ArticleRemoteDataSource
-import com.andres.nyuzuk.data.remote.ArticleApiService
-import com.andres.nyuzuk.data.remote.ArticleApiServiceHeaders
+import com.andres.nyuzuk.data.datasource.remote.ArticleRemoteDataSource
+import com.andres.nyuzuk.data.datasource.remote.api.ArticleApiService
+import com.andres.nyuzuk.data.datasource.remote.api.ArticleApiServiceHeaders
 import com.andres.nyuzuk.data.repository.ArticleDataRepository
 import com.andres.nyuzuk.domain.repository.ArticleRepository
 import okhttp3.OkHttpClient
@@ -61,7 +61,8 @@ fun provideOkHttpClient(): OkHttpClient {
     return okHttpClientBuilder.build()
 }
 
-fun provideOkHttpClientHeaders() = ArticleApiServiceHeaders(provideApiKey())
+fun provideOkHttpClientHeaders() =
+    ArticleApiServiceHeaders(provideApiKey())
 
 fun provideApiUrl() = "https://newsapi.org/v2/"
 
