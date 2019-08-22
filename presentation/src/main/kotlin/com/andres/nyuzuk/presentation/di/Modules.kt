@@ -2,8 +2,8 @@ package com.andres.nyuzuk.presentation.di
 
 import com.andres.nyuzuk.data.mapper.ArticleMapper
 import com.andres.nyuzuk.data.mapper.BasePublisherMapper
-import com.andres.nyuzuk.presentation.base.ImageLoader
-import com.andres.nyuzuk.presentation.base.PicassoImageLoader
+import com.andres.nyuzuk.presentation.tools.imageloader.ImageLoader
+import com.andres.nyuzuk.presentation.tools.imageloader.PicassoImageLoader
 import com.andres.nyuzuk.presentation.features.toparticles.ArticleUiMapper
 import com.andres.nyuzuk.presentation.features.toparticles.TopArticlesViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel

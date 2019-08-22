@@ -10,5 +10,5 @@ interface ArticleApiService {
     suspend fun getTopArticles(@Query("page") page: Int, @Query("pageSize") pageSize: Int): Response<ArticleResponse>
 
     @GET("everything")
-    suspend fun searchArticles(@Query("q") query: String): Response<ArticleResponse>
+    suspend fun searchArticles(@Query("q") query: String, @Query("page") page: Int, @Query("pageSize") pageSize: Int): Response<ArticleResponse>
 }

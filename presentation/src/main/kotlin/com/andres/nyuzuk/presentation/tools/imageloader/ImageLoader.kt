@@ -1,4 +1,4 @@
-package com.andres.nyuzuk.presentation.base
+package com.andres.nyuzuk.presentation.tools.imageloader
 
 import android.widget.ImageView
 

@@ -3,13 +3,13 @@ package com.andres.nyuzuk.presentation.features.toparticles
 import android.view.View
 import com.andres.nyuzuk.R
 import com.andres.nyuzuk.presentation.base.ArticlesAdapter
-import com.andres.nyuzuk.presentation.base.ImageLoader
+import com.andres.nyuzuk.presentation.tools.imageloader.ImageLoader
 import kotlinx.android.synthetic.main.item_article_card.view.image_article
 import kotlinx.android.synthetic.main.item_article_card.view.text_article_title
 import kotlinx.android.synthetic.main.item_article_card.view.view_article_card
 
 class TopArticlesAdapter(
-    articlesUi: List<ArticleUi>,
+    articlesUi: MutableList<ArticleUi>,
     articleClickListener: ArticleClickListener,
     private val imageLoader: ImageLoader
 ) : ArticlesAdapter(articlesUi, articleClickListener) {

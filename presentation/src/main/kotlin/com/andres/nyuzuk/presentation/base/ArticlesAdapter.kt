@@ -10,7 +10,7 @@ import com.andres.nyuzuk.presentation.features.toparticles.ArticleClickListener
 import com.andres.nyuzuk.presentation.features.toparticles.ArticleUi
 
 abstract class ArticlesAdapter(
-    private val articlesUi: List<ArticleUi>,
+    private val articlesUi: MutableList<ArticleUi>,
     private val articleClickListener: ArticleClickListener
 ) : ListAdapter<ArticleUi, ArticlesAdapter.ArticleViewHolder>(DiffCallback()) {
     abstract fun getLayoutResource(): Int
@@ -30,6 +30,11 @@ abstract class ArticlesAdapter(
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val articleUi = articlesUi[position]
         holder.bind(articleUi)
+    }
+
+    fun updateList(articlesUi: List<ArticleUi>) {
+        this.articlesUi.addAll(articlesUi)
+        submitList(this.articlesUi)
     }
 
     abstract inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
