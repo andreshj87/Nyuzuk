@@ -10,9 +10,9 @@ class ArticleDataRepository(
     private val articleRemoteDataSource: ArticleRemoteDataSource,
     private val articleMapper: ArticleMapper
 ) : ArticleRepository {
-    override suspend fun getTopArticles(freshData: Boolean) =
-        articleRemoteDataSource.getTopArticles(freshData).flatMap { Either.Right(articleMapper.map(it)) }
+    override suspend fun getTopArticles(invalidating: Boolean) =
+        articleRemoteDataSource.getTopArticles(invalidating).flatMap { Either.Right(articleMapper.map(it)) }
 
-    override suspend fun searchArticles(query: String, freshData: Boolean) =
-        articleRemoteDataSource.searchArticles(query, freshData).flatMap { Either.Right(articleMapper.map(it)) }
+    override suspend fun searchArticles(query: String, invalidating: Boolean) =
+        articleRemoteDataSource.searchArticles(query, invalidating).flatMap { Either.Right(articleMapper.map(it)) }
 }

@@ -14,31 +14,25 @@ class ArticleRemoteDataSource(
     private val topArticlesPaginator = ApiPaginator()
     private val searchArticlesPaginator = ApiPaginator()
 
-    suspend fun getTopArticles(freshData: Boolean): Either<Failure, List<ArticleRemote>> {
-        if (freshData) {
-            topArticlesPaginator.invalidate()
-        }
-        return if (topArticlesPaginator.requestMore()) {
+    suspend fun getTopArticles(invalidating: Boolean): Either<Failure, List<ArticleRemote>> {
+        return if (topArticlesPaginator.requestMore(invalidating)) {
             val requestConfig = topArticlesPaginator.getRequestConfig()
             articleApiService.getTopArticles(requestConfig.page, requestConfig.perPage)
                 .processPaginatedResponse(topArticlesPaginator)
                 .toEither()
         } else {
-            Either.Left(Failure.ApiError)
+            Either.Left(Failure.EmptyResult)
         }
     }
 
-    suspend fun searchArticles(query: String, freshData: Boolean): Either<Failure, List<ArticleRemote>> {
-        if (freshData) {
-            searchArticlesPaginator.invalidate()
-        }
-        return if (searchArticlesPaginator.requestMore()) {
+    suspend fun searchArticles(query: String, invalidating: Boolean): Either<Failure, List<ArticleRemote>> {
+        return if (searchArticlesPaginator.requestMore(invalidating)) {
             val requestConfig = searchArticlesPaginator.getRequestConfig()
             articleApiService.searchArticles(query, requestConfig.page, requestConfig.perPage)
                 .processPaginatedResponse(searchArticlesPaginator)
                 .toEither()
         } else {
-            Either.Left(Failure.ApiError)
+            Either.Left(Failure.EmptyResult)
         }
     }
 }

@@ -18,7 +18,7 @@ class TopArticlesViewModel(
     }
 
     fun onLoadMore() {
-        getTopArticles(viewModelScope, GetTopArticles.Params(false)) { it.fold(::processFailure, ::processSuccess) }
+        getTopArticles(viewModelScope, GetTopArticles.Params()) { it.fold(::processFailure, ::processSuccess) }
     }
 
     override fun onArticleClick(articleUi: ArticleUi) {

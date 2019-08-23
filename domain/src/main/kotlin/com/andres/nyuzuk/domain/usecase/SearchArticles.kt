@@ -9,8 +9,8 @@ class SearchArticles(
     private val articleRepository: ArticleRepository
 ) : UseCase<List<Article>, SearchArticles.Params>() {
     override suspend fun execute(params: Params): Either<Failure, List<Article>> {
-        return articleRepository.searchArticles(params.query, params.freshData)
+        return articleRepository.searchArticles(params.query, params.invalidating)
     }
 
-    data class Params(val query: String, val freshData: Boolean)
+    data class Params(val query: String, val invalidating: Boolean = false)
 }

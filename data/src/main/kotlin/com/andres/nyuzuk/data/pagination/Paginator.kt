@@ -5,19 +5,16 @@ import kotlin.math.ceil
 
 interface Paginator<T : PaginatedApiResponse> {
     companion object {
-        private const val DEFAULT_PAGE = 1
+        const val DEFAULT_PAGE = 1
         private const val DEFAULT_PER_PAGE = 20
     }
 
     var page: Int
     var totalResults: Int?
 
-    fun invalidate() {
-        page = DEFAULT_PAGE
-    }
-
-    fun requestMore(): Boolean {
+    fun requestMore(invalidating: Boolean): Boolean {
         return totalResults?.let {
+            if (invalidating) { page = DEFAULT_PAGE }
             page.toDouble() <= ceil(it.toDouble() / DEFAULT_PER_PAGE.toDouble())
         } ?: true
     }

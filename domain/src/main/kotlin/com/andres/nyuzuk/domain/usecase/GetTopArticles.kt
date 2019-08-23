@@ -9,8 +9,8 @@ class GetTopArticles(
     private val articleRepository: ArticleRepository
 ) : UseCase<List<Article>, GetTopArticles.Params>() {
     override suspend fun execute(params: Params): Either<Failure, List<Article>> {
-        return articleRepository.getTopArticles(params.freshData)
+        return articleRepository.getTopArticles(params.invalidating)
     }
 
-    data class Params(val freshData: Boolean)
+    data class Params(val invalidating: Boolean = false)
 }
