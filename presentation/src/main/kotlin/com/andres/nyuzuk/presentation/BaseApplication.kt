@@ -22,14 +22,16 @@ class BaseApplication : Application() {
         startKoin {
             androidContext(this@BaseApplication)
             modules(
-                applicationModule,
-                viewModelModule,
-                mapperModule,
-                useCaseModule,
-                repositoryModule,
-                dataSourceModule,
-                networkModule,
-                toolsModule
+                listOf(
+                    applicationModule,
+                    viewModelModule,
+                    mapperModule,
+                    useCaseModule,
+                    repositoryModule,
+                    dataSourceModule,
+                    networkModule,
+                    toolsModule
+                )
             )
         }
     }

@@ -1,30 +1,37 @@
 package com.andres.nyuzuk.presentation.features.toparticles
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andres.nyuzuk.R
+import com.andres.nyuzuk.presentation.base.BaseActivity
 import com.andres.nyuzuk.presentation.tools.EndlessScrollListener
 import com.andres.nyuzuk.presentation.tools.imageloader.ImageLoader
 import kotlinx.android.synthetic.main.activity_top_articles.recyclerview_top_articles
 import kotlinx.android.synthetic.main.activity_top_articles.view_swipe_to_refresh
 import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class TopArticlesActivity : AppCompatActivity() {
-    private val viewModel: TopArticlesViewModel by viewModel()
+class TopArticlesActivity : BaseActivity<TopArticlesViewState, TopArticlesViewModel>(TopArticlesViewModel::class) {
     private val imageLoader: ImageLoader by inject()
     private var topArticlesAdapter: TopArticlesAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_top_articles)
         setupUi()
-        viewModel.onViewReady()
-        viewModel.viewState.observe(this, Observer {
-            render(it)
-        })
+    }
+
+    override fun getLayoutResource() = R.layout.activity_top_articles
+
+    override fun render(viewState: TopArticlesViewState) {
+        view_swipe_to_refresh.isRefreshing = viewState.isLoading
+        // TODO isEmpty
+        // TODO isError
+        topArticlesAdapter?.apply {
+            if (viewState.topArticlesUi.isEmpty()) {
+                clear()
+            } else {
+                update(viewState.topArticlesUi)
+            }
+        }
     }
 
     private fun setupUi() {
@@ -43,21 +50,6 @@ class TopArticlesActivity : AppCompatActivity() {
         }
         view_swipe_to_refresh?.apply {
             setOnRefreshListener { viewModel.onRefresh() }
-        }
-    }
-
-    private fun render(viewState: TopArticlesViewState?) {
-        viewState?.let {
-            view_swipe_to_refresh.isRefreshing = viewState.isLoading
-            // TODO isEmpty
-            // TODO isError
-            topArticlesAdapter?.apply {
-                if (viewState.topArticlesUi.isEmpty()) {
-                    clear()
-                } else {
-                    update(viewState.topArticlesUi)
-                }
-            }
         }
     }
 }
