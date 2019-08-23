@@ -21,7 +21,7 @@ class TopArticlesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_top_articles)
         setupUi()
-        viewModel.onInit()
+        viewModel.onViewReady()
         viewModel.viewState.observe(this, Observer {
             render(it)
         })

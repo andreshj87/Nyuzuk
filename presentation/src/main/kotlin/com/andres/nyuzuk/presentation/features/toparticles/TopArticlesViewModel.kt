@@ -1,25 +1,20 @@
 package com.andres.nyuzuk.presentation.features.toparticles
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.andres.nyuzuk.domain.Failure
 import com.andres.nyuzuk.domain.entity.Article
 import com.andres.nyuzuk.domain.usecase.GetTopArticles
+import com.andres.nyuzuk.presentation.base.BaseViewModel
 
 class TopArticlesViewModel(
     private val getTopArticles: GetTopArticles,
     private val articleUiMapper: ArticleUiMapper
-) : ViewModel(), ArticleClickListener {
-    val viewState = MutableLiveData<TopArticlesViewState>()
-
-    init {
+) : BaseViewModel<TopArticlesViewState>(), ArticleClickListener {
+    override fun initViewState() {
         viewState.value = TopArticlesViewState()
     }
 
-    private fun getViewState(): TopArticlesViewState = viewState.value!!
-
-    fun onInit() {
+    override fun onViewReady() {
         viewState.value = getViewState().copy(isLoading = true)
         getTopArticles(viewModelScope, GetTopArticles.Params()) { it.fold(::processFailure, ::processSuccess) }
     }
