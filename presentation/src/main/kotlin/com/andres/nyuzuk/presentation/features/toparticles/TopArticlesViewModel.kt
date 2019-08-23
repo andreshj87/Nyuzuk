@@ -14,11 +14,15 @@ class TopArticlesViewModel(
     val articles = MutableLiveData<List<ArticleUi>>()
 
     fun onInit() {
-        getTopArticles(viewModelScope, GetTopArticles.Params(true)) { it.fold(::processFailure, ::processSuccess) }
+        getTopArticles(viewModelScope, GetTopArticles.Params()) { it.fold(::processFailure, ::processSuccess) }
     }
 
     fun onLoadMore() {
         getTopArticles(viewModelScope, GetTopArticles.Params()) { it.fold(::processFailure, ::processSuccess) }
+    }
+
+    fun onRefresh() {
+        getTopArticles(viewModelScope, GetTopArticles.Params(true)) { it.fold(::processFailure, ::processSuccess) }
     }
 
     override fun onArticleClick(articleUi: ArticleUi) {

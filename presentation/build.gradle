@@ -49,6 +49,7 @@ dependencies {
     implementation "${dependency.lifecycleViewModel}"
     implementation "${dependency.picasso}"
     implementation "${dependency.arrowCoreData}"
+    implementation "${dependency.pullToRefresh}"
     testImplementation "${testDependency.jUnit}"
     testImplementation "${testDependency.kotlinStdlib}"
     testImplementation "${testDependency.kotlinTestJunit}"

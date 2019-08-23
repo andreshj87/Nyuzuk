@@ -32,9 +32,14 @@ abstract class ArticlesAdapter(
         holder.bind(articleUi)
     }
 
-    fun updateList(articlesUi: List<ArticleUi>) {
+    fun update(articlesUi: List<ArticleUi>) {
         this.articlesUi.addAll(articlesUi)
         submitList(this.articlesUi)
+    }
+
+    fun clear() {
+        this.articlesUi.clear()
+        submitList(null)
     }
 
     abstract inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
