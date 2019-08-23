@@ -22,8 +22,8 @@ class TopArticlesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_top_articles)
         setupUi()
         viewModel.onInit()
-        viewModel.articles.observe(this, Observer {
-            updateList(it)
+        viewModel.viewState.observe(this, Observer {
+            render(it)
         })
     }
 
@@ -31,12 +31,12 @@ class TopArticlesActivity : AppCompatActivity() {
         recyclerview_top_articles?.apply {
             val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
-            addOnScrollListener(object: EndlessScrollListener(linearLayoutManager) {
+            addOnScrollListener(object : EndlessScrollListener(linearLayoutManager) {
                 override fun onLoadMore(currentPage: Int, totalItemCount: Int) {
                     viewModel.onLoadMore()
                 }
 
-                override fun onScroll(firstVisibleItem: Int, dy: Int, scrollPosition: Int) { }
+                override fun onScroll(firstVisibleItem: Int, dy: Int, scrollPosition: Int) {}
             })
             topArticlesAdapter = TopArticlesAdapter(mutableListOf(), viewModel as ArticleClickListener, imageLoader)
             adapter = topArticlesAdapter
@@ -46,9 +46,18 @@ class TopArticlesActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateList(articlesUi: List<ArticleUi>) {
-        topArticlesAdapter?.apply {
-            update(articlesUi)
+    private fun render(viewState: TopArticlesViewState?) {
+        viewState?.let {
+            view_swipe_to_refresh.isRefreshing = viewState.isLoading
+            // TODO isEmpty
+            // TODO isError
+            topArticlesAdapter?.apply {
+                if (viewState.topArticlesUi.isEmpty()) {
+                    clear()
+                } else {
+                    update(viewState.topArticlesUi)
+                }
+            }
         }
     }
 }

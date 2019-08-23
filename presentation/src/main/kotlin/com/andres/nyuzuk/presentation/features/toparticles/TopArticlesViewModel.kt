@@ -11,9 +11,16 @@ class TopArticlesViewModel(
     private val getTopArticles: GetTopArticles,
     private val articleUiMapper: ArticleUiMapper
 ) : ViewModel(), ArticleClickListener {
-    val articles = MutableLiveData<List<ArticleUi>>()
+    val viewState = MutableLiveData<TopArticlesViewState>()
+
+    init {
+        viewState.value = TopArticlesViewState()
+    }
+
+    private fun getViewState(): TopArticlesViewState = viewState.value!!
 
     fun onInit() {
+        viewState.value = getViewState().copy(isLoading = true)
         getTopArticles(viewModelScope, GetTopArticles.Params()) { it.fold(::processFailure, ::processSuccess) }
     }
 
@@ -22,6 +29,7 @@ class TopArticlesViewModel(
     }
 
     fun onRefresh() {
+        viewState.value = getViewState().copy(isLoading = true)
         getTopArticles(viewModelScope, GetTopArticles.Params(true)) { it.fold(::processFailure, ::processSuccess) }
     }
 
@@ -30,10 +38,17 @@ class TopArticlesViewModel(
     }
 
     private fun processSuccess(articles: List<Article>) {
-        this.articles.postValue(articleUiMapper.map(articles))
+        viewState.value = getViewState().copy(isLoading = false, isError = false)
+        val articlesUi = articleUiMapper.map(articles)
+        if (articlesUi.isEmpty()) {
+            viewState.value = getViewState().copy(isEmpty = true)
+        } else {
+            viewState.value =
+                getViewState().copy(topArticlesUi = articlesUi, isEmpty = false)
+        }
     }
 
     private fun processFailure(failure: Failure) {
-        // TODO
+        viewState.value = getViewState().copy(isError = true, isLoading = false)
     }
 }
