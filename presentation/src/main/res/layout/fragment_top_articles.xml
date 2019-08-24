@@ -13,4 +13,6 @@
         android:scrollbars="vertical"
         tools:listitem="@layout/item_article_card" />
 
+    <include layout="@layout/view_empty"/>
+
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

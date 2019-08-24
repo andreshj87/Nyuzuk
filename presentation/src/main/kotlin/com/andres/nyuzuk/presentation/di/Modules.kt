@@ -2,6 +2,8 @@ package com.andres.nyuzuk.presentation.di
 
 import com.andres.nyuzuk.data.mapper.ArticleMapper
 import com.andres.nyuzuk.data.mapper.BasePublisherMapper
+import com.andres.nyuzuk.presentation.base.ErrorDialog
+import com.andres.nyuzuk.presentation.base.ErrorUiMapper
 import com.andres.nyuzuk.presentation.features.main.MainViewModel
 import com.andres.nyuzuk.presentation.features.search.SearchArticlesViewModel
 import com.andres.nyuzuk.presentation.features.toparticles.ArticleUiMapper
@@ -23,11 +25,11 @@ val viewModelModule: Module = module {
     }
 
     viewModel {
-        TopArticlesViewModel(get(), get())
+        TopArticlesViewModel(get(), get(), get())
     }
 
     viewModel {
-        SearchArticlesViewModel(get(), get())
+        SearchArticlesViewModel(get(), get(), get())
     }
 }
 
@@ -43,6 +45,10 @@ val mapperModule: Module = module {
     single {
         ArticleUiMapper()
     }
+
+    single {
+        ErrorUiMapper()
+    }
 }
 
 val toolsModule: Module = module {
@@ -51,5 +57,8 @@ val toolsModule: Module = module {
     }
     single {
         Navigator()
+    }
+    factory {
+        ErrorDialog()
     }
 }

@@ -5,13 +5,15 @@ import com.andres.nyuzuk.domain.Failure
 import com.andres.nyuzuk.domain.entity.Article
 import com.andres.nyuzuk.domain.usecase.SearchArticles
 import com.andres.nyuzuk.presentation.base.BaseViewModel
+import com.andres.nyuzuk.presentation.base.ErrorUiMapper
 import com.andres.nyuzuk.presentation.features.toparticles.ArticleClickListener
 import com.andres.nyuzuk.presentation.features.toparticles.ArticleUi
 import com.andres.nyuzuk.presentation.features.toparticles.ArticleUiMapper
 
 class SearchArticlesViewModel(
     private val searchArticles: SearchArticles,
-    private val articleUiMapper: ArticleUiMapper
+    private val articleUiMapper: ArticleUiMapper,
+    private val errorUiMapper: ErrorUiMapper
 ) : BaseViewModel<SearchArticlesViewState>(), ArticleClickListener {
     override fun initViewState() {
         viewState.value = SearchArticlesViewState()
@@ -38,8 +40,13 @@ class SearchArticlesViewModel(
             isLoading = false,
             isEmpty = false,
             isError = false,
+            errorUi = null,
             foundArticlesUi = emptyList()
         )
+    }
+
+    fun onErrorDialogDismiss() {
+        viewState.value = getViewState().copy(isError = false, errorUi = null)
     }
 
     private fun search(typedText: String) {
@@ -58,6 +65,9 @@ class SearchArticlesViewModel(
     }
 
     private fun processFailure(failure: Failure) {
-        viewState.value = getViewState().copy(isError = true, isLoading = false)
+        if (failure !is Failure.EmptyResult) {
+            val errorUi = errorUiMapper.map(failure)
+            viewState.value = getViewState().copy(isError = true, errorUi = errorUi, isLoading = false)
+        }
     }
 }

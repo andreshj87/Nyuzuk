@@ -6,6 +6,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andres.nyuzuk.R
 import com.andres.nyuzuk.presentation.base.BaseActivity
+import com.andres.nyuzuk.presentation.base.ErrorDialog
 import com.andres.nyuzuk.presentation.extension.setVisibility
 import com.andres.nyuzuk.presentation.features.toparticles.ArticleClickListener
 import com.andres.nyuzuk.presentation.tools.imageloader.ImageLoader
@@ -19,6 +20,7 @@ import org.koin.android.ext.android.inject
 class SearchArticlesActivity :
     BaseActivity<SearchArticlesViewState, SearchArticlesViewModel>(SearchArticlesViewModel::class) {
     private val imageLoader: ImageLoader by inject()
+    private val errorDialog: ErrorDialog by inject()
     private var searchArticlesAdapter: SearchArticlesAdapter? = null
 
     override fun getLayoutResource() = R.layout.activity_search_articles
@@ -28,6 +30,9 @@ class SearchArticlesActivity :
             view_loading.setVisibility(viewState.isLoading)
             layout_initial.setVisibility(viewState.isInitial)
             layout_empty.setVisibility(viewState.isEmpty)
+            if (viewState.isError && viewState.errorUi != null) {
+                errorDialog.show(this@SearchArticlesActivity, viewState.errorUi) { viewModel.onErrorDialogDismiss() }
+            }
             clear()
             if (viewState.foundArticlesUi.isNotEmpty()) {
                 update(viewState.foundArticlesUi)
@@ -46,7 +51,8 @@ class SearchArticlesActivity :
             itemAnimator = null
             val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
-            searchArticlesAdapter = SearchArticlesAdapter(mutableListOf(), viewModel as ArticleClickListener, imageLoader)
+            searchArticlesAdapter =
+                SearchArticlesAdapter(mutableListOf(), viewModel as ArticleClickListener, imageLoader)
             adapter = searchArticlesAdapter
         }
     }
@@ -64,7 +70,7 @@ class SearchArticlesActivity :
                     return false
                 }
             })
-            searchItem.setOnActionExpandListener(object: MenuItem.OnActionExpandListener {
+            searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
                 override fun onMenuItemActionCollapse(menuItem: MenuItem?): Boolean {
                     viewModel.onSearchClose()
                     return true

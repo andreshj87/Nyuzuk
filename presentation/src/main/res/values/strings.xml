@@ -3,4 +3,5 @@
     <string name="search_articles_title">Search articles</string>
     <string name="search_articles_initial">Hungry for news? Start searching some articles…</string>
     <string name="articles_empty">Couldn\'t find any articles</string>
+    <string name="button_positive">Done</string>
 </resources>

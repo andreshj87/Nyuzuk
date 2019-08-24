@@ -3,14 +3,18 @@ package com.andres.nyuzuk.presentation.features.toparticles
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andres.nyuzuk.R
 import com.andres.nyuzuk.presentation.base.BaseFragment
+import com.andres.nyuzuk.presentation.base.ErrorDialog
+import com.andres.nyuzuk.presentation.extension.setVisibility
 import com.andres.nyuzuk.presentation.tools.EndlessScrollListener
 import com.andres.nyuzuk.presentation.tools.imageloader.ImageLoader
 import kotlinx.android.synthetic.main.fragment_top_articles.recyclerview_top_articles
 import kotlinx.android.synthetic.main.fragment_top_articles.view_swipe_to_refresh
+import kotlinx.android.synthetic.main.view_empty.layout_empty
 import org.koin.android.ext.android.inject
 
 class TopArticlesFragment : BaseFragment<TopArticlesViewState, TopArticlesViewModel>(TopArticlesViewModel::class) {
     private val imageLoader: ImageLoader by inject()
+    private val errorDialog: ErrorDialog by inject()
     private var topArticlesAdapter: TopArticlesAdapter? = null
 
     companion object {
@@ -21,8 +25,10 @@ class TopArticlesFragment : BaseFragment<TopArticlesViewState, TopArticlesViewMo
 
     override fun render(viewState: TopArticlesViewState) {
         view_swipe_to_refresh.isRefreshing = viewState.isLoading
-        // TODO isEmpty
-        // TODO isError
+        layout_empty.setVisibility(viewState.isEmpty)
+        if (viewState.isError && viewState.errorUi != null && context != null) {
+            errorDialog.show(context!!, viewState.errorUi) { viewModel.onErrorDialogDismiss() }
+        }
         topArticlesAdapter?.apply {
             if (viewState.topArticlesUi.isEmpty()) {
                 clear()
