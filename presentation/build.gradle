@@ -55,6 +55,8 @@ dependencies {
     implementation "${dependency.arrowCoreData}"
     implementation "${dependency.pullToRefresh}"
     implementation "${dependency.coil}"
+    implementation "${dependency.browser}"
+    implementation "${dependency.customTabs}"
     testImplementation "${testDependency.jUnit}"
     testImplementation "${testDependency.kotlinStdlib}"
     testImplementation "${testDependency.kotlinTestJunit}"

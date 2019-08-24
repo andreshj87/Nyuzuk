@@ -5,9 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import com.andres.nyuzuk.R
-import com.andres.nyuzuk.presentation.base.BaseActivity
 import com.andres.nyuzuk.presentation.base.ArticleUi
+import com.andres.nyuzuk.presentation.base.BaseActivity
 import com.andres.nyuzuk.presentation.tools.imageloader.ImageLoader
+import com.andres.nyuzuk.presentation.tools.webbrowser.WebBrowser
 import kotlinx.android.synthetic.main.activity_article_detail.button_article_see_more
 import kotlinx.android.synthetic.main.activity_article_detail.image_article
 import kotlinx.android.synthetic.main.activity_article_detail.text_article_author
@@ -18,6 +19,7 @@ import org.koin.android.ext.android.inject
 class ArticleDetailActivity :
     BaseActivity<ArticleDetailViewState, ArticleDetailViewModel>(ArticleDetailViewModel::class) {
     private val imageLoader: ImageLoader by inject()
+    private val webBrowser: WebBrowser by inject()
 
     companion object {
         private val EXTRA_ARTICLE_UI = ArticleDetailActivity::class.java.simpleName.plus(".EXTRA_ARTICLE_UI")
@@ -39,7 +41,7 @@ class ArticleDetailActivity :
     override fun render(viewState: ArticleDetailViewState) {
         viewState.articleUi?.let {
             if (viewState.navigateToDetail) {
-                // TODO open webview
+                webBrowser.launch(this, viewState.articleUi.url)
             }
             val articleUi = viewState.articleUi
             articleUi.imageUrl?.let { imageLoader.load(articleUi.imageUrl, image_article) }

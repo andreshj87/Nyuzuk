@@ -61,6 +61,7 @@
             android:layout_margin="16dp"
             android:background="@drawable/button_selector_orange"
             android:text="@string/article_detail_button_see_more"
+            android:textColor="@color/white"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

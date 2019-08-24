@@ -16,6 +16,8 @@ ext.version = [
     arrow: "0.9.0",
     pullToRefresh: "1.0.0",
     coil: "0.6.1",
+    browser: "1.0.0",
+    customTabs: "2.0.0",
 
     jUnit: "4.12",
     testRunner: "1.3.0-alpha02",
@@ -46,6 +48,8 @@ ext.dependency = [
     arrowCoreData: "io.arrow-kt:arrow-core-data:${version.arrow}",
     pullToRefresh: "androidx.swiperefreshlayout:swiperefreshlayout:${version.pullToRefresh}",
     coil: "io.coil-kt:coil:${version.coil}",
+    browser: "androidx.browser:browser:${version.browser}",
+    customTabs: "saschpe.android:customtabs:${version.customTabs}",
 
     jUnit: "junit:junit:${version.jUnit}",
     testRunner: "androidx.test:runner:${version.testRunner}",
@@ -104,7 +108,9 @@ ext.presentationDependencies = [
     picasso: "${dependency.picasso}",
     arrowCoreData: "${dependency.arrowCoreData}",
     pullToRefresh: "${dependency.pullToRefresh}",
-    coil: "${dependency.coil}"
+    coil: "${dependency.coil}",
+    browser: "${dependency.browser}",
+    customTabs: "${dependency.customTabs}"
 ]
 
 ext.presentationTestDependencies = [
