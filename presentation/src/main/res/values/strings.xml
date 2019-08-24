@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Nyuzuk</string>
+    <string name="title_search_articles">Search articles</string>
 </resources>
