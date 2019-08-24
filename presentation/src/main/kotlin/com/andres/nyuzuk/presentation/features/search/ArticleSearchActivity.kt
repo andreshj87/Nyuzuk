@@ -7,10 +7,10 @@ import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andres.nyuzuk.R
+import com.andres.nyuzuk.presentation.base.ArticleClickListener
 import com.andres.nyuzuk.presentation.base.BaseActivity
 import com.andres.nyuzuk.presentation.base.ErrorDialog
 import com.andres.nyuzuk.presentation.extension.setVisibility
-import com.andres.nyuzuk.presentation.features.toparticles.ArticleClickListener
 import com.andres.nyuzuk.presentation.tools.Navigator
 import com.andres.nyuzuk.presentation.tools.imageloader.ImageLoader
 import kotlinx.android.synthetic.main.activity_search_articles.layout_initial

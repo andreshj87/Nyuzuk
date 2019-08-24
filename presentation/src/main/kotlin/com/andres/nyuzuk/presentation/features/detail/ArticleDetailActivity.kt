@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import com.andres.nyuzuk.R
 import com.andres.nyuzuk.presentation.base.BaseActivity
-import com.andres.nyuzuk.presentation.features.toparticles.ArticleUi
+import com.andres.nyuzuk.presentation.base.ArticleUi
 import com.andres.nyuzuk.presentation.tools.imageloader.ImageLoader
 import kotlinx.android.synthetic.main.activity_article_detail.button_article_see_more
 import kotlinx.android.synthetic.main.activity_article_detail.image_article

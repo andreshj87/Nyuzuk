@@ -1,4 +1,4 @@
-package com.andres.nyuzuk.presentation.features.toparticles
+package com.andres.nyuzuk.presentation.base
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

@@ -3,8 +3,8 @@ package com.andres.nyuzuk.presentation.features.search
 import android.view.View
 import com.andres.nyuzuk.R
 import com.andres.nyuzuk.presentation.base.ArticlesAdapter
-import com.andres.nyuzuk.presentation.features.toparticles.ArticleClickListener
-import com.andres.nyuzuk.presentation.features.toparticles.ArticleUi
+import com.andres.nyuzuk.presentation.base.ArticleClickListener
+import com.andres.nyuzuk.presentation.base.ArticleUi
 import com.andres.nyuzuk.presentation.tools.imageloader.ImageLoader
 import kotlinx.android.synthetic.main.item_article_card.view.image_article
 import kotlinx.android.synthetic.main.item_article_card.view.text_article_title

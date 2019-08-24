@@ -1,4 +1,4 @@
-package com.andres.nyuzuk.presentation.features.toparticles
+package com.andres.nyuzuk.presentation.base
 
 import com.andres.nyuzuk.domain.entity.BasePublisher
 

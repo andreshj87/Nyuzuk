@@ -6,9 +6,9 @@ import com.andres.nyuzuk.domain.entity.Article
 import com.andres.nyuzuk.domain.usecase.SearchArticles
 import com.andres.nyuzuk.presentation.base.BaseViewModel
 import com.andres.nyuzuk.presentation.base.ErrorUiMapper
-import com.andres.nyuzuk.presentation.features.toparticles.ArticleClickListener
-import com.andres.nyuzuk.presentation.features.toparticles.ArticleUi
-import com.andres.nyuzuk.presentation.features.toparticles.ArticleUiMapper
+import com.andres.nyuzuk.presentation.base.ArticleClickListener
+import com.andres.nyuzuk.presentation.base.ArticleUi
+import com.andres.nyuzuk.presentation.base.ArticleUiMapper
 
 class ArticleSearchViewModel(
     private val searchArticles: SearchArticles,

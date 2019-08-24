@@ -2,7 +2,7 @@ package com.andres.nyuzuk.presentation.features.search
 
 import com.andres.nyuzuk.presentation.base.BaseViewState
 import com.andres.nyuzuk.presentation.base.ErrorUi
-import com.andres.nyuzuk.presentation.features.toparticles.ArticleUi
+import com.andres.nyuzuk.presentation.base.ArticleUi
 
 data class ArticleSearchViewState(
     val isInitial: Boolean = false,

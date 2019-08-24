@@ -4,6 +4,9 @@ import androidx.lifecycle.viewModelScope
 import com.andres.nyuzuk.domain.Failure
 import com.andres.nyuzuk.domain.entity.Article
 import com.andres.nyuzuk.domain.usecase.GetTopArticles
+import com.andres.nyuzuk.presentation.base.ArticleClickListener
+import com.andres.nyuzuk.presentation.base.ArticleUi
+import com.andres.nyuzuk.presentation.base.ArticleUiMapper
 import com.andres.nyuzuk.presentation.base.BaseViewModel
 import com.andres.nyuzuk.presentation.base.ErrorUiMapper
 

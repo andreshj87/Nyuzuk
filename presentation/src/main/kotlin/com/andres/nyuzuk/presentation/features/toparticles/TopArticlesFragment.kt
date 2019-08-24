@@ -2,6 +2,7 @@ package com.andres.nyuzuk.presentation.features.toparticles
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andres.nyuzuk.R
+import com.andres.nyuzuk.presentation.base.ArticleClickListener
 import com.andres.nyuzuk.presentation.base.BaseFragment
 import com.andres.nyuzuk.presentation.base.ErrorDialog
 import com.andres.nyuzuk.presentation.extension.getColor

@@ -7,8 +7,8 @@ import com.andres.nyuzuk.presentation.base.ErrorUiMapper
 import com.andres.nyuzuk.presentation.features.detail.ArticleDetailViewModel
 import com.andres.nyuzuk.presentation.features.main.MainViewModel
 import com.andres.nyuzuk.presentation.features.search.ArticleSearchViewModel
-import com.andres.nyuzuk.presentation.features.toparticles.ArticleUiMapper
-import com.andres.nyuzuk.presentation.features.toparticles.BasePublisherUiMapper
+import com.andres.nyuzuk.presentation.base.ArticleUiMapper
+import com.andres.nyuzuk.presentation.base.BasePublisherUiMapper
 import com.andres.nyuzuk.presentation.features.toparticles.TopArticlesViewModel
 import com.andres.nyuzuk.presentation.tools.Navigator
 import com.andres.nyuzuk.presentation.tools.imageloader.CoilImageLoader
