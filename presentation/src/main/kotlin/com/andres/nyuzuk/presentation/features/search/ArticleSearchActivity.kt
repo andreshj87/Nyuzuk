@@ -19,24 +19,24 @@ import kotlinx.android.synthetic.main.view_empty.layout_empty
 import kotlinx.android.synthetic.main.view_loading.view_loading
 import org.koin.android.ext.android.inject
 
-class SearchArticlesActivity :
-    BaseActivity<SearchArticlesViewState, SearchArticlesViewModel>(SearchArticlesViewModel::class) {
+class ArticleSearchActivity :
+    BaseActivity<ArticleSearchViewState, ArticleSearchViewModel>(ArticleSearchViewModel::class) {
     private val imageLoader: ImageLoader by inject()
     private val errorDialog: ErrorDialog by inject()
     private val navigator: Navigator by inject()
-    private var searchArticlesAdapter: SearchArticlesAdapter? = null
+    private var articleSearchAdapter: ArticleSearchAdapter? = null
 
     companion object {
-        fun makeIntent(context: Context) = Intent(context, SearchArticlesActivity::class.java)
+        fun makeIntent(context: Context) = Intent(context, ArticleSearchActivity::class.java)
     }
 
     override fun getLayoutResource() = R.layout.activity_search_articles
 
-    override fun render(viewState: SearchArticlesViewState) {
-        searchArticlesAdapter?.apply {
+    override fun render(viewState: ArticleSearchViewState) {
+        articleSearchAdapter?.apply {
             viewState.articleUiToNavigate?.let {
                 navigator.navigateToDetail(
-                    this@SearchArticlesActivity,
+                    this@ArticleSearchActivity,
                     viewState.articleUiToNavigate
                 )
             }
@@ -44,7 +44,7 @@ class SearchArticlesActivity :
             layout_initial.setVisibility(viewState.isInitial)
             layout_empty.setVisibility(viewState.isEmpty)
             if (viewState.isError && viewState.errorUi != null) {
-                errorDialog.show(this@SearchArticlesActivity, viewState.errorUi) { viewModel.onErrorDialogDismiss() }
+                errorDialog.show(this@ArticleSearchActivity, viewState.errorUi) { viewModel.onErrorDialogDismiss() }
             }
             clear()
             if (viewState.foundArticlesUi.isNotEmpty()) {
@@ -64,9 +64,9 @@ class SearchArticlesActivity :
             itemAnimator = null
             val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
-            searchArticlesAdapter =
-                SearchArticlesAdapter(mutableListOf(), viewModel as ArticleClickListener, imageLoader)
-            adapter = searchArticlesAdapter
+            articleSearchAdapter =
+                ArticleSearchAdapter(mutableListOf(), viewModel as ArticleClickListener, imageLoader)
+            adapter = articleSearchAdapter
         }
     }
 

@@ -10,13 +10,13 @@ import com.andres.nyuzuk.presentation.features.toparticles.ArticleClickListener
 import com.andres.nyuzuk.presentation.features.toparticles.ArticleUi
 import com.andres.nyuzuk.presentation.features.toparticles.ArticleUiMapper
 
-class SearchArticlesViewModel(
+class ArticleSearchViewModel(
     private val searchArticles: SearchArticles,
     private val articleUiMapper: ArticleUiMapper,
     private val errorUiMapper: ErrorUiMapper
-) : BaseViewModel<SearchArticlesViewState>(), ArticleClickListener {
+) : BaseViewModel<ArticleSearchViewState>(), ArticleClickListener {
     override fun initViewState() {
-        viewState.value = SearchArticlesViewState()
+        viewState.value = ArticleSearchViewState()
     }
 
     override fun onViewReady() {

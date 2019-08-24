@@ -6,7 +6,7 @@ import com.andres.nyuzuk.presentation.base.ErrorDialog
 import com.andres.nyuzuk.presentation.base.ErrorUiMapper
 import com.andres.nyuzuk.presentation.features.detail.ArticleDetailViewModel
 import com.andres.nyuzuk.presentation.features.main.MainViewModel
-import com.andres.nyuzuk.presentation.features.search.SearchArticlesViewModel
+import com.andres.nyuzuk.presentation.features.search.ArticleSearchViewModel
 import com.andres.nyuzuk.presentation.features.toparticles.ArticleUiMapper
 import com.andres.nyuzuk.presentation.features.toparticles.BasePublisherUiMapper
 import com.andres.nyuzuk.presentation.features.toparticles.TopArticlesViewModel
@@ -31,7 +31,7 @@ val viewModelModule: Module = module {
     }
 
     viewModel {
-        SearchArticlesViewModel(get(), get(), get())
+        ArticleSearchViewModel(get(), get(), get())
     }
 
     viewModel {

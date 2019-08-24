@@ -4,7 +4,7 @@ import com.andres.nyuzuk.presentation.base.BaseViewState
 import com.andres.nyuzuk.presentation.base.ErrorUi
 import com.andres.nyuzuk.presentation.features.toparticles.ArticleUi
 
-data class SearchArticlesViewState(
+data class ArticleSearchViewState(
     val isInitial: Boolean = false,
     val isLoading: Boolean = false,
     val isEmpty: Boolean = false,
