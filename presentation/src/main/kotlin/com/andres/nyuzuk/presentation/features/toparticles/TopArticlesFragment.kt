@@ -2,18 +2,22 @@ package com.andres.nyuzuk.presentation.features.toparticles
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andres.nyuzuk.R
-import com.andres.nyuzuk.presentation.base.BaseActivity
+import com.andres.nyuzuk.presentation.base.BaseFragment
 import com.andres.nyuzuk.presentation.tools.EndlessScrollListener
 import com.andres.nyuzuk.presentation.tools.imageloader.ImageLoader
-import kotlinx.android.synthetic.main.activity_top_articles.recyclerview_top_articles
-import kotlinx.android.synthetic.main.activity_top_articles.view_swipe_to_refresh
+import kotlinx.android.synthetic.main.fragment_top_articles.recyclerview_top_articles
+import kotlinx.android.synthetic.main.fragment_top_articles.view_swipe_to_refresh
 import org.koin.android.ext.android.inject
 
-class TopArticlesActivity : BaseActivity<TopArticlesViewState, TopArticlesViewModel>(TopArticlesViewModel::class) {
+class TopArticlesFragment : BaseFragment<TopArticlesViewState, TopArticlesViewModel>(TopArticlesViewModel::class) {
     private val imageLoader: ImageLoader by inject()
     private var topArticlesAdapter: TopArticlesAdapter? = null
 
-    override fun getLayoutResource() = R.layout.activity_top_articles
+    companion object {
+        fun newInstance() = TopArticlesFragment()
+    }
+
+    override fun getLayoutResource() = R.layout.fragment_top_articles
 
     override fun render(viewState: TopArticlesViewState) {
         view_swipe_to_refresh.isRefreshing = viewState.isLoading

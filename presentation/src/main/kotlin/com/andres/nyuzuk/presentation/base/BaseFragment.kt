@@ -19,6 +19,7 @@ abstract class BaseFragment<ViewState : BaseViewState, ViewModel : BaseViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupUi()
         viewModel.viewState.observe(this, Observer {
             render(it)
         })
@@ -28,4 +29,6 @@ abstract class BaseFragment<ViewState : BaseViewState, ViewModel : BaseViewModel
     abstract fun getLayoutResource(): Int
 
     abstract fun render(viewState: ViewState)
+
+    open fun setupUi() { }
 }

@@ -2,6 +2,7 @@ package com.andres.nyuzuk.presentation.di
 
 import com.andres.nyuzuk.data.mapper.ArticleMapper
 import com.andres.nyuzuk.data.mapper.BasePublisherMapper
+import com.andres.nyuzuk.presentation.features.main.MainViewModel
 import com.andres.nyuzuk.presentation.features.toparticles.ArticleUiMapper
 import com.andres.nyuzuk.presentation.features.toparticles.TopArticlesViewModel
 import com.andres.nyuzuk.presentation.tools.imageloader.CoilImageLoader
@@ -15,6 +16,10 @@ val applicationModule = module(override = true) {
 }
 
 val viewModelModule: Module = module {
+    viewModel {
+        MainViewModel()
+    }
+
     viewModel {
         TopArticlesViewModel(get(), get())
     }

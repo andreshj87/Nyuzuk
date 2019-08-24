@@ -7,7 +7,7 @@ abstract class BaseViewModel<ViewState : BaseViewState>: ViewModel() {
     @JvmField val viewState = MutableLiveData<ViewState>()
 
     init {
-        initViewState()
+        this.initViewState()
     }
 
     abstract fun initViewState()
