@@ -1,5 +1,7 @@
 package com.andres.nyuzuk.presentation.features.search
 
+import android.view.Menu
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andres.nyuzuk.R
 import com.andres.nyuzuk.presentation.base.BaseActivity
@@ -17,9 +19,8 @@ class SearchArticlesActivity :
 
     override fun render(viewState: SearchArticlesViewState) {
         searchArticlesAdapter?.apply {
-            if (viewState.foundArticlesUi.isEmpty()) {
-                clear()
-            } else {
+            clear()
+            if (viewState.foundArticlesUi.isNotEmpty()) {
                 update(viewState.foundArticlesUi)
             }
         }
@@ -32,6 +33,7 @@ class SearchArticlesActivity :
             setDisplayHomeAsUpEnabled(true)
         }
         recyclerview_search_articles?.apply {
+            itemAnimator = null
             val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
             searchArticlesAdapter = SearchArticlesAdapter(mutableListOf(), viewModel as ArticleClickListener, imageLoader)
@@ -39,8 +41,20 @@ class SearchArticlesActivity :
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.onTextTyped("health") // TODO
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.search, menu)
+        menu?.let {
+            val searchItem = menu.findItem(R.id.action_search)
+            val searchView = searchItem.actionView as SearchView
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextChange(newText: String) = false
+
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    viewModel.onSearchClick(query)
+                    return false
+                }
+            })
+        }
+        return super.onCreateOptionsMenu(menu)
     }
 }

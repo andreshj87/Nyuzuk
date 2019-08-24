@@ -25,15 +25,15 @@ class SearchArticlesViewModel(
         // TODO navigate to article detail
     }
 
-    fun onTextTyped(typedText: String) {
-        typedText
+    fun onSearchClick(query: String) {
+        query
             .apply { trim() }
             .also { attemptSearch(it) }
     }
 
-    private fun attemptSearch(typedText: String) {
-        if (typedText.isNotEmpty() && typedText.length > 3) {
-            search(typedText)
+    private fun attemptSearch(query: String) {
+        if (query.isNotEmpty() && query.length > 3) {
+            search(query)
         }
     }
 
