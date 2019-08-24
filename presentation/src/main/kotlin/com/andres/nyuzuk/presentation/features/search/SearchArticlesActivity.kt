@@ -1,14 +1,20 @@
 package com.andres.nyuzuk.presentation.features.search
 
 import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andres.nyuzuk.R
 import com.andres.nyuzuk.presentation.base.BaseActivity
+import com.andres.nyuzuk.presentation.extension.setVisibility
 import com.andres.nyuzuk.presentation.features.toparticles.ArticleClickListener
 import com.andres.nyuzuk.presentation.tools.imageloader.ImageLoader
+import kotlinx.android.synthetic.main.activity_search_articles.layout_initial
 import kotlinx.android.synthetic.main.activity_search_articles.recyclerview_search_articles
+import kotlinx.android.synthetic.main.view_empty.layout_empty
+import kotlinx.android.synthetic.main.view_loading.view_loading
 import org.koin.android.ext.android.inject
+
 
 class SearchArticlesActivity :
     BaseActivity<SearchArticlesViewState, SearchArticlesViewModel>(SearchArticlesViewModel::class) {
@@ -19,15 +25,19 @@ class SearchArticlesActivity :
 
     override fun render(viewState: SearchArticlesViewState) {
         searchArticlesAdapter?.apply {
+            view_loading.setVisibility(viewState.isLoading)
+            layout_initial.setVisibility(viewState.isInitial)
+            layout_empty.setVisibility(viewState.isEmpty)
             clear()
             if (viewState.foundArticlesUi.isNotEmpty()) {
                 update(viewState.foundArticlesUi)
             }
+            recyclerview_search_articles.setVisibility(viewState.foundArticlesUi.isNotEmpty())
         }
     }
 
     override fun setupUi() {
-        setTitle(R.string.title_search_articles)
+        setTitle(R.string.search_articles_title)
         supportActionBar?.apply {
             setDisplayShowHomeEnabled(true)
             setDisplayHomeAsUpEnabled(true)
@@ -53,6 +63,14 @@ class SearchArticlesActivity :
                     viewModel.onSearchClick(query)
                     return false
                 }
+            })
+            searchItem.setOnActionExpandListener(object: MenuItem.OnActionExpandListener {
+                override fun onMenuItemActionCollapse(menuItem: MenuItem?): Boolean {
+                    viewModel.onSearchClose()
+                    return true
+                }
+
+                override fun onMenuItemActionExpand(menuItem: MenuItem?) = true
             })
         }
         return super.onCreateOptionsMenu(menu)

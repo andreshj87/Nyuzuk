@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Nyuzuk</string>
-    <string name="title_search_articles">Search articles</string>
+    <string name="search_articles_title">Search articles</string>
+    <string name="search_articles_initial">Hungry for news? Start searching some articles…</string>
+    <string name="articles_empty">Couldn\'t find any articles</string>
 </resources>

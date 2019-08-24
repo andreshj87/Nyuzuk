@@ -12,7 +12,7 @@ import com.andres.nyuzuk.presentation.features.toparticles.ArticleUiMapper
 class SearchArticlesViewModel(
     private val searchArticles: SearchArticles,
     private val articleUiMapper: ArticleUiMapper
-): BaseViewModel<SearchArticlesViewState>(), ArticleClickListener {
+) : BaseViewModel<SearchArticlesViewState>(), ArticleClickListener {
     override fun initViewState() {
         viewState.value = SearchArticlesViewState()
     }
@@ -28,25 +28,30 @@ class SearchArticlesViewModel(
     fun onSearchClick(query: String) {
         query
             .apply { trim() }
-            .also { attemptSearch(it) }
+            .takeIf { it.isNotEmpty() && it.length > 3 }
+            ?.also { search(it) }
     }
 
-    private fun attemptSearch(query: String) {
-        if (query.isNotEmpty() && query.length > 3) {
-            search(query)
-        }
+    fun onSearchClose() {
+        viewState.value = getViewState().copy(
+            isInitial = true,
+            isLoading = false,
+            isEmpty = false,
+            isError = false,
+            foundArticlesUi = emptyList()
+        )
     }
 
     private fun search(typedText: String) {
-        viewState.value = getViewState().copy(isLoading = true)
+        viewState.value = getViewState().copy(isLoading = true, isInitial = false, isEmpty = false, isError = false)
         searchArticles(viewModelScope, SearchArticles.Params(typedText)) { it.fold(::processFailure, ::processSuccess) }
     }
 
     private fun processSuccess(articles: List<Article>) {
-        viewState.value = getViewState().copy(isInitial = false, isLoading = false, isError = false)
+        viewState.value = getViewState().copy(isLoading = false, isError = false)
         val articlesUi = articleUiMapper.map(articles)
         if (articlesUi.isEmpty()) {
-            viewState.value = getViewState().copy(isEmpty = true)
+            viewState.value = getViewState().copy(isEmpty = true, foundArticlesUi = emptyList())
         } else {
             viewState.value = getViewState().copy(foundArticlesUi = articlesUi, isEmpty = false)
         }
