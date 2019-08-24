@@ -13,10 +13,7 @@ abstract class BaseActivity<ViewState : BaseViewState, ViewModel : BaseViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutResource())
-    }
-
-    override fun onStart() {
-        super.onStart()
+        setupUi()
         viewModel.viewState.observe(this, Observer {
             render(it)
         })
@@ -26,4 +23,6 @@ abstract class BaseActivity<ViewState : BaseViewState, ViewModel : BaseViewModel
     abstract fun getLayoutResource(): Int
 
     abstract fun render(viewState: ViewState)
+
+    open fun setupUi() { }
 }
