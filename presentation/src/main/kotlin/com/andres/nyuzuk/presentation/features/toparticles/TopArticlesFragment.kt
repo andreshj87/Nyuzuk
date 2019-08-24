@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.andres.nyuzuk.R
 import com.andres.nyuzuk.presentation.base.BaseFragment
 import com.andres.nyuzuk.presentation.base.ErrorDialog
+import com.andres.nyuzuk.presentation.extension.getColor
 import com.andres.nyuzuk.presentation.extension.setVisibility
 import com.andres.nyuzuk.presentation.tools.EndlessScrollListener
 import com.andres.nyuzuk.presentation.tools.Navigator
@@ -58,6 +59,7 @@ class TopArticlesFragment : BaseFragment<TopArticlesViewState, TopArticlesViewMo
             adapter = topArticlesAdapter
         }
         view_swipe_to_refresh?.apply {
+            setColorSchemeColors(getColor(R.color.colorAccent), getColor(R.color.colorPrimary))
             setOnRefreshListener { viewModel.onRefresh() }
         }
     }
