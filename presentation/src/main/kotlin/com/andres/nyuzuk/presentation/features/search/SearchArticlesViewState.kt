@@ -10,5 +10,6 @@ data class SearchArticlesViewState(
     val isEmpty: Boolean = false,
     val isError: Boolean = false,
     val errorUi: ErrorUi? = null,
-    val foundArticlesUi: List<ArticleUi> = emptyList()
-): BaseViewState
+    val foundArticlesUi: List<ArticleUi> = emptyList(),
+    val articleUiToNavigate: ArticleUi? = null
+) : BaseViewState

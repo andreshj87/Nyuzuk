@@ -24,7 +24,8 @@ class SearchArticlesViewModel(
     }
 
     override fun onArticleClick(articleUi: ArticleUi) {
-        // TODO navigate to article detail
+        viewState.value = getViewState().copy(articleUiToNavigate = articleUi)
+        viewState.value = getViewState().copy(articleUiToNavigate = null)
     }
 
     fun onSearchClick(query: String) {

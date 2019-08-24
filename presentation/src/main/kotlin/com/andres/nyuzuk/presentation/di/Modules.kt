@@ -4,9 +4,11 @@ import com.andres.nyuzuk.data.mapper.ArticleMapper
 import com.andres.nyuzuk.data.mapper.BasePublisherMapper
 import com.andres.nyuzuk.presentation.base.ErrorDialog
 import com.andres.nyuzuk.presentation.base.ErrorUiMapper
+import com.andres.nyuzuk.presentation.features.detail.ArticleDetailViewModel
 import com.andres.nyuzuk.presentation.features.main.MainViewModel
 import com.andres.nyuzuk.presentation.features.search.SearchArticlesViewModel
 import com.andres.nyuzuk.presentation.features.toparticles.ArticleUiMapper
+import com.andres.nyuzuk.presentation.features.toparticles.BasePublisherUiMapper
 import com.andres.nyuzuk.presentation.features.toparticles.TopArticlesViewModel
 import com.andres.nyuzuk.presentation.tools.Navigator
 import com.andres.nyuzuk.presentation.tools.imageloader.CoilImageLoader
@@ -31,6 +33,10 @@ val viewModelModule: Module = module {
     viewModel {
         SearchArticlesViewModel(get(), get(), get())
     }
+
+    viewModel {
+        ArticleDetailViewModel()
+    }
 }
 
 val mapperModule: Module = module {
@@ -43,11 +49,15 @@ val mapperModule: Module = module {
     }
 
     single {
-        ArticleUiMapper()
+        ArticleUiMapper(get())
     }
 
     single {
         ErrorUiMapper()
+    }
+
+    single {
+        BasePublisherUiMapper()
     }
 }
 
@@ -55,7 +65,7 @@ val toolsModule: Module = module {
     factory {
         CoilImageLoader() as ImageLoader
     }
-    single {
+    factory {
         Navigator()
     }
     factory {

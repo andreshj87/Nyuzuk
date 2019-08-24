@@ -1,4 +1,5 @@
 apply from: 'buildsystem/dependencies.gradle'
+apply plugin: 'kotlin-android-extensions'
 
 buildscript {
     repositories {
@@ -24,4 +25,8 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+androidExtensions {
+    experimental = true
 }

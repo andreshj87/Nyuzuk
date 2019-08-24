@@ -2,7 +2,9 @@ package com.andres.nyuzuk.presentation.features.toparticles
 
 import com.andres.nyuzuk.domain.entity.Article
 
-class ArticleUiMapper {
+class ArticleUiMapper(
+    private val basePublisherUiMapper: BasePublisherUiMapper
+) {
     fun map(articles: List<Article>): List<ArticleUi> {
         return articles.map {
             map(it)
@@ -15,7 +17,7 @@ class ArticleUiMapper {
             article.description,
             article.content,
             article.author,
-            article.publisher,
+            basePublisherUiMapper.map(article.publisher),
             article.imageUrl,
             article.url
         )

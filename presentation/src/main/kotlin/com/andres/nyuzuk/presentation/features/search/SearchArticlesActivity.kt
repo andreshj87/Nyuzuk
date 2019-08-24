@@ -1,5 +1,7 @@
 package com.andres.nyuzuk.presentation.features.search
 
+import android.content.Context
+import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
@@ -9,6 +11,7 @@ import com.andres.nyuzuk.presentation.base.BaseActivity
 import com.andres.nyuzuk.presentation.base.ErrorDialog
 import com.andres.nyuzuk.presentation.extension.setVisibility
 import com.andres.nyuzuk.presentation.features.toparticles.ArticleClickListener
+import com.andres.nyuzuk.presentation.tools.Navigator
 import com.andres.nyuzuk.presentation.tools.imageloader.ImageLoader
 import kotlinx.android.synthetic.main.activity_search_articles.layout_initial
 import kotlinx.android.synthetic.main.activity_search_articles.recyclerview_search_articles
@@ -16,17 +19,27 @@ import kotlinx.android.synthetic.main.view_empty.layout_empty
 import kotlinx.android.synthetic.main.view_loading.view_loading
 import org.koin.android.ext.android.inject
 
-
 class SearchArticlesActivity :
     BaseActivity<SearchArticlesViewState, SearchArticlesViewModel>(SearchArticlesViewModel::class) {
     private val imageLoader: ImageLoader by inject()
     private val errorDialog: ErrorDialog by inject()
+    private val navigator: Navigator by inject()
     private var searchArticlesAdapter: SearchArticlesAdapter? = null
+
+    companion object {
+        fun makeIntent(context: Context) = Intent(context, SearchArticlesActivity::class.java)
+    }
 
     override fun getLayoutResource() = R.layout.activity_search_articles
 
     override fun render(viewState: SearchArticlesViewState) {
         searchArticlesAdapter?.apply {
+            viewState.articleUiToNavigate?.let {
+                navigator.navigateToDetail(
+                    this@SearchArticlesActivity,
+                    viewState.articleUiToNavigate
+                )
+            }
             view_loading.setVisibility(viewState.isLoading)
             layout_initial.setVisibility(viewState.isInitial)
             layout_empty.setVisibility(viewState.isEmpty)

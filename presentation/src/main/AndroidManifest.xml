@@ -27,6 +27,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.features.main.MainActivity" />
         </activity>
+        <activity android:name=".presentation.features.detail.ArticleDetailActivity" />
     </application>
 
 </manifest>
