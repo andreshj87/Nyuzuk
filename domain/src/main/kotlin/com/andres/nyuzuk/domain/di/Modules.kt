@@ -7,10 +7,10 @@ import org.koin.dsl.module
 
 val useCaseModule: Module = module {
     factory {
-        GetTopArticles(get())
+        GetTopArticles(get(), get(), get())
     }
 
     factory {
-        SearchArticles(get())
+        SearchArticles(get(), get(), get())
     }
 }

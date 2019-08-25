@@ -1,11 +1,15 @@
 package com.andres.nyuzuk.presentation.di
 
+import com.andres.nyuzuk.data.executor.JobExecutor
 import com.andres.nyuzuk.data.mapper.ArticleMapper
 import com.andres.nyuzuk.data.mapper.BasePublisherMapper
+import com.andres.nyuzuk.domain.executor.PostExecutionThread
+import com.andres.nyuzuk.domain.executor.ThreadExecutor
 import com.andres.nyuzuk.presentation.base.ArticleUiMapper
 import com.andres.nyuzuk.presentation.base.BasePublisherUiMapper
 import com.andres.nyuzuk.presentation.base.ErrorDialog
 import com.andres.nyuzuk.presentation.base.ErrorUiMapper
+import com.andres.nyuzuk.presentation.executor.UiThread
 import com.andres.nyuzuk.presentation.features.detail.ArticleDetailViewModel
 import com.andres.nyuzuk.presentation.features.main.MainViewModel
 import com.andres.nyuzuk.presentation.features.search.ArticleSearchViewModel
@@ -20,7 +24,12 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 
 val applicationModule = module(override = true) {
-    // Add app-level dependencies here
+    single {
+        JobExecutor() as ThreadExecutor
+    }
+    single {
+        UiThread() as PostExecutionThread
+    }
 }
 
 val viewModelModule: Module = module {

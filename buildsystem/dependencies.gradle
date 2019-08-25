@@ -68,7 +68,8 @@ ext.dataDependencies = [
     retrofit: "${dependency.retrofit}",
     retrofitMoshi: "${dependency.retrofitMoshi}",
     okHttpLogger: "${dependency.okHttpLogger}",
-    arrowCoreData: "${dependency.arrowCoreData}"
+    arrowCoreData: "${dependency.arrowCoreData}",
+    coroutinesCore: "${dependency.coroutinesCore}"
 ]
 
 ext.dataTestDependencies = [

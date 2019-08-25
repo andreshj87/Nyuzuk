@@ -43,6 +43,7 @@ dependencies {
     implementation "${dependency.retrofitMoshi}"
     implementation "${dependency.okHttpLogger}"
     implementation "${dependency.arrowCoreData}"
+    implementation "${dependency.coroutinesCore}"
     testImplementation "${testDependency.jUnit}"
     testImplementation "${testDependency.kotlinStdlib}"
     testImplementation "${testDependency.kotlinTestJunit}"
