@@ -49,6 +49,7 @@ dependencies {
     implementation "${dependency.cardView}"
     implementation "${dependency.koin}"
     implementation "${dependency.koinViewModel}"
+    implementation "${dependency.moshi}"
     kapt "${dependency.lifecycleCompiler}"
     implementation "${dependency.lifecycleViewModel}"
     implementation "${dependency.picasso}"
