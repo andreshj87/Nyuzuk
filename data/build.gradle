@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -44,6 +45,8 @@ dependencies {
     implementation "${dependency.okHttpLogger}"
     implementation "${dependency.arrowCoreData}"
     implementation "${dependency.coroutinesCore}"
+    implementation "${dependency.room}"
+    kapt "${dependency.roomCompiler}"
     testImplementation "${testDependency.jUnit}"
     testImplementation "${testDependency.kotlinStdlib}"
     testImplementation "${testDependency.kotlinTestJunit}"
