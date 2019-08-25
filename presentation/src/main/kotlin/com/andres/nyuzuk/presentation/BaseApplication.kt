@@ -2,6 +2,7 @@ package com.andres.nyuzuk.presentation
 
 import android.app.Application
 import com.andres.nyuzuk.data.di.dataSourceModule
+import com.andres.nyuzuk.data.di.databaseModule
 import com.andres.nyuzuk.data.di.networkModule
 import com.andres.nyuzuk.data.di.repositoryModule
 import com.andres.nyuzuk.domain.di.useCaseModule
@@ -30,6 +31,7 @@ class BaseApplication : Application() {
                     repositoryModule,
                     dataSourceModule,
                     networkModule,
+                    databaseModule,
                     toolsModule
                 )
             )

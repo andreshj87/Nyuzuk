@@ -1,28 +1,45 @@
 package com.andres.nyuzuk.data.mapper
 
+import com.andres.nyuzuk.data.entity.local.ArticleEntity
 import com.andres.nyuzuk.data.entity.remote.ArticleRemote
 import com.andres.nyuzuk.domain.entity.Article
 
 class ArticleMapper(
     private val basePublisherMapper: BasePublisherMapper
 ) {
-    fun map(articleRemotes: List<ArticleRemote>): List<Article> {
-        val articles = mutableListOf<Article>()
-        articleRemotes.forEach {
-            articles.add(map(it))
-        }
-        return articles
-    }
+    fun mapFromRemote(articlesRemote: List<ArticleRemote>) = articlesRemote.map { map(it) }
 
-    private fun map(articleRemote: ArticleRemote): Article {
-        return Article(
-            articleRemote.title,
-            articleRemote.description,
-            articleRemote.content,
-            articleRemote.author,
-            basePublisherMapper.map(articleRemote.publisher),
-            articleRemote.urlToImage,
-            articleRemote.url
-        )
-    }
+    private fun map(articleRemote: ArticleRemote) = Article(
+        articleRemote.title,
+        articleRemote.description,
+        articleRemote.content,
+        articleRemote.author,
+        basePublisherMapper.map(articleRemote.publisher),
+        articleRemote.urlToImage,
+        articleRemote.url
+    )
+
+    fun mapFromLocal(articlesEntity: List<ArticleEntity>) = articlesEntity.map { map(it) }
+
+    private fun map(articleEntity: ArticleEntity) = Article(
+        articleEntity.title,
+        articleEntity.description,
+        articleEntity.content,
+        articleEntity.author,
+        basePublisherMapper.map(articleEntity.publisher),
+        articleEntity.imageUrl,
+        articleEntity.url
+    )
+
+    fun mapToLocal(articles: List<Article>) = articles.map { map(it) }
+
+    fun map(article: Article) = ArticleEntity(
+        article.title,
+        article.description,
+        article.content,
+        article.author,
+        basePublisherMapper.map(article.publisher),
+        article.imageUrl,
+        article.url
+    )
 }
