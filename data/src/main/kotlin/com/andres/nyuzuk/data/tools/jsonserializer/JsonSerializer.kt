@@ -1,4 +1,4 @@
-package com.andres.nyuzuk.presentation.tools.jsonserializer
+package com.andres.nyuzuk.data.tools.jsonserializer
 
 interface JsonSerializer {
     fun <T: Any> toJson(value: T?): String
