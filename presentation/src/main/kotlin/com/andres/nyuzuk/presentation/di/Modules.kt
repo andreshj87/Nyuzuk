@@ -17,8 +17,11 @@ import com.andres.nyuzuk.presentation.features.toparticles.TopArticlesViewModel
 import com.andres.nyuzuk.presentation.tools.Navigator
 import com.andres.nyuzuk.presentation.tools.imageloader.CoilImageLoader
 import com.andres.nyuzuk.presentation.tools.imageloader.ImageLoader
+import com.andres.nyuzuk.presentation.tools.jsonserializer.JsonSerializer
+import com.andres.nyuzuk.presentation.tools.jsonserializer.MoshiJsonSerializer
 import com.andres.nyuzuk.presentation.tools.webbrowser.CustomTabsWebBrowser
 import com.andres.nyuzuk.presentation.tools.webbrowser.WebBrowser
+import com.squareup.moshi.Moshi
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -84,5 +87,11 @@ val toolsModule: Module = module {
     }
     factory {
         CustomTabsWebBrowser() as WebBrowser
+    }
+    single {
+        Moshi.Builder().build()
+    }
+    factory {
+        MoshiJsonSerializer(get()) as JsonSerializer
     }
 }
