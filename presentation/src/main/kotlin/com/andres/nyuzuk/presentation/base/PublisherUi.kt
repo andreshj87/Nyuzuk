@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class BasePublisherUi(
+data class PublisherUi(
     val id: String?,
     val name: String
 ) : Parcelable

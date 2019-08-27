@@ -9,7 +9,7 @@ data class ArticleUi(
     val description: String?,
     val content: String?,
     val author: String?,
-    val publisher: BasePublisherUi?,
+    val publisher: PublisherUi?,
     val imageUrl: String?,
     val url: String
 ): Parcelable

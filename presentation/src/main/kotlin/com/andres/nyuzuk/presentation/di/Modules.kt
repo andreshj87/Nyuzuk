@@ -2,11 +2,11 @@ package com.andres.nyuzuk.presentation.di
 
 import com.andres.nyuzuk.data.executor.JobExecutor
 import com.andres.nyuzuk.data.mapper.ArticleMapper
-import com.andres.nyuzuk.data.mapper.BasePublisherMapper
+import com.andres.nyuzuk.data.mapper.PublisherMapper
 import com.andres.nyuzuk.domain.executor.PostExecutionThread
 import com.andres.nyuzuk.domain.executor.ThreadExecutor
 import com.andres.nyuzuk.presentation.base.ArticleUiMapper
-import com.andres.nyuzuk.presentation.base.BasePublisherUiMapper
+import com.andres.nyuzuk.presentation.base.PublisherUiMapper
 import com.andres.nyuzuk.presentation.base.ErrorDialog
 import com.andres.nyuzuk.presentation.base.ErrorUiMapper
 import com.andres.nyuzuk.presentation.executor.UiThread
@@ -55,7 +55,7 @@ val viewModelModule: Module = module {
 
 val mapperModule: Module = module {
     single {
-        BasePublisherMapper()
+        PublisherMapper()
     }
 
     single {
@@ -71,7 +71,7 @@ val mapperModule: Module = module {
     }
 
     single {
-        BasePublisherUiMapper()
+        PublisherUiMapper()
     }
 }
 

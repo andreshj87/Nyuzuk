@@ -1,6 +1,6 @@
 package com.andres.nyuzuk.domain.entity
 
-data class BasePublisher(
+data class Publisher(
     val id: String?,
     val name: String
 )

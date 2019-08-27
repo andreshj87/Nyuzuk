@@ -3,7 +3,7 @@ package com.andres.nyuzuk.presentation.base
 import com.andres.nyuzuk.domain.entity.Article
 
 class ArticleUiMapper(
-    private val basePublisherUiMapper: BasePublisherUiMapper
+    private val publisherUiMapper: PublisherUiMapper
 ) {
     fun map(articles: List<Article>): List<ArticleUi> {
         return articles.map {
@@ -11,13 +11,13 @@ class ArticleUiMapper(
         }
     }
 
-    fun map(article: Article): ArticleUi {
+    private fun map(article: Article): ArticleUi {
         return ArticleUi(
             article.title,
             article.description,
             article.content,
             article.author,
-            basePublisherUiMapper.map(article.publisher),
+            publisherUiMapper.map(article.publisher),
             article.imageUrl,
             article.url
         )

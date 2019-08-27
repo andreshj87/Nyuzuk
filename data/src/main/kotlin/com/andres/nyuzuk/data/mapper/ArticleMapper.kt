@@ -5,7 +5,7 @@ import com.andres.nyuzuk.data.entity.remote.ArticleRemote
 import com.andres.nyuzuk.domain.entity.Article
 
 class ArticleMapper(
-    private val basePublisherMapper: BasePublisherMapper
+    private val publisherMapper: PublisherMapper
 ) {
     fun mapFromRemote(articlesRemote: List<ArticleRemote>) = articlesRemote.map { map(it) }
 
@@ -14,7 +14,7 @@ class ArticleMapper(
         articleRemote.description,
         articleRemote.content,
         articleRemote.author,
-        basePublisherMapper.map(articleRemote.publisher),
+        publisherMapper.map(articleRemote.publisher),
         articleRemote.urlToImage,
         articleRemote.url
     )
@@ -26,7 +26,7 @@ class ArticleMapper(
         articleEntity.description,
         articleEntity.content,
         articleEntity.author,
-        basePublisherMapper.map(articleEntity.publisher),
+        publisherMapper.map(articleEntity.publisher),
         articleEntity.imageUrl,
         articleEntity.url
     )
@@ -38,7 +38,7 @@ class ArticleMapper(
         article.description,
         article.content,
         article.author,
-        basePublisherMapper.map(article.publisher),
+        publisherMapper.map(article.publisher),
         article.imageUrl,
         article.url
     )

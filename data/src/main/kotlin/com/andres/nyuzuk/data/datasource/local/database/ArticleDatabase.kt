@@ -6,9 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.andres.nyuzuk.data.entity.local.ArticleEntity
-import com.andres.nyuzuk.data.entity.local.BasePublisherEntity
+import com.andres.nyuzuk.data.entity.local.PublisherEntity
 
-@Database(entities = [ArticleEntity::class, BasePublisherEntity::class], version = 1)
+@Database(entities = [ArticleEntity::class, PublisherEntity::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class ArticleDatabase : RoomDatabase() {
     abstract fun ArticleDao(): ArticleDao
