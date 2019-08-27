@@ -10,7 +10,7 @@ data class ArticleEntity(
     @ColumnInfo(name = "description") val description: String?,
     @ColumnInfo(name = "content") val content: String?,
     @ColumnInfo(name = "author") val author: String?,
-    @ColumnInfo(name = "title") val publisher: BasePublisherEntity?,
+    @ColumnInfo(name = "publisher") val publisher: BasePublisherEntity?,
     @ColumnInfo(name = "imageUrl") val imageUrl: String?,
     @PrimaryKey val url: String
 )

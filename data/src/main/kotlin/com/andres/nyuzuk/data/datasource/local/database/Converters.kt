@@ -19,6 +19,11 @@ class Converters {
     }
 
     @TypeConverter
-    fun basePublisherEntityFromJson(json: String): BasePublisherEntity? =
-        jsonSerializer.fromJson(json, BasePublisherEntity::class.java)
+    fun basePublisherEntityFromJson(json: String): BasePublisherEntity? {
+        return if (json.isEmpty()) {
+            null
+        } else {
+            jsonSerializer.fromJson(json, BasePublisherEntity::class.java)
+        }
+    }
 }

@@ -32,8 +32,8 @@ class BasePublisherMapper {
             null
         } else {
             BasePublisherEntity(
-                basePublisher.id,
-                basePublisher.name
+                id = basePublisher.id,
+                name = basePublisher.name
             )
         }
     }

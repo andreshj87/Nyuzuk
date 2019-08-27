@@ -49,9 +49,6 @@ val databaseModule: Module = module {
     single {
         ArticleDatabase(androidContext()).ArticleDao()
     }
-    single {
-        ArticleLocalDataSource(get())
-    }
 }
 
 fun provideArticleApiService(retrofit: Retrofit): ArticleApiService {
