@@ -21,7 +21,7 @@ class TopArticlesViewModel(
 
     override fun onViewReady() {
         viewState.value = getViewState().copy(isLoading = true)
-        getTopArticles(viewModelScope, GetTopArticles.Params()) { it.fold(::processFailure, ::processSuccess) }
+        getTopArticles(viewModelScope, GetTopArticles.Params(true)) { it.fold(::processFailure, ::processSuccess) }
     }
 
     fun onLoadMore() {

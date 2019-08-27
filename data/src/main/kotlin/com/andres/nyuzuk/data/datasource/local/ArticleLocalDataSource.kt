@@ -9,4 +9,6 @@ class ArticleLocalDataSource(
     fun save(articlesEntity: List<ArticleEntity>) = articleDao.save(articlesEntity)
 
     fun get() = articleDao.get()
+
+    fun clearTop() = articleDao.clearTop()
 }

@@ -22,7 +22,10 @@ class ArticleDataRepository(
         } else {
             topArticlesRemote.map {
                 val articles = articleMapper.mapFromRemote(it)
-                articleLocalDataSource.save(articleMapper.mapToLocal(articles))
+                if (invalidating) {
+                    articleLocalDataSource.clearTop()
+                }
+                articleLocalDataSource.save(articleMapper.mapToLocal(articles, isTop = true))
                 articles
             }
         }

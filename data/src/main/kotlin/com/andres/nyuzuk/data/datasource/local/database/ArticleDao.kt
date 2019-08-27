@@ -12,4 +12,7 @@ interface ArticleDao {
 
     @Query("SELECT * FROM article")
     fun get(): List<ArticleEntity>
+
+    @Query("DELETE FROM article WHERE isTop = 1")
+    fun clearTop()
 }

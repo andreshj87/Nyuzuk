@@ -31,15 +31,18 @@ class ArticleMapper(
         articleEntity.url
     )
 
-    fun mapToLocal(articles: List<Article>) = articles.map { map(it) }
+    fun mapToLocal(articles: List<Article>, isTop: Boolean = false, searchQuery: String = "") =
+        articles.map { map(it, isTop, searchQuery) }
 
-    fun map(article: Article) = ArticleEntity(
+    fun map(article: Article, isTop: Boolean = false, searchQuery: String = "") = ArticleEntity(
+        article.url,
         article.title,
         article.description,
         article.content,
         article.author,
         publisherMapper.map(article.publisher),
         article.imageUrl,
-        article.url
+        isTop,
+        searchQuery
     )
 }

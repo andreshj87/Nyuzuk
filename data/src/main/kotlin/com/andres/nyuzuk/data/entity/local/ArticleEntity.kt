@@ -6,11 +6,13 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "article")
 data class ArticleEntity(
+    @PrimaryKey val url: String,
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "description") val description: String?,
     @ColumnInfo(name = "content") val content: String?,
     @ColumnInfo(name = "author") val author: String?,
     @ColumnInfo(name = "publisher") val publisher: PublisherEntity?,
     @ColumnInfo(name = "imageUrl") val imageUrl: String?,
-    @PrimaryKey val url: String
+    @ColumnInfo(name = "isTop") val isTop: Boolean = false,
+    @ColumnInfo(name = "searchQuery") val searchQuery: String = ""
 )
