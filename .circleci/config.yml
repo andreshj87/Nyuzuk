@@ -46,5 +46,8 @@ jobs:
       - store_test_results:
           path: data/build/test-results
       - run:
+          name: JaCoCo
+          command: ./gradlew jacocoTestReport mergeJacocoReports jacocoTestReportMerged
+      - run:
           name: Codacy test report
           command: ./gradlew sendCoverageToCodacy
