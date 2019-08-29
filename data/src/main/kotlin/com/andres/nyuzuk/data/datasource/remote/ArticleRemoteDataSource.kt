@@ -14,8 +14,8 @@ class ArticleRemoteDataSource(
     private val topArticlesPaginator = ApiPaginator()
     private val searchArticlesPaginator = ApiPaginator()
 
-    suspend fun getTopArticles(invalidating: Boolean): Either<Failure, List<ArticleRemote>> {
-        return if (topArticlesPaginator.requestMore(invalidating)) {
+    suspend fun getTopArticles(invalidate: Boolean): Either<Failure, List<ArticleRemote>> {
+        return if (topArticlesPaginator.requestMore(invalidate)) {
             val requestConfig = topArticlesPaginator.getRequestConfig()
             articleApiService.getTopArticles(requestConfig.page, requestConfig.perPage)
                 .processPaginatedResponse(topArticlesPaginator)
@@ -25,8 +25,8 @@ class ArticleRemoteDataSource(
         }
     }
 
-    suspend fun searchArticles(query: String, invalidating: Boolean): Either<Failure, List<ArticleRemote>> {
-        return if (searchArticlesPaginator.requestMore(invalidating)) {
+    suspend fun searchArticles(query: String, invalidate: Boolean): Either<Failure, List<ArticleRemote>> {
+        return if (searchArticlesPaginator.requestMore(invalidate)) {
             val requestConfig = searchArticlesPaginator.getRequestConfig()
             articleApiService.searchArticles(query, requestConfig.page, requestConfig.perPage)
                 .processPaginatedResponse(searchArticlesPaginator)

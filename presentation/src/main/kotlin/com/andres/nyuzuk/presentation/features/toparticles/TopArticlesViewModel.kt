@@ -15,22 +15,24 @@ class TopArticlesViewModel(
     private val articleUiMapper: ArticleUiMapper,
     private val errorUiMapper: ErrorUiMapper
 ) : BaseViewModel<TopArticlesViewState>(), ArticleClickListener {
+    private val topArticlesUi = mutableListOf<ArticleUi>()
+
     override fun initViewState() {
         viewState.value = TopArticlesViewState()
     }
 
     override fun onViewReady() {
         viewState.value = getViewState().copy(isLoading = true)
-        getTopArticles(viewModelScope, GetTopArticles.Params(true)) { it.fold(::processFailure, ::processSuccess) }
+        getTopArticles(viewModelScope, GetTopArticles.Params()) { it.fold(::processFailure, ::processSuccess) }
     }
 
     fun onLoadMore() {
-        getTopArticles(viewModelScope, GetTopArticles.Params()) { it.fold(::processFailure, ::processSuccess) }
+        getTopArticles(viewModelScope, GetTopArticles.Params(fetchMore = true)) { it.fold(::processFailure, ::processMoreSuccess) }
     }
 
     fun onRefresh() {
         viewState.value = getViewState().copy(isLoading = true)
-        getTopArticles(viewModelScope, GetTopArticles.Params(true)) { it.fold(::processFailure, ::processSuccess) }
+        getTopArticles(viewModelScope, GetTopArticles.Params(invalidate = true)) { it.fold(::processFailure, ::processSuccess) }
     }
 
     fun onErrorDialogDismiss() {
@@ -43,14 +45,25 @@ class TopArticlesViewModel(
     }
 
     private fun processSuccess(articles: List<Article>) {
-        viewState.value = getViewState().copy(isLoading = false, isError = false, errorUi = null)
-        val articlesUi = articleUiMapper.map(articles)
-        if (articlesUi.isEmpty()) {
-            viewState.value = getViewState().copy(isEmpty = true)
-        } else {
-            viewState.value =
-                getViewState().copy(topArticlesUi = articlesUi, isEmpty = false)
-        }
+        this.topArticlesUi.clear()
+        viewState.value = getViewState().copy(invalidateList = true)
+        processArticles(articles)
+    }
+
+    private fun processMoreSuccess(articles: List<Article>) {
+        processArticles(articles)
+    }
+
+    private fun processArticles(articles: List<Article>) {
+        this.topArticlesUi.addAll(articleUiMapper.map(articles))
+        viewState.value = getViewState().copy(
+            isLoading = false,
+            topArticlesUi = this.topArticlesUi,
+            invalidateList = false,
+            isEmpty = this.topArticlesUi.isEmpty(),
+            isError = false,
+            errorUi = null
+        )
     }
 
     private fun processFailure(failure: Failure) {

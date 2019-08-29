@@ -12,9 +12,9 @@ interface Paginator<T : PaginatedApiResponse> {
     var page: Int
     var totalResults: Int?
 
-    fun requestMore(invalidating: Boolean): Boolean {
+    fun requestMore(invalidate: Boolean): Boolean {
         return totalResults?.let {
-            if (invalidating) { page = DEFAULT_PAGE }
+            if (invalidate) { page = DEFAULT_PAGE }
             page.toDouble() <= ceil(it.toDouble() / DEFAULT_PER_PAGE.toDouble())
         } ?: true
     }

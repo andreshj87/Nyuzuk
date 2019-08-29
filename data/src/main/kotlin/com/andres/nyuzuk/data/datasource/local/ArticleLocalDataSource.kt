@@ -10,5 +10,5 @@ class ArticleLocalDataSource(
 
     fun get() = articleDao.get()
 
-    fun clearTop() = articleDao.clearTop()
+    fun invalidateTopArticles() = articleDao.invalidateTopArticles()
 }

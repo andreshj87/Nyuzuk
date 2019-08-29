@@ -20,6 +20,7 @@ class TopArticlesFragment : BaseFragment<TopArticlesViewState, TopArticlesViewMo
     private val errorDialog: ErrorDialog by inject()
     private val navigator: Navigator by inject()
     private var topArticlesAdapter: TopArticlesAdapter? = null
+    private var endlessScrollListener: EndlessScrollListener? = null
 
     companion object {
         fun newInstance() = TopArticlesFragment()
@@ -37,25 +38,27 @@ class TopArticlesFragment : BaseFragment<TopArticlesViewState, TopArticlesViewMo
             errorDialog.show(context!!, viewState.errorUi) { viewModel.onErrorDialogDismiss() }
         }
         topArticlesAdapter?.apply {
-            if (viewState.topArticlesUi.isEmpty()) {
+            if (viewState.invalidateList) {
                 clear()
-            } else {
-                update(viewState.topArticlesUi)
+                endlessScrollListener?.run { reset() }
             }
+            update(viewState.topArticlesUi)
         }
     }
 
     override fun setupUi() {
         recyclerview_top_articles?.apply {
+            itemAnimator = null
             val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
-            addOnScrollListener(object : EndlessScrollListener(linearLayoutManager) {
+            endlessScrollListener = object : EndlessScrollListener(linearLayoutManager) {
                 override fun onLoadMore(currentPage: Int, totalItemCount: Int) {
                     viewModel.onLoadMore()
                 }
 
                 override fun onScroll(firstVisibleItem: Int, dy: Int, scrollPosition: Int) {}
-            })
+            }
+            endlessScrollListener?.run { addOnScrollListener(this) }
             topArticlesAdapter = TopArticlesAdapter(mutableListOf(), viewModel as ArticleClickListener, imageLoader)
             adapter = topArticlesAdapter
         }

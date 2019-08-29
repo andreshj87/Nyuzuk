@@ -10,5 +10,6 @@ data class TopArticlesViewState(
     val isError: Boolean = false,
     val errorUi: ErrorUi? = null,
     val topArticlesUi: List<ArticleUi> = emptyList(),
+    val invalidateList: Boolean = false,
     val articleUiToNavigate: ArticleUi? = null
 ): BaseViewState
