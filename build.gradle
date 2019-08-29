@@ -1,5 +1,6 @@
 apply from: 'buildsystem/dependencies.gradle'
 apply plugin: 'kotlin-android-extensions'
+apply from: 'buildsystem/jacoco.gradle'
 
 buildscript {
     repositories {

@@ -45,3 +45,6 @@ jobs:
           path: data/build/reports
       - store_test_results:
           path: data/build/test-results
+      - run:
+          name: Codacy test report
+          command: ./gradlew sendCoverageToCodacy

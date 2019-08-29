@@ -1,0 +1,126 @@
+apply plugin: 'jacoco'
+
+def jacocoVersion = "0.8.1"
+def groupTask = 'Reporting'
+def descriptionTask = 'Generate Jacoco coverage reports after running tests.'
+
+subprojects { project ->
+
+    apply plugin: 'jacoco'
+
+    jacoco {
+        toolVersion = jacocoVersion
+    }
+
+    task jacocoReport(type: JacocoReport, dependsOn: 'test') {
+        group = groupTask
+        description = descriptionTask
+
+        reports {
+            xml.enabled = true
+            html.enabled = true
+        }
+
+        classDirectories.from = possibleClassDir(project)
+
+        def coverageSourceDirs = [
+                "src/main/kotlin",
+                "src/mock/kotlin",
+                "src/debug/kotlin"
+        ]
+
+        additionalSourceDirs.from = files(coverageSourceDirs)
+        sourceDirectories.from = files(coverageSourceDirs)
+        executionData.from = fileTree(dir: project.buildDir,
+                includes: ['**/*.exec', '**/*.ec'])
+    }
+}
+
+jacoco {
+    toolVersion = jacocoVersion
+}
+
+task jacocoFullReport(type: JacocoReport, group: 'Coverage reports') {
+    group = groupTask
+    description = descriptionTask
+
+    dependsOn(subprojects.jacocoReport)
+
+    additionalSourceDirs.from = generateSourceFiles(subprojects)
+    sourceDirectories.from = generateSourceFiles(subprojects)
+    classDirectories.from = generateClassDirs(subprojects)
+    executionData.from = files(subprojects.jacocoReport.executionData)
+
+    reports {
+        html.enabled true
+        html.destination file('build/reports/fullJacoco/')
+        xml.enabled true
+        csv.enabled false
+    }
+}
+
+FileCollection generateSourceFiles(Collection projects) {
+    def dirs = []
+
+    projects.each { project ->
+        dirs.add("${project.name}/src/main/kotlin")
+        dirs.add("${project.name}/src/mock/kotlin")
+        dirs.add("${project.name}/src/debug/kotlin")
+    }
+
+    return files(dirs)
+}
+
+FileCollection excludeFilesFromTree(String path) {
+    return fileTree(dir: path, excludes: ['**/R.class',
+                                          '**/R$*.class',
+                                          '**/*$ViewInjector*.*',
+                                          '**/*$ViewBinder*.*',
+                                          '**/*$CoordinatorInjector*.*', // coordinator library
+                                          '**/BuildConfig.*',
+                                          '**/Manifest*.*',
+                                          '**/*$Lambda$*.*', // Jacoco can not handle several "$" in class name.
+                                          '**/*_Provide*Factory*.*',
+                                          '**/Modules.kt',
+                                          '**/EndlessScrollListener.kt'] // Dagger auto-generated code.
+    )
+}
+
+FileCollection generateClassDirs(Collection projects) {
+    def tree = fileTree('directory does not exists')
+    projects.each { project ->
+        tree += possibleClassDir(project)
+    }
+
+    return tree
+}
+
+FileCollection possibleClassDir(Project project) {
+    def tree = fileTree('directory does not exists')
+    tree += excludeFilesFromTree("${project.buildDir}/intermediates/classes/debug")
+    tree += excludeFilesFromTree("${project.buildDir}/intermediates/classes/mock/debug")
+    tree += excludeFilesFromTree("${project.buildDir}/classes/main")
+    return tree
+}
+
+configurations { codacy }
+
+repositories {
+    maven { url "https://jitpack.io" }
+    maven { url "http://dl.bintray.com/typesafe/maven-releases" }
+}
+dependencies {
+    codacy 'com.github.codacy:codacy-coverage-reporter:6.0.4'
+}
+
+task sendCoverageToCodacy(type: JavaExec, dependsOn: jacocoFullReport) {
+    main = "com.codacy.CodacyCoverageReporter"
+    classpath = configurations.codacy
+    args = [
+            "report",
+            "-l",
+            "Kotlin",
+            "-r",
+            "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
+    ]
+}
