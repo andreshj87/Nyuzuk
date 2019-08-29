@@ -28,9 +28,15 @@ android {
 }
 
 def getApiKey(){
-    def Properties props = new Properties()
-    props.load(new FileInputStream(new File('config/secrets.properties')))
-    return props['API_KEY']
+    def apiKey
+    try {
+        Properties props = new Properties()
+        props.load(new FileInputStream(new File('config/secrets.properties')))
+        apiKey = props['API_KEY']
+    } catch (FileNotFoundException e) {
+        apiKey = ""
+    }
+    return apiKey
 }
 
 dependencies {
