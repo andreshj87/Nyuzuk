@@ -34,7 +34,7 @@ def getApiKey(){
         props.load(new FileInputStream(new File('config/secrets.properties')))
         apiKey = props['API_KEY']
     } catch (FileNotFoundException e) {
-        apiKey = ""
+        apiKey = "unknown"
     }
     return apiKey
 }
