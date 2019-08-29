@@ -48,7 +48,6 @@ class TopArticlesFragment : BaseFragment<TopArticlesViewState, TopArticlesViewMo
 
     override fun setupUi() {
         recyclerview_top_articles?.apply {
-            itemAnimator = null
             val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
             endlessScrollListener = object : EndlessScrollListener(linearLayoutManager) {

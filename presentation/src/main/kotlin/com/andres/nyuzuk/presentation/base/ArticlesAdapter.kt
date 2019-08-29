@@ -36,11 +36,6 @@ abstract class ArticlesAdapter(
         submitList(articlesUi)
     }
 
-    fun add(articlesUi: List<ArticleUi>) {
-        this.articlesUi.addAll(articlesUi)
-        submitList(this.articlesUi.plus(articlesUi))
-    }
-
     fun clear() {
         this.articlesUi.clear()
         submitList(null)
