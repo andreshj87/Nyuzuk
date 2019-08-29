@@ -22,6 +22,8 @@ allprojects {
         google()
         jcenter()
         maven { url "https://dl.bintray.com/arrow-kt/arrow-kt/" }
+        maven { url "https://jitpack.io" }
+        maven { url "http://dl.bintray.com/typesafe/maven-releases" }
     }
 }
 
@@ -33,10 +35,20 @@ androidExtensions {
     experimental = true
 }
 
-junitJacoco {
-    jacocoVersion = '0.8.2' // type String
-    ignoreProjects = [] // type String array
-    excludes // type String List
-    includeNoLocationClasses = true // type boolean
-    includeInstrumentationCoverageInMergedReport = false // type boolean
+configurations { codacy }
+
+dependencies {
+    codacy 'com.github.codacy:codacy-coverage-reporter:6.0.4'
+}
+
+task sendCoverageToCodacy(type: JavaExec) {
+    main = "com.codacy.CodacyCoverageReporter"
+    classpath = configurations.codacy
+    args = [
+            "report",
+            "-l",
+            "Kotlin",
+            "-r",
+            "${buildDir}/reports/jacoco/jacoco.xml"
+    ]
 }
