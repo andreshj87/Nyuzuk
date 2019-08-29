@@ -29,7 +29,7 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "presentation/build.gradle" }}
 
       - run:
-        - command: ./gradlew androidDependencies
+          - command: ./gradlew androidDependencies
 
       - save_cache:
           paths:
