@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/andreshj87/Nyuzuk.svg?style=svg)](https://circleci.com/gh/andreshj87/Nyuzuk) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4444fcaff2c847bf92757f839c138c46)](https://app.codacy.com/app/andreshj87/Nyuzuk?utm_source=github.com&utm_medium=referral&utm_content=andreshj87/Nyuzuk&utm_campaign=Badge_Grade_Dashboard)
+[![CircleCI](https://circleci.com/gh/andreshj87/Nyuzuk.svg?style=svg)](https://circleci.com/gh/andreshj87/Nyuzuk) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4444fcaff2c847bf92757f839c138c46)](https://app.codacy.com/app/andreshj87/Nyuzuk?utm_source=github.com&utm_medium=referral&utm_content=andreshj87/Nyuzuk&utm_campaign=Badge_Grade_Dashboard) [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/7e32dafe20574c42afc2ae4437278db0)](https://www.codacy.com/app/andreshj87/Nyuzuk?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=andreshj87/Nyuzuk&amp;utm_campaign=Badge_Coverage)
 
 # Nyuzuk
 
