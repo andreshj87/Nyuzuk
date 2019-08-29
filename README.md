@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/andreshj87/Nyuzuk.svg?style=svg)](https://circleci.com/gh/andreshj87/Nyuzuk)
+
 # Nyuzuk
 Android app written in Kotlin that displays news articles - powered by [News API (https://newsapi.org)](https://newsapi.org)
 
