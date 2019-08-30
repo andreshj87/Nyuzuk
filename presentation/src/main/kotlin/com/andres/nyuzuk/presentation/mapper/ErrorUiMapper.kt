@@ -1,6 +1,7 @@
-package com.andres.nyuzuk.presentation.base
+package com.andres.nyuzuk.presentation.mapper
 
 import com.andres.nyuzuk.domain.Failure
+import com.andres.nyuzuk.presentation.entity.ErrorUi
 
 class ErrorUiMapper {
     fun map(failure: Failure): ErrorUi {

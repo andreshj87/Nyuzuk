@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.andres.nyuzuk.presentation.features.detail.ArticleDetailActivity
 import com.andres.nyuzuk.presentation.features.search.ArticleSearchActivity
-import com.andres.nyuzuk.presentation.base.ArticleUi
+import com.andres.nyuzuk.presentation.entity.ArticleUi
 
 class Navigator {
     fun navigateToSearch(context: Context) {

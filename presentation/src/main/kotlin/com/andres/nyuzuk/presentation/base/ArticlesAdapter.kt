@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.andres.nyuzuk.presentation.entity.ArticleUi
 
 abstract class ArticlesAdapter(
     private val articlesUi: MutableList<ArticleUi>,

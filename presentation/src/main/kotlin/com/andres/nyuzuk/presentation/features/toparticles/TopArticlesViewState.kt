@@ -1,8 +1,8 @@
 package com.andres.nyuzuk.presentation.features.toparticles
 
-import com.andres.nyuzuk.presentation.base.ArticleUi
+import com.andres.nyuzuk.presentation.entity.ArticleUi
 import com.andres.nyuzuk.presentation.base.BaseViewState
-import com.andres.nyuzuk.presentation.base.ErrorUi
+import com.andres.nyuzuk.presentation.entity.ErrorUi
 
 data class TopArticlesViewState(
     val isLoading: Boolean = false,

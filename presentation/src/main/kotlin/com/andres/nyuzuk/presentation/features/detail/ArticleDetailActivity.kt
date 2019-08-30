@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import com.andres.nyuzuk.R
-import com.andres.nyuzuk.presentation.base.ArticleUi
+import com.andres.nyuzuk.presentation.entity.ArticleUi
 import com.andres.nyuzuk.presentation.base.BaseActivity
 import com.andres.nyuzuk.presentation.tools.imageloader.ImageLoader
 import com.andres.nyuzuk.presentation.tools.webbrowser.WebBrowser

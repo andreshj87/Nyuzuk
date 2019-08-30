@@ -5,10 +5,10 @@ import com.andres.nyuzuk.data.mapper.ArticleMapper
 import com.andres.nyuzuk.data.mapper.PublisherMapper
 import com.andres.nyuzuk.domain.executor.PostExecutionThread
 import com.andres.nyuzuk.domain.executor.ThreadExecutor
-import com.andres.nyuzuk.presentation.base.ArticleUiMapper
-import com.andres.nyuzuk.presentation.base.PublisherUiMapper
+import com.andres.nyuzuk.presentation.mapper.ArticleUiMapper
+import com.andres.nyuzuk.presentation.mapper.PublisherUiMapper
 import com.andres.nyuzuk.presentation.base.ErrorDialog
-import com.andres.nyuzuk.presentation.base.ErrorUiMapper
+import com.andres.nyuzuk.presentation.mapper.ErrorUiMapper
 import com.andres.nyuzuk.presentation.executor.UiThread
 import com.andres.nyuzuk.presentation.features.detail.ArticleDetailViewModel
 import com.andres.nyuzuk.presentation.features.main.MainViewModel

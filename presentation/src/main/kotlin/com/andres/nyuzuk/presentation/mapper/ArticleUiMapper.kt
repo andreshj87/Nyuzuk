@@ -1,6 +1,7 @@
-package com.andres.nyuzuk.presentation.base
+package com.andres.nyuzuk.presentation.mapper
 
 import com.andres.nyuzuk.domain.entity.Article
+import com.andres.nyuzuk.presentation.entity.ArticleUi
 
 class ArticleUiMapper(
     private val publisherUiMapper: PublisherUiMapper

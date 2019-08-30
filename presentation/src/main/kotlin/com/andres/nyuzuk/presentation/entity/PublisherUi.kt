@@ -1,4 +1,4 @@
-package com.andres.nyuzuk.presentation.base
+package com.andres.nyuzuk.presentation.entity
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

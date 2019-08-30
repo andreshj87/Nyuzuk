@@ -1,7 +1,7 @@
 package com.andres.nyuzuk.presentation.features.detail
 
 import com.andres.nyuzuk.presentation.base.BaseViewModel
-import com.andres.nyuzuk.presentation.base.ArticleUi
+import com.andres.nyuzuk.presentation.entity.ArticleUi
 
 class ArticleDetailViewModel: BaseViewModel<ArticleDetailViewState>() {
     override fun initViewState() {
