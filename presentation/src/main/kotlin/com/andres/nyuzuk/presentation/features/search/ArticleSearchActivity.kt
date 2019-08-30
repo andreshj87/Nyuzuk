@@ -11,6 +11,7 @@ import com.andres.nyuzuk.presentation.base.ArticleClickListener
 import com.andres.nyuzuk.presentation.base.BaseActivity
 import com.andres.nyuzuk.presentation.base.ErrorDialog
 import com.andres.nyuzuk.presentation.extension.setVisibility
+import com.andres.nyuzuk.presentation.tools.EndlessScrollListener
 import com.andres.nyuzuk.presentation.tools.Navigator
 import com.andres.nyuzuk.presentation.tools.imageloader.ImageLoader
 import kotlinx.android.synthetic.main.activity_search_articles.layout_initial
@@ -25,6 +26,7 @@ class ArticleSearchActivity :
     private val errorDialog: ErrorDialog by inject()
     private val navigator: Navigator by inject()
     private var articleSearchAdapter: ArticleSearchAdapter? = null
+    private var endlessScrollListener: EndlessScrollListener? = null
 
     companion object {
         fun makeIntent(context: Context) = Intent(context, ArticleSearchActivity::class.java)
@@ -46,8 +48,10 @@ class ArticleSearchActivity :
             if (viewState.isError && viewState.errorUi != null) {
                 errorDialog.show(this@ArticleSearchActivity, viewState.errorUi) { viewModel.onErrorDialogDismiss() }
             }
-            clear()
-            if (viewState.foundArticlesUi.isNotEmpty()) {
+            if (viewState.invalidateList) {
+                clear()
+                endlessScrollListener?.run { reset() }
+            } else {
                 update(viewState.foundArticlesUi)
             }
             recyclerview_search_articles.setVisibility(viewState.foundArticlesUi.isNotEmpty())
@@ -64,6 +68,14 @@ class ArticleSearchActivity :
             itemAnimator = null
             val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
+            endlessScrollListener = object : EndlessScrollListener(linearLayoutManager) {
+                override fun onLoadMore(currentPage: Int, totalItemCount: Int) {
+                    viewModel.onLoadMore()
+                }
+
+                override fun onScroll(firstVisibleItem: Int, dy: Int, scrollPosition: Int) {}
+            }
+            endlessScrollListener?.run { addOnScrollListener(this) }
             articleSearchAdapter =
                 ArticleSearchAdapter(mutableListOf(), viewModel as? ArticleClickListener, imageLoader)
             adapter = articleSearchAdapter

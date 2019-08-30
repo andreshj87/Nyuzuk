@@ -9,5 +9,6 @@ data class ArticleRemote(
     val description: String?,
     val url: String,
     val urlToImage: String?,
-    val content: String?
+    val content: String?,
+    val publishedAt: String?
 )

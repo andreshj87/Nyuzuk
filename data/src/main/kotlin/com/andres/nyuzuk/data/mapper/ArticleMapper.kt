@@ -2,6 +2,7 @@ package com.andres.nyuzuk.data.mapper
 
 import com.andres.nyuzuk.data.entity.local.ArticleEntity
 import com.andres.nyuzuk.data.entity.remote.ArticleRemote
+import com.andres.nyuzuk.data.extension.toDate
 import com.andres.nyuzuk.domain.entity.Article
 
 class ArticleMapper(
@@ -16,7 +17,8 @@ class ArticleMapper(
         articleRemote.author,
         publisherMapper.map(articleRemote.publisher),
         articleRemote.urlToImage,
-        articleRemote.url
+        articleRemote.url,
+        articleRemote.publishedAt?.toDate()
     )
 
     fun mapFromLocal(articlesEntity: List<ArticleEntity>) = articlesEntity.map { map(it) }
@@ -28,7 +30,8 @@ class ArticleMapper(
         articleEntity.author,
         publisherMapper.map(articleEntity.publisher),
         articleEntity.imageUrl,
-        articleEntity.url
+        articleEntity.url,
+        articleEntity.publishedAt
     )
 
     fun mapToLocal(articles: List<Article>, isTop: Boolean = false, searchQuery: String = "") =
@@ -43,6 +46,7 @@ class ArticleMapper(
         publisherMapper.map(article.publisher),
         article.imageUrl,
         isTop,
-        searchQuery
+        searchQuery,
+        article.publishedAt
     )
 }

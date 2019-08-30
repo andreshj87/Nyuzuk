@@ -8,7 +8,11 @@ class ArticleLocalDataSource(
 ) {
     fun save(articlesEntity: List<ArticleEntity>) = articleDao.save(articlesEntity)
 
-    fun get() = articleDao.get()
+    fun getTopArticles() = articleDao.getTopArticles()
 
     fun invalidateTopArticles() = articleDao.invalidateTopArticles()
+
+    fun getArticlesSearch(query: String) = articleDao.getArticlesSearch(query)
+
+    fun invalidateArticlesSearch(query: String) = articleDao.invalidateArticlesSearch(query)
 }

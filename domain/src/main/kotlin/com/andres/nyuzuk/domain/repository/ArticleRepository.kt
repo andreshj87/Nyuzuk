@@ -7,5 +7,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface ArticleRepository {
     suspend fun getTopArticles(invalidate: Boolean, fetchMore: Boolean): Flow<Either<Failure, List<Article>>>
-    suspend fun searchArticles(query: String, invalidate: Boolean): Flow<Either<Failure, List<Article>>>
+    suspend fun searchArticles(query: String, invalidate: Boolean, fetchMore: Boolean): Flow<Either<Failure, List<Article>>>
 }

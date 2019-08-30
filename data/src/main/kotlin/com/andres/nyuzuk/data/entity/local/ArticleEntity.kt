@@ -3,6 +3,7 @@ package com.andres.nyuzuk.data.entity.local
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.*
 
 @Entity(tableName = "article")
 data class ArticleEntity(
@@ -14,5 +15,6 @@ data class ArticleEntity(
     @ColumnInfo(name = "publisher") val publisher: PublisherEntity?,
     @ColumnInfo(name = "imageUrl") val imageUrl: String?,
     @ColumnInfo(name = "isTop") val isTop: Boolean = false,
-    @ColumnInfo(name = "searchQuery") val searchQuery: String = ""
+    @ColumnInfo(name = "searchQuery") val searchQuery: String = "",
+    @ColumnInfo(name = "publishedAt") val publishedAt: Date?
 )

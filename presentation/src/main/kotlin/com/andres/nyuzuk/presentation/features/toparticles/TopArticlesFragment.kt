@@ -41,13 +41,15 @@ class TopArticlesFragment : BaseFragment<TopArticlesViewState, TopArticlesViewMo
             if (viewState.invalidateList) {
                 clear()
                 endlessScrollListener?.run { reset() }
+            } else {
+                update(viewState.topArticlesUi)
             }
-            update(viewState.topArticlesUi)
         }
     }
 
     override fun setupUi() {
         recyclerview_top_articles?.apply {
+            itemAnimator = null
             val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
             endlessScrollListener = object : EndlessScrollListener(linearLayoutManager) {

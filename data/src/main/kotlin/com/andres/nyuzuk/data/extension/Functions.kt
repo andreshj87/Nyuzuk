@@ -7,6 +7,8 @@ import com.andres.nyuzuk.data.entity.remote.ArticleResponse
 import com.andres.nyuzuk.data.entity.remote.PaginatedApiResponse
 import com.andres.nyuzuk.domain.Failure
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun Response<ArticleResponse>.processPaginatedResponse(apiPaginator: ApiPaginator): Response<ArticleResponse> {
     apiPaginator.processResponse(this.body() as PaginatedApiResponse)
@@ -18,4 +20,10 @@ fun Response<ArticleResponse>.toEither(): Either<Failure, List<ArticleRemote>> {
         this.isSuccessful && this.body() != null,
         { this.body()!!.articles },
         { Failure.ApiError })
+}
+
+fun String.toDate(dateFormat: String = "yyyy-MM-dd'T'HH:mm:ss'Z'", timeZone: TimeZone = TimeZone.getTimeZone("UTC")): Date {
+    val parser = SimpleDateFormat(dateFormat, Locale.getDefault())
+    parser.timeZone = timeZone
+    return parser.parse(this)
 }

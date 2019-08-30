@@ -5,6 +5,7 @@ import com.andres.nyuzuk.data.entity.local.PublisherEntity
 import com.andres.nyuzuk.data.tools.jsonserializer.JsonSerializer
 import com.andres.nyuzuk.data.tools.jsonserializer.MoshiJsonSerializer
 import com.squareup.moshi.Moshi
+import java.util.*
 
 class Converters {
     private val jsonSerializer: JsonSerializer = MoshiJsonSerializer(Moshi.Builder().build())
@@ -26,4 +27,16 @@ class Converters {
             jsonSerializer.fromJson(json, PublisherEntity::class.java)
         }
     }
+
+    @TypeConverter
+    fun toDate(date: Long?): Date? {
+        return if (date == null) {
+            null
+        } else {
+            Date(date)
+        }
+    }
+
+    @TypeConverter
+    fun fromDate(date: Date?): Long? = date?.time
 }

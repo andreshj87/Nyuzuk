@@ -1,8 +1,8 @@
 package com.andres.nyuzuk.presentation.features.search
 
+import com.andres.nyuzuk.presentation.base.ArticleUi
 import com.andres.nyuzuk.presentation.base.BaseViewState
 import com.andres.nyuzuk.presentation.base.ErrorUi
-import com.andres.nyuzuk.presentation.base.ArticleUi
 
 data class ArticleSearchViewState(
     val isInitial: Boolean = false,
@@ -10,6 +10,7 @@ data class ArticleSearchViewState(
     val isEmpty: Boolean = false,
     val isError: Boolean = false,
     val errorUi: ErrorUi? = null,
+    val invalidateList: Boolean = false,
     val foundArticlesUi: List<ArticleUi> = emptyList(),
     val articleUiToNavigate: ArticleUi? = null
 ) : BaseViewState

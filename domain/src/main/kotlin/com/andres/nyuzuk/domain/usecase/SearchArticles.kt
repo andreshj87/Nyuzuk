@@ -14,8 +14,8 @@ class SearchArticles(
     postExecutionThread: PostExecutionThread
 ) : UseCase<List<Article>, SearchArticles.Params>(threadExecutor, postExecutionThread) {
     override suspend fun execute(params: Params): Flow<Either<Failure, List<Article>>> {
-        return articleRepository.searchArticles(params.query, params.invalidate)
+        return articleRepository.searchArticles(params.query, params.invalidate, params.fetchMore)
     }
 
-    data class Params(val query: String, val invalidate: Boolean = false)
+    data class Params(val query: String, val invalidate: Boolean = false, val fetchMore: Boolean = false)
 }
