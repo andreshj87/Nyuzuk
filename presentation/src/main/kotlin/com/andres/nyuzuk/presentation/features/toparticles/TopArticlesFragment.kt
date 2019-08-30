@@ -58,7 +58,7 @@ class TopArticlesFragment : BaseFragment<TopArticlesViewState, TopArticlesViewMo
                 override fun onScroll(firstVisibleItem: Int, dy: Int, scrollPosition: Int) {}
             }
             endlessScrollListener?.run { addOnScrollListener(this) }
-            topArticlesAdapter = TopArticlesAdapter(mutableListOf(), viewModel as ArticleClickListener, imageLoader)
+            topArticlesAdapter = TopArticlesAdapter(mutableListOf(), viewModel as? ArticleClickListener, imageLoader)
             adapter = topArticlesAdapter
         }
         view_swipe_to_refresh?.apply {

@@ -65,7 +65,7 @@ class ArticleSearchActivity :
             val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
             articleSearchAdapter =
-                ArticleSearchAdapter(mutableListOf(), viewModel as ArticleClickListener, imageLoader)
+                ArticleSearchAdapter(mutableListOf(), viewModel as? ArticleClickListener, imageLoader)
             adapter = articleSearchAdapter
         }
     }

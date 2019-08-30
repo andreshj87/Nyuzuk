@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.item_article_card.view.view_article
 
 class TopArticlesAdapter(
     articlesUi: MutableList<ArticleUi>,
-    articleClickListener: ArticleClickListener,
+    articleClickListener: ArticleClickListener?,
     private val imageLoader: ImageLoader
 ) : ArticlesAdapter(articlesUi, articleClickListener) {
     override fun getLayoutResource() = R.layout.item_article_card

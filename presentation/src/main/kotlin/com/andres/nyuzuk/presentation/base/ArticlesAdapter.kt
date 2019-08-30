@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class ArticlesAdapter(
     private val articlesUi: MutableList<ArticleUi>,
-    private val articleClickListener: ArticleClickListener
+    private val articleClickListener: ArticleClickListener?
 ) : ListAdapter<ArticleUi, ArticlesAdapter.ArticleViewHolder>(DiffCallback()) {
     abstract fun getLayoutResource(): Int
 
@@ -47,7 +47,7 @@ abstract class ArticlesAdapter(
         abstract fun getClickableView(): View
 
         fun bind(articleUi: ArticleUi) {
-            getClickableView().setOnClickListener { articleClickListener.onArticleClick(articleUi) }
+            getClickableView().setOnClickListener { articleClickListener?.onArticleClick(articleUi) }
             bindItem(articleUi)
         }
     }
