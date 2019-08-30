@@ -1,0 +1,25 @@
+apply plugin: 'com.vanniktech.android.junit.jacoco'
+
+configurations { codacy }
+
+dependencies {
+    codacy 'com.github.codacy:codacy-coverage-reporter:6.0.4'
+}
+
+junitJacoco {
+    excludes = ['**/*Modules*.*', '**/*EndlessScrollListener*.*']
+    includeNoLocationClasses = true
+    includeInstrumentationCoverageInMergedReport = true
+}
+
+task sendCoverageToCodacy(type: JavaExec) {
+    main = "com.codacy.CodacyCoverageReporter"
+    classpath = configurations.codacy
+    args = [
+            "report",
+            "-l",
+            "Kotlin",
+            "-r",
+            "${buildDir}/reports/jacoco/jacoco.xml"
+    ]
+}

@@ -1,6 +1,6 @@
 apply from: 'buildsystem/dependencies.gradle'
+apply from: 'buildsystem/test-reporting.gradle'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: "com.vanniktech.android.junit.jacoco"
 
 buildscript {
     repositories {
@@ -33,22 +33,4 @@ task clean(type: Delete) {
 
 androidExtensions {
     experimental = true
-}
-
-configurations { codacy }
-
-dependencies {
-    codacy 'com.github.codacy:codacy-coverage-reporter:6.0.4'
-}
-
-task sendCoverageToCodacy(type: JavaExec) {
-    main = "com.codacy.CodacyCoverageReporter"
-    classpath = configurations.codacy
-    args = [
-            "report",
-            "-l",
-            "Kotlin",
-            "-r",
-            "${buildDir}/reports/jacoco/jacoco.xml"
-    ]
 }
