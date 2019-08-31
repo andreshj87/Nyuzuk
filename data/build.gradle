@@ -59,4 +59,5 @@ dependencies {
     testImplementation "${testDependency.kotlinStdlib}"
     testImplementation "${testDependency.kotlinTestJunit}"
     testImplementation "${testDependency.assertK}"
+    testImplementation "${testDependency.mockitoKotlin}"
 }

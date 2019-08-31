@@ -7,7 +7,7 @@ class MoshiJsonSerializer(
 ) : JsonSerializer {
     override fun <T : Any> toJson(value: T?) = makeAdapter(value!!::class.java).toJson(value as Nothing?)
 
-    override fun <T : Any> fromJson(json: String, clazz: Class<T>) = moshi.adapter(clazz).fromJson(json)
+    override fun <T : Any> fromJson(json: String, clazz: Class<T>) = makeAdapter(clazz).fromJson(json)
 
     private fun <T : Any> makeAdapter(clazz: Class<T>) = moshi.adapter(clazz)
 }
