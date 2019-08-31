@@ -99,7 +99,8 @@ ext.domainTestDependencies = [
     jUnit: "${dependency.jUnit}",
     kotlinStdlib: "${dependency.kotlinStdlib}",
     kotlinTestJunit: "${dependency.kotlinTestJunit}",
-    assertK: "${dependency.assertK}"
+    assertK: "${dependency.assertK}",
+    mockitoKotlin: "${dependency.mockitoKotlin}"
 ]
 
 ext.presentationDependencies = [

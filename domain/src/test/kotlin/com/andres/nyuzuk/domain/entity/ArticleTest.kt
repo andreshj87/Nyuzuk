@@ -18,7 +18,7 @@ class ArticleTest {
         private const val SOME_IMAGE_URL = ""
         private const val SOME_URL = ""
         private val SOME_PUBLISHED_AT = Date()
-        val SOME_ARTICLE = Article(
+        fun create() = Article(
             SOME_TITLE,
             SOME_DESCRIPTION,
             SOME_CONTENT,
