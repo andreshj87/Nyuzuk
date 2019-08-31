@@ -26,7 +26,7 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "presentation/build.gradle" }}
       - run:
           name: JaCoCo
-          command: ./gradlew jacocoTestReportDebug combinedTestReportDebug mergeJacocoReports jacocoTestReportMerged
+          command: ./gradlew jacocoTestReport jacocoTestReportDebug combinedTestReportDebug mergeJacocoReports jacocoTestReportMerged
       - run:
           name: Codacy test report
           command: ./gradlew sendCoverageToCodacy
