@@ -24,7 +24,8 @@ ext.version = [
     testRunner: "1.3.0-alpha02",
     espressoCore: "3.3.0-alpha02",
     mockitoKotlin: "2.1.0",
-    codacy: "6.0.4"
+    codacy: "6.0.4",
+    assertK: "0.19"
 ]
 
 def version = ext.version
@@ -61,7 +62,8 @@ ext.dependency = [
     kotlinStdlib: "org.jetbrains.kotlin:kotlin-stdlib:${version.kotlin}",
     kotlinTestJunit: "org.jetbrains.kotlin:kotlin-test-junit:${version.kotlin}",
     mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:${version.mockitoKotlin}",
-    codacy: "com.github.codacy:codacy-coverage-reporter:${version.codacy}"
+    codacy: "com.github.codacy:codacy-coverage-reporter:${version.codacy}",
+    assertK: "com.willowtreeapps.assertk:assertk-jvm:${version.assertK}"
 ]
 
 def dependency = ext.dependency
@@ -82,7 +84,8 @@ ext.dataDependencies = [
 ext.dataTestDependencies = [
     jUnit: "${dependency.jUnit}",
     kotlinStdlib: "${dependency.kotlinStdlib}",
-    kotlinTestJunit: "${dependency.kotlinTestJunit}"
+    kotlinTestJunit: "${dependency.kotlinTestJunit}",
+    assertK: "${dependency.assertK}"
 ]
 
 ext.domainDependencies = [
@@ -95,7 +98,8 @@ ext.domainDependencies = [
 ext.domainTestDependencies = [
     jUnit: "${dependency.jUnit}",
     kotlinStdlib: "${dependency.kotlinStdlib}",
-    kotlinTestJunit: "${dependency.kotlinTestJunit}"
+    kotlinTestJunit: "${dependency.kotlinTestJunit}",
+    assertK: "${dependency.assertK}"
 ]
 
 ext.presentationDependencies = [
@@ -124,5 +128,6 @@ ext.presentationTestDependencies = [
     espressoCore: "${dependency.espressoCore}",
     kotlinStdlib: "${dependency.kotlinStdlib}",
     kotlinTestJunit: "${dependency.kotlinTestJunit}",
-    mockitoKotlin: "${dependency.mockitoKotlin}"
+    mockitoKotlin: "${dependency.mockitoKotlin}",
+    assertK: "${dependency.assertK}"
 ]

@@ -2,7 +2,8 @@ apply plugin: 'java-library'
 apply plugin: 'kotlin'
 
 sourceSets {
-    main.java.srcDirs += 'src/main/kotlin'
+    main { java.srcDirs = ['src/main/kotlin'] }
+    test { java.srcDirs = ['src/test/kotlin'] }
 }
 
 dependencies {
@@ -15,6 +16,7 @@ dependencies {
     testImplementation "${testDependency.jUnit}"
     testImplementation "${testDependency.kotlinStdlib}"
     testImplementation "${testDependency.kotlinTestJunit}"
+    testImplementation "${testDependency.assertK}"
 }
 
 sourceCompatibility = "7"

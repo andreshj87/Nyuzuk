@@ -12,7 +12,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -35,7 +35,9 @@ android {
     }
 
     sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
+        main { java.srcDirs = ['src/main/kotlin'] }
+        test { java.srcDirs = ['src/test/kotlin'] }
+        androidTest { java.srcDirs = ['src/androidTest/kotlin'] }
     }
 }
 
@@ -65,6 +67,7 @@ dependencies {
     testImplementation "${testDependency.kotlinStdlib}"
     testImplementation "${testDependency.kotlinTestJunit}"
     testImplementation "${testDependency.mockitoKotlin}"
+    testImplementation "${testDependency.assertK}"
     androidTestImplementation "${testDependency.testRunner}"
     androidTestImplementation "${testDependency.espressoCore}"
 }
