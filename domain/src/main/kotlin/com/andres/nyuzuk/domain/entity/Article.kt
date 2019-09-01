@@ -1,6 +1,6 @@
 package com.andres.nyuzuk.domain.entity
 
-import java.util.*
+import java.util.Date
 
 data class Article(
     val title: String,

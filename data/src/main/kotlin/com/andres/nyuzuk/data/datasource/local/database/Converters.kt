@@ -5,10 +5,10 @@ import com.andres.nyuzuk.data.entity.local.PublisherEntity
 import com.andres.nyuzuk.data.tools.jsonserializer.JsonSerializer
 import com.andres.nyuzuk.data.tools.jsonserializer.MoshiJsonSerializer
 import com.squareup.moshi.Moshi
-import java.util.*
+import java.util.Date
 
 class Converters {
-    private val jsonSerializer: JsonSerializer = MoshiJsonSerializer(Moshi.Builder().build())
+    internal var jsonSerializer: JsonSerializer = MoshiJsonSerializer(Moshi.Builder().build())
 
     @TypeConverter
     fun publisherEntityToJson(publisherEntity: PublisherEntity?): String? {

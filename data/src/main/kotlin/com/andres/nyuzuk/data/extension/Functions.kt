@@ -8,7 +8,9 @@ import com.andres.nyuzuk.data.entity.remote.PaginatedApiResponse
 import com.andres.nyuzuk.domain.Failure
 import retrofit2.Response
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.TimeZone
+import java.util.Locale
+import java.util.Date
 
 fun Response<ArticleResponse>.processPaginatedResponse(apiPaginator: ApiPaginator): Response<ArticleResponse> {
     apiPaginator.processResponse(this.body() as PaginatedApiResponse)

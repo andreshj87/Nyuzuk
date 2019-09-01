@@ -4,7 +4,7 @@ import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotNull
 import org.junit.Test
-import java.util.*
+import java.util.Date
 
 class ArticleTest {
     companion object {

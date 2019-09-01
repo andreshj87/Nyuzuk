@@ -3,7 +3,7 @@ package com.andres.nyuzuk.data.entity.local
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.*
+import java.util.Date
 
 @Entity(tableName = "article")
 data class ArticleEntity(
