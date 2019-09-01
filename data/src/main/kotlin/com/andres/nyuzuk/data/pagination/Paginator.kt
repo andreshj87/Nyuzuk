@@ -6,7 +6,7 @@ import kotlin.math.ceil
 interface Paginator<T : PaginatedApiResponse> {
     companion object {
         const val DEFAULT_PAGE = 1
-        private const val DEFAULT_PER_PAGE = 20
+        const val DEFAULT_PER_PAGE = 20
     }
 
     var page: Int
@@ -15,7 +15,7 @@ interface Paginator<T : PaginatedApiResponse> {
     fun requestMore(invalidate: Boolean): Boolean {
         return totalResults?.let {
             if (invalidate) { page = DEFAULT_PAGE }
-            page.toDouble() <= ceil(it.toDouble() / DEFAULT_PER_PAGE.toDouble())
+            page.toDouble() <= calculateLastPage(it)
         } ?: true
     }
 
@@ -26,5 +26,9 @@ interface Paginator<T : PaginatedApiResponse> {
 
     fun getRequestConfig(): RequestConfig {
         return RequestConfig(page, DEFAULT_PER_PAGE)
+    }
+
+    private fun calculateLastPage(totalResults: Int): Double {
+        return ceil(totalResults.toDouble() / DEFAULT_PER_PAGE.toDouble())
     }
 }
