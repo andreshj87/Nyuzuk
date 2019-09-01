@@ -3,8 +3,8 @@ package com.andres.nyuzuk.data.tools.jsonserializer
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import com.andres.nyuzuk.data.UnitTest
+import com.andres.nyuzuk.data.dummy.PublisherDummyFactory
 import com.andres.nyuzuk.data.entity.remote.PublisherRemote
-import com.andres.nyuzuk.data.entity.remote.PublisherRemoteTest
 import com.nhaarman.mockitokotlin2.mock
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
@@ -23,7 +23,7 @@ class MoshiJsonSerializerTest: UnitTest() {
 
     @Test
     fun `should create from json`() {
-        val someValue = PublisherRemoteTest.create()
+        val someValue = PublisherDummyFactory.createPublisherRemote()
         val someValueInJson = "{id:'${someValue.id}', name:'${someValue.name}'}"
         val jsonAdapterMock = mock<JsonAdapter<PublisherRemote>>()
         `when`(jsonAdapterMock.fromJson(someValueInJson)).thenReturn(someValue)
