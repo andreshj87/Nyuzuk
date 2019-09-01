@@ -2,8 +2,8 @@ package com.andres.nyuzuk.data.dummy
 
 import com.andres.nyuzuk.data.entity.local.ArticleEntity
 import com.andres.nyuzuk.data.entity.remote.ArticleRemote
+import com.andres.nyuzuk.data.extension.toDate
 import com.andres.nyuzuk.domain.entity.Article
-import java.util.*
 
 class ArticleDummyFactory {
     companion object {
@@ -18,7 +18,7 @@ class ArticleDummyFactory {
         private const val SOME_URL =
             "https://www.ajc.com/news/breaking-news/coastal-georgia-colleges-brace-for-hurricane-dorian/Kp7b6dQXog1DENKdun0rXN/"
         private val SOME_PUBLISHED_AT = "2019-09-01T18:18:26Z"
-        private val SOME_PUBLISHED_AT_DATE = Date()
+        private val SOME_PUBLISHED_AT_DATE = SOME_PUBLISHED_AT.toDate()
         private val SOME_PUBLISHER = PublisherDummyFactory.createPublisher()
         private val SOME_PUBLISHER_REMOTE = PublisherDummyFactory.createPublisherRemote()
         private val SOME_PUBLISHER_ENTITY = PublisherDummyFactory.createPublisherEntity()
