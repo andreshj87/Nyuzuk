@@ -12,6 +12,6 @@ class MainViewModel : BaseViewModel<MainViewState>() {
     }
 
     fun onSearchClick() {
-        // TODO
+        // TODO: who to order the view to simply navigate?
     }
 }

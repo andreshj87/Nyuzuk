@@ -68,6 +68,7 @@ dependencies {
     testImplementation "${testDependency.kotlinTestJunit}"
     testImplementation "${testDependency.mockitoKotlin}"
     testImplementation "${testDependency.assertK}"
+    testImplementation "${testDependency.archCoreTesting}"
     androidTestImplementation "${testDependency.testRunner}"
     androidTestImplementation "${testDependency.espressoCore}"
 }

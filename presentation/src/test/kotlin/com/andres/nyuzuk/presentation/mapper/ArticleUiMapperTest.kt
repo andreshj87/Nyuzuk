@@ -6,6 +6,7 @@ import com.andres.nyuzuk.presentation.UnitTest
 import com.andres.nyuzuk.presentation.dummyfactory.ArticleDummyFactory
 import org.junit.Test
 import org.mockito.Mock
+import org.mockito.Mockito.`when`
 
 class ArticleUiMapperTest: UnitTest() {
     private val SOME_ARTICLE = ArticleDummyFactory.createArticle()
@@ -23,6 +24,7 @@ class ArticleUiMapperTest: UnitTest() {
 
     @Test
     fun `should map articles into articlesUi`() {
+        `when`(publisherUiMapperMock.map(SOME_ARTICLE.publisher)).thenReturn(SOME_ARTICLE_UI.publisher)
         val articlesUiExpected = SOME_ARTICLES_UI
 
         val articlesUi = articleUiMapper.map(SOME_ARTICLES)

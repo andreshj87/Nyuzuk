@@ -5,9 +5,9 @@ import com.andres.nyuzuk.domain.Failure
 import com.andres.nyuzuk.domain.entity.Article
 import com.andres.nyuzuk.domain.usecase.GetTopArticles
 import com.andres.nyuzuk.presentation.base.ArticleClickListener
+import com.andres.nyuzuk.presentation.base.BaseViewModel
 import com.andres.nyuzuk.presentation.entity.ArticleUi
 import com.andres.nyuzuk.presentation.mapper.ArticleUiMapper
-import com.andres.nyuzuk.presentation.base.BaseViewModel
 import com.andres.nyuzuk.presentation.mapper.ErrorUiMapper
 
 class TopArticlesViewModel(
@@ -67,9 +67,10 @@ class TopArticlesViewModel(
     }
 
     private fun processFailure(failure: Failure) {
+        viewState.value = getViewState().copy(isLoading = false)
         if (failure !is Failure.EmptyResult) {
             val errorUi = errorUiMapper.map(failure)
-            viewState.value = getViewState().copy(isError = true, errorUi = errorUi, isLoading = false)
+            viewState.value = getViewState().copy(isError = true, errorUi = errorUi)
         }
     }
 }

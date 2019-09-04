@@ -15,7 +15,7 @@ class ArticleDetailViewModel: BaseViewModel<ArticleDetailViewState>() {
     }
 
     fun onSeeMoreClick() {
-        viewState.value = getViewState().copy(navigateToDetail = true)
+        viewState.value = getViewState().copy(navigateToDetail = true) // TODO How to test 2 viewState changes in the same method? Is it even a good practice?
         viewState.value = getViewState().copy(navigateToDetail = false)
     }
 }

@@ -11,7 +11,7 @@ ext.version = [
     retrofit: "2.6.0",
     retrofitMoshi: "2.6.1",
     okHttpLogger: "3.12.0",
-    lifecycle: "2.1.0-rc01",
+    androidArch: "2.1.0-rc01",
     picasso: "2.71828",
     arrow: "0.9.0",
     pullToRefresh: "1.0.0",
@@ -45,8 +45,8 @@ ext.dependency = [
     retrofit: "com.squareup.retrofit2:retrofit:${version.retrofit}",
     retrofitMoshi: "com.squareup.retrofit2:converter-moshi:${version.retrofitMoshi}",
     okHttpLogger: "com.squareup.okhttp3:logging-interceptor:${version.okHttpLogger}",
-    lifecycleCompiler: "android.arch.lifecycle:compiler:${version.lifecycle}",
-    lifecycleViewModel: "androidx.lifecycle:lifecycle-viewmodel-ktx:${version.lifecycle}",
+    lifecycleCompiler: "android.arch.lifecycle:compiler:${version.androidArch}",
+    lifecycleViewModel: "androidx.lifecycle:lifecycle-viewmodel-ktx:${version.androidArch}",
     picasso: "com.squareup.picasso:picasso:${version.picasso}",
     arrowCoreData: "io.arrow-kt:arrow-core-data:${version.arrow}",
     pullToRefresh: "androidx.swiperefreshlayout:swiperefreshlayout:${version.pullToRefresh}",
@@ -63,7 +63,8 @@ ext.dependency = [
     kotlinTestJunit: "org.jetbrains.kotlin:kotlin-test-junit:${version.kotlin}",
     mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:${version.mockitoKotlin}",
     codacy: "com.github.codacy:codacy-coverage-reporter:${version.codacy}",
-    assertK: "com.willowtreeapps.assertk:assertk-jvm:${version.assertK}"
+    assertK: "com.willowtreeapps.assertk:assertk-jvm:${version.assertK}",
+    archCoreTesting: "android.arch.core:core-testing:${version.androidArch}"
 ]
 
 def dependency = ext.dependency
@@ -131,5 +132,6 @@ ext.presentationTestDependencies = [
     kotlinStdlib: "${dependency.kotlinStdlib}",
     kotlinTestJunit: "${dependency.kotlinTestJunit}",
     mockitoKotlin: "${dependency.mockitoKotlin}",
-    assertK: "${dependency.assertK}"
+    assertK: "${dependency.assertK}",
+    archCoreTesting: "${dependency.archCoreTesting}"
 ]
