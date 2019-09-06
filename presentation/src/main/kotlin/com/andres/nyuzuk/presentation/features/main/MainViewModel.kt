@@ -1,8 +1,11 @@
 package com.andres.nyuzuk.presentation.features.main
 
 import com.andres.nyuzuk.presentation.base.BaseViewModel
+import com.andres.nyuzuk.presentation.tools.Navigator
 
-class MainViewModel : BaseViewModel<MainViewState>() {
+class MainViewModel(
+    private val navigator: Navigator
+) : BaseViewModel<MainViewState>() {
     override fun initViewState() {
         viewState.value = MainViewState()
     }
@@ -12,6 +15,6 @@ class MainViewModel : BaseViewModel<MainViewState>() {
     }
 
     fun onSearchClick() {
-        // TODO: who to order the view to simply navigate?
+        navigator.navigateToSearch()
     }
 }

@@ -5,15 +5,17 @@ import com.andres.nyuzuk.domain.Failure
 import com.andres.nyuzuk.domain.entity.Article
 import com.andres.nyuzuk.domain.usecase.SearchArticles
 import com.andres.nyuzuk.presentation.base.ArticleClickListener
+import com.andres.nyuzuk.presentation.base.BaseViewModel
 import com.andres.nyuzuk.presentation.entity.ArticleUi
 import com.andres.nyuzuk.presentation.mapper.ArticleUiMapper
-import com.andres.nyuzuk.presentation.base.BaseViewModel
 import com.andres.nyuzuk.presentation.mapper.ErrorUiMapper
+import com.andres.nyuzuk.presentation.tools.Navigator
 
 class ArticleSearchViewModel(
     private val searchArticles: SearchArticles,
     private val articleUiMapper: ArticleUiMapper,
-    private val errorUiMapper: ErrorUiMapper
+    private val errorUiMapper: ErrorUiMapper,
+    private val navigator: Navigator
 ) : BaseViewModel<ArticleSearchViewState>(), ArticleClickListener {
     private var query: String? = null
     private var articlesSearch = mutableListOf<ArticleUi>()
@@ -36,8 +38,7 @@ class ArticleSearchViewModel(
     }
 
     override fun onArticleClick(articleUi: ArticleUi) {
-        viewState.value = getViewState().copy(articleUiToNavigate = articleUi)
-        viewState.value = getViewState().copy(articleUiToNavigate = null)
+        navigator.navigateToDetail(articleUi)
     }
 
     fun onSearchClick(query: String) {

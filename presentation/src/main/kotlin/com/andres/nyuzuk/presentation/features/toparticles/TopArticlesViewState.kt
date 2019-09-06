@@ -1,7 +1,7 @@
 package com.andres.nyuzuk.presentation.features.toparticles
 
-import com.andres.nyuzuk.presentation.entity.ArticleUi
 import com.andres.nyuzuk.presentation.base.BaseViewState
+import com.andres.nyuzuk.presentation.entity.ArticleUi
 import com.andres.nyuzuk.presentation.entity.ErrorUi
 
 data class TopArticlesViewState(
@@ -10,6 +10,5 @@ data class TopArticlesViewState(
     val isError: Boolean = false,
     val errorUi: ErrorUi? = null,
     val topArticlesUi: List<ArticleUi> = emptyList(),
-    val invalidateList: Boolean = false,
-    val articleUiToNavigate: ArticleUi? = null
+    val invalidateList: Boolean = false
 ): BaseViewState

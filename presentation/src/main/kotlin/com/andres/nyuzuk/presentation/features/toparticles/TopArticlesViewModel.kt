@@ -9,11 +9,13 @@ import com.andres.nyuzuk.presentation.base.BaseViewModel
 import com.andres.nyuzuk.presentation.entity.ArticleUi
 import com.andres.nyuzuk.presentation.mapper.ArticleUiMapper
 import com.andres.nyuzuk.presentation.mapper.ErrorUiMapper
+import com.andres.nyuzuk.presentation.tools.Navigator
 
 class TopArticlesViewModel(
     private val getTopArticles: GetTopArticles,
     private val articleUiMapper: ArticleUiMapper,
-    private val errorUiMapper: ErrorUiMapper
+    private val errorUiMapper: ErrorUiMapper,
+    private val navigator: Navigator
 ) : BaseViewModel<TopArticlesViewState>(), ArticleClickListener {
     private val topArticlesUi = mutableListOf<ArticleUi>()
 
@@ -40,8 +42,7 @@ class TopArticlesViewModel(
     }
 
     override fun onArticleClick(articleUi: ArticleUi) {
-        viewState.value = getViewState().copy(articleUiToNavigate = articleUi)
-        viewState.value = getViewState().copy(articleUiToNavigate = null)
+        navigator.navigateToDetail(articleUi)
     }
 
     private fun processSuccess(articles: List<Article>) {

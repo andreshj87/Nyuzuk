@@ -12,7 +12,6 @@ import com.andres.nyuzuk.presentation.base.BaseActivity
 import com.andres.nyuzuk.presentation.base.ErrorDialog
 import com.andres.nyuzuk.presentation.extension.setVisibility
 import com.andres.nyuzuk.presentation.tools.EndlessScrollListener
-import com.andres.nyuzuk.presentation.tools.Navigator
 import com.andres.nyuzuk.presentation.tools.imageloader.ImageLoader
 import kotlinx.android.synthetic.main.activity_search_articles.layout_initial
 import kotlinx.android.synthetic.main.activity_search_articles.recyclerview_search_articles
@@ -24,7 +23,6 @@ class ArticleSearchActivity :
     BaseActivity<ArticleSearchViewState, ArticleSearchViewModel>(ArticleSearchViewModel::class) {
     private val imageLoader: ImageLoader by inject()
     private val errorDialog: ErrorDialog by inject()
-    private val navigator: Navigator by inject()
     private var articleSearchAdapter: ArticleSearchAdapter? = null
     private var endlessScrollListener: EndlessScrollListener? = null
 
@@ -36,12 +34,6 @@ class ArticleSearchActivity :
 
     override fun render(viewState: ArticleSearchViewState) {
         articleSearchAdapter?.apply {
-            viewState.articleUiToNavigate?.let {
-                navigator.navigateToDetail(
-                    this@ArticleSearchActivity,
-                    viewState.articleUiToNavigate
-                )
-            }
             view_loading.setVisibility(viewState.isLoading)
             layout_initial.setVisibility(viewState.isInitial)
             layout_empty.setVisibility(viewState.isEmpty)
