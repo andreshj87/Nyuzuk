@@ -12,6 +12,7 @@ import com.andres.nyuzuk.presentation.dummyfactory.ArticleDummyFactory
 import com.andres.nyuzuk.presentation.dummyfactory.ErrorDummyFactory
 import com.andres.nyuzuk.presentation.mapper.ArticleUiMapper
 import com.andres.nyuzuk.presentation.mapper.ErrorUiMapper
+import com.andres.nyuzuk.presentation.tools.Navigator
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.eq
@@ -31,10 +32,11 @@ class TopArticlesViewModelTest: ViewModelUnitTest<TopArticlesViewState, TopArtic
     @Mock private lateinit var getTopArticlesMock: GetTopArticles
     @Mock private lateinit var articleUiMapperMock: ArticleUiMapper
     @Mock private lateinit var errorUiMapperMock: ErrorUiMapper
+    @Mock private lateinit var navigatorMock: Navigator
     private val onResultCaptor = argumentCaptor<(Either<Failure, List<Article>>) -> Unit>()
 
     override fun onSetup() {
-        viewModel = TopArticlesViewModel(getTopArticlesMock, articleUiMapperMock, errorUiMapperMock)
+        viewModel = TopArticlesViewModel(getTopArticlesMock, articleUiMapperMock, errorUiMapperMock, navigatorMock)
     }
 
     @Test
@@ -104,12 +106,10 @@ class TopArticlesViewModelTest: ViewModelUnitTest<TopArticlesViewState, TopArtic
     }
 
     @Test
-    fun `should set viewState with null articleUiToNavigate when article click`() {
-        val viewStateExpected = TopArticlesViewState().copy(articleUiToNavigate = null)
-
+    fun `should navigate to article detail when article click`() {
         viewModel.onArticleClick(SOME_ARTICLE_UI)
 
-        assertThat(getViewStateValue()).isEqualTo(viewStateExpected)
+        verify(navigatorMock).navigateToDetail(eq(SOME_ARTICLE_UI))
     }
 
     @Test

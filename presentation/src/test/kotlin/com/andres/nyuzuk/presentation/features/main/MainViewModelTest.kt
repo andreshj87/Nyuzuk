@@ -3,11 +3,16 @@ package com.andres.nyuzuk.presentation.features.main
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import com.andres.nyuzuk.presentation.ViewModelUnitTest
+import com.andres.nyuzuk.presentation.tools.Navigator
+import com.nhaarman.mockitokotlin2.verify
 import org.junit.Test
+import org.mockito.Mock
 
 class MainViewModelTest: ViewModelUnitTest<MainViewState, MainViewModel>() {
+    @Mock lateinit var navigatorMock: Navigator
+
     override fun onSetup() {
-        viewModel = MainViewModel()
+        viewModel = MainViewModel(navigatorMock)
     }
 
     @Test
@@ -26,5 +31,12 @@ class MainViewModelTest: ViewModelUnitTest<MainViewState, MainViewModel>() {
         viewModel.onViewReady()
 
         assertThat(getViewStateValue()).isEqualTo(mainViewStateExpected)
+    }
+
+    @Test
+    fun `should navigate to search when search click`() {
+        viewModel.onSearchClick()
+
+        verify(navigatorMock).navigateToSearch()
     }
 }
