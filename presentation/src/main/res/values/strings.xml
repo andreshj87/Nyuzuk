@@ -6,4 +6,12 @@
     <string name="button_positive">Done</string>
     <string name="article_detail_title">Article detail</string>
     <string name="article_detail_button_see_more">See full article</string>
+    <string name="error_network_connection">Connectivity problems</string>
+    <string name="error_title">Error</string>
+    <string name="error_api">Api error</string>
+    <string name="error_empty">No results found</string>
+    <string name="error_mapping">Error while mapping</string>
+    <string name="error_not_found">404 - not found</string>
+    <string name="error_unknown">Unknown error</string>
+    <string name="error_default">Something unknown happened</string>
 </resources>

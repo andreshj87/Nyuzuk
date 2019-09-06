@@ -68,7 +68,7 @@ val mapperModule: Module = module {
     }
 
     single {
-        ErrorUiMapper()
+        ErrorUiMapper(get())
     }
 
     single {
