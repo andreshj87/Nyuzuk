@@ -20,8 +20,6 @@ class ArticleDummyFactory {
         private val SOME_PUBLISHED_AT_DATE = SOME_PUBLISHED_AT.toDate()
         private val SOME_PUBLISHER = PublisherDummyFactory.createPublisher()
         private val SOME_PUBLISHER_UI = PublisherDummyFactory.createPublisherUi()
-        private const val SOME_IS_TOP = true
-        private const val SOME_SEARCH_QUERY = "technology"
 
         fun createArticle() = Article(
             SOME_TITLE,

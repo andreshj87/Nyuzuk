@@ -20,7 +20,7 @@ class PublisherTest {
         publisher = Publisher(SOME_ID, SOME_NAME)
 
         assertThat(publisher).isNotNull()
-        publisher!!.run {
+        publisher.run {
             assertThat(id).isEqualTo(SOME_ID)
             assertThat(name).isEqualTo(SOME_NAME)
         }
