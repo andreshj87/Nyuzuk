@@ -8,8 +8,10 @@ import com.andres.nyuzuk.R
 import saschpe.android.customtabs.CustomTabsHelper
 import saschpe.android.customtabs.WebViewFallback
 
-class CustomTabsWebBrowser : WebBrowser {
-    override fun launch(context: Context, url: String) {
+class CustomTabsWebBrowser(
+    private val context: Context
+) : WebBrowser {
+    override fun launch(url: String) {
         val customTabsIntent = CustomTabsIntent.Builder()
             .addDefaultShareMenuItem()
             .setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))

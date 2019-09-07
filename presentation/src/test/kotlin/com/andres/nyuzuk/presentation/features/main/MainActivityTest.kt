@@ -1,5 +1,6 @@
 package com.andres.nyuzuk.presentation.features.main
 
+import android.content.Intent
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -9,7 +10,6 @@ import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import com.andres.nyuzuk.R
 import com.andres.nyuzuk.presentation.ActivityUnitTest
-import com.andres.nyuzuk.presentation.RobolectricUnitTest
 import com.andres.nyuzuk.presentation.extension.isVisible
 import com.andres.nyuzuk.presentation.features.toparticles.TopArticlesViewModel
 import com.andres.nyuzuk.presentation.features.toparticles.TopArticlesViewState
@@ -54,7 +54,7 @@ class MainActivityTest : ActivityUnitTest<MainViewState, MainViewModel, MainActi
         }
     }
 
-    override fun getClassUnderTest(): Class<MainActivity> = MainActivity::class.java
+    override fun getIntent() = Intent(getContext(), MainActivity::class.java)
 
     @Test
     fun `should get the right layout resource`() {

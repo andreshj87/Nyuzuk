@@ -1,5 +1,6 @@
 package com.andres.nyuzuk.presentation
 
+import android.content.Intent
 import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
 import com.andres.nyuzuk.presentation.base.BaseActivity
@@ -11,7 +12,9 @@ abstract class ActivityUnitTest<S : BaseViewState, M : BaseViewModel<S>, T : Bas
 
     override fun onSetup() {
         super.onSetup()
-        activityScenario = ActivityScenario.launch(getClassUnderTest())
+        activityScenario = ActivityScenario.launch(getIntent())
         activityScenario.moveToState(Lifecycle.State.RESUMED)
     }
+
+    abstract fun getIntent(): Intent
 }

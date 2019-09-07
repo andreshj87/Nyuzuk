@@ -2,8 +2,11 @@ package com.andres.nyuzuk.presentation.features.detail
 
 import com.andres.nyuzuk.presentation.base.BaseViewModel
 import com.andres.nyuzuk.presentation.entity.ArticleUi
+import com.andres.nyuzuk.presentation.tools.webbrowser.WebBrowser
 
-class ArticleDetailViewModel: BaseViewModel<ArticleDetailViewState>() {
+class ArticleDetailViewModel(
+    private val webBrowser: WebBrowser
+): BaseViewModel<ArticleDetailViewState>() {
     override fun initViewState() {
         viewState.value = ArticleDetailViewState()
     }
@@ -15,7 +18,8 @@ class ArticleDetailViewModel: BaseViewModel<ArticleDetailViewState>() {
     }
 
     fun onSeeMoreClick() {
-        viewState.value = getViewState().copy(navigateToDetail = true) // TODO How to test 2 viewState changes in the same method? Is it even a good practice?
-        viewState.value = getViewState().copy(navigateToDetail = false)
+        getViewState().articleUi?.run {
+            webBrowser.launch(url)
+        }
     }
 }

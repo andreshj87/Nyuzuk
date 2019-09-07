@@ -14,4 +14,6 @@ abstract class FragmentUnitTest<S : BaseViewState, M : BaseViewModel<S>, T : Bas
         fragmentScenario = FragmentScenario.launch(getClassUnderTest())
         fragmentScenario.moveToState(Lifecycle.State.RESUMED)
     }
+
+    abstract fun getClassUnderTest(): Class<T>
 }

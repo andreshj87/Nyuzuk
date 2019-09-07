@@ -4,13 +4,19 @@ import assertk.assertThat
 import assertk.assertions.isEqualTo
 import com.andres.nyuzuk.presentation.ViewModelUnitTest
 import com.andres.nyuzuk.presentation.dummyfactory.ArticleDummyFactory
+import com.andres.nyuzuk.presentation.tools.webbrowser.WebBrowser
+import com.nhaarman.mockitokotlin2.eq
+import com.nhaarman.mockitokotlin2.verify
 import org.junit.Test
+import org.mockito.Mock
 
 class ArticleDetailViewModelTest: ViewModelUnitTest<ArticleDetailViewState, ArticleDetailViewModel>() {
     private val SOME_ARTICLE_UI = ArticleDummyFactory.createArticleUi()
 
+    @Mock private lateinit var webBrowserMock: WebBrowser
+
     override fun onSetup() {
-        viewModel = ArticleDetailViewModel()
+        viewModel = ArticleDetailViewModel(webBrowserMock)
     }
 
     @Test
@@ -32,11 +38,12 @@ class ArticleDetailViewModelTest: ViewModelUnitTest<ArticleDetailViewState, Arti
     }
 
     @Test
-    fun `should be viewState with false navigateToDetail when see more click`() {
-        val viewStateExpected = ArticleDetailViewState(navigateToDetail = false)
+    fun `should navigate to article detail url when see more click`() {
+        viewModel.onArticleLoaded(SOME_ARTICLE_UI)
+        val urlExpected = SOME_ARTICLE_UI.url
 
         viewModel.onSeeMoreClick()
 
-        assertThat(getViewStateValue()).isEqualTo(viewStateExpected)
+        verify(webBrowserMock).launch(eq(urlExpected))
     }
 }

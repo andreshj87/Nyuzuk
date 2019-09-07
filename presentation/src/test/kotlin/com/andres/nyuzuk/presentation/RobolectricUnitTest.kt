@@ -1,5 +1,7 @@
 package com.andres.nyuzuk.presentation
 
+import android.content.Context
+import androidx.test.core.app.ApplicationProvider
 import org.junit.After
 import org.junit.runner.RunWith
 import org.koin.core.context.startKoin
@@ -21,6 +23,8 @@ abstract class RobolectricUnitTest<T> : UnitTest() {
         stopKoin()
     }
 
+    fun getContext(): Context = ApplicationProvider.getApplicationContext()
+
     abstract fun setupMocking()
 
     fun setupKoin() {
@@ -31,6 +35,4 @@ abstract class RobolectricUnitTest<T> : UnitTest() {
     }
 
     abstract fun getModuleMock(): Module
-
-    abstract fun getClassUnderTest(): Class<T>
 }

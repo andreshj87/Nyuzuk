@@ -50,7 +50,7 @@ val viewModelModule: Module = module {
     }
 
     viewModel {
-        ArticleDetailViewModel()
+        ArticleDetailViewModel(get())
     }
 }
 
@@ -66,6 +66,7 @@ val mapperModule: Module = module {
     single {
         ArticleUiMapper(get())
     }
+
 
     single {
         ErrorUiMapper(get())
@@ -87,7 +88,7 @@ val toolsModule: Module = module {
         ErrorDialog()
     }
     factory {
-        CustomTabsWebBrowser() as WebBrowser
+        CustomTabsWebBrowser(androidContext()) as WebBrowser
     }
     single {
         Moshi.Builder().build()
