@@ -1,5 +1,6 @@
 package com.andres.nyuzuk.presentation.features.toparticles
 
+import android.content.Context
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andres.nyuzuk.R
 import com.andres.nyuzuk.presentation.base.ArticleClickListener
@@ -30,7 +31,7 @@ class TopArticlesFragment : BaseFragment<TopArticlesViewState, TopArticlesViewMo
         view_swipe_to_refresh.isRefreshing = viewState.isLoading
         layout_empty.setVisibility(viewState.isEmpty)
         if (viewState.isError && viewState.errorUi != null && context != null) {
-            errorDialog.show(context!!, viewState.errorUi) { viewModel.onErrorDialogDismiss() }
+            errorDialog.show(context as Context, viewState.errorUi) { viewModel.onErrorDialogDismiss() }
         }
         topArticlesAdapter?.apply {
             if (viewState.invalidateList) {

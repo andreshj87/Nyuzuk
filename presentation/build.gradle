@@ -79,7 +79,7 @@ dependencies {
     testImplementation "${testDependency.archCoreTesting}"
     testImplementation "${testDependency.robolectric}"
     testImplementation "${testDependency.testCore}"
-    testImplementation "${testDependency.fragmentTesting}"
+    debugImplementation "${testDependency.fragmentTesting}"
     androidTestImplementation "${testDependency.testRunner}"
     androidTestImplementation "${testDependency.espressoCore}"
 }
