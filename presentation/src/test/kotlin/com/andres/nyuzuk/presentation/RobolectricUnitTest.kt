@@ -1,10 +1,5 @@
 package com.andres.nyuzuk.presentation
 
-import androidx.lifecycle.Lifecycle
-import androidx.test.core.app.ActivityScenario
-import com.andres.nyuzuk.presentation.base.BaseActivity
-import com.andres.nyuzuk.presentation.base.BaseViewModel
-import com.andres.nyuzuk.presentation.base.BaseViewState
 import org.junit.After
 import org.junit.runner.RunWith
 import org.koin.core.context.startKoin
@@ -15,14 +10,10 @@ import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE)
-abstract class RobolectricUnitTest<S : BaseViewState, M : BaseViewModel<S>, T : BaseActivity<S, M>> : UnitTest() {
-    protected lateinit var activityScenario: ActivityScenario<T>
-
+abstract class RobolectricUnitTest<T> : UnitTest() {
     override fun onSetup() {
         setupMocking()
         setupKoin()
-        activityScenario = ActivityScenario.launch(getClassUnderTest())
-        activityScenario.moveToState(Lifecycle.State.RESUMED)
     }
 
     @After

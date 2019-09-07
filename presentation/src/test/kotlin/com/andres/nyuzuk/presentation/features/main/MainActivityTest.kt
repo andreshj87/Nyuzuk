@@ -8,6 +8,7 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import com.andres.nyuzuk.R
+import com.andres.nyuzuk.presentation.ActivityUnitTest
 import com.andres.nyuzuk.presentation.RobolectricUnitTest
 import com.andres.nyuzuk.presentation.extension.isVisible
 import com.andres.nyuzuk.presentation.features.toparticles.TopArticlesViewModel
@@ -24,7 +25,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 
-class MainActivityTest : RobolectricUnitTest<MainViewState, MainViewModel, MainActivity>() {
+class MainActivityTest : ActivityUnitTest<MainViewState, MainViewModel, MainActivity>() {
     @Mock private lateinit var mainViewModelMock: MainViewModel
     @Mock private lateinit var mainViewStateLiveDataMock: MutableLiveData<MainViewState>
     @Mock private lateinit var topArticlesViewModelMock: TopArticlesViewModel
