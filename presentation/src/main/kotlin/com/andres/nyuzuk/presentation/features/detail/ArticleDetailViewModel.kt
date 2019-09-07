@@ -14,11 +14,11 @@ class ArticleDetailViewModel(
     override fun onViewReady() { }
 
     fun onArticleLoaded(articleUi: ArticleUi?) {
-        viewState.value = getViewState().copy(articleUi = articleUi)
+        viewState.value = getViewStateValue().copy(articleUi = articleUi)
     }
 
     fun onSeeMoreClick() {
-        getViewState().articleUi?.run {
+        getViewStateValue().articleUi?.run {
             webBrowser.launch(url)
         }
     }

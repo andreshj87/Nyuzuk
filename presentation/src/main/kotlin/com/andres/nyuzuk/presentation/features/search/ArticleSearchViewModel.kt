@@ -25,7 +25,7 @@ class ArticleSearchViewModel(
     }
 
     override fun onViewReady() {
-        viewState.value = getViewState().copy(isInitial = true)
+        viewState.value = getViewStateValue().copy(isInitial = true)
     }
 
     fun onLoadMore() {
@@ -53,7 +53,7 @@ class ArticleSearchViewModel(
 
     fun onSearchClose() {
         query = null
-        viewState.value = getViewState().copy(
+        viewState.value = getViewStateValue().copy(
             isInitial = true,
             isLoading = false,
             isEmpty = false,
@@ -64,11 +64,11 @@ class ArticleSearchViewModel(
     }
 
     fun onErrorDialogDismiss() {
-        viewState.value = getViewState().copy(isError = false, errorUi = null)
+        viewState.value = getViewStateValue().copy(isError = false, errorUi = null)
     }
 
     private fun search(query: String) {
-        viewState.value = getViewState().copy(isLoading = true, isInitial = false, isEmpty = false, isError = false)
+        viewState.value = getViewStateValue().copy(isLoading = true, isInitial = false, isEmpty = false, isError = false)
         searchArticles(viewModelScope, SearchArticles.Params(query, invalidate = true)) {
             it.fold(
                 ::processFailure,
@@ -78,14 +78,14 @@ class ArticleSearchViewModel(
     }
 
     private fun processSuccess(articles: List<Article>) {
-        viewState.value = getViewState().copy(invalidateList = true, isLoading = false, isError = false)
+        viewState.value = getViewStateValue().copy(invalidateList = true, isLoading = false, isError = false)
         val articlesUi = articleUiMapper.map(articles)
         this.articlesSearch.clear()
         this.articlesSearch.addAll(articlesUi)
         if (articlesUi.isEmpty()) {
-            viewState.value = getViewState().copy(isEmpty = true, foundArticlesUi = emptyList(), invalidateList = false)
+            viewState.value = getViewStateValue().copy(isEmpty = true, foundArticlesUi = emptyList(), invalidateList = false)
         } else {
-            viewState.value = getViewState().copy(foundArticlesUi = articlesUi, isEmpty = false, invalidateList = false)
+            viewState.value = getViewStateValue().copy(foundArticlesUi = articlesUi, isEmpty = false, invalidateList = false)
         }
     }
 
@@ -93,13 +93,13 @@ class ArticleSearchViewModel(
         val articlesUi = articleUiMapper.map(articles)
         this.articlesSearch.addAll(articlesUi)
         viewState.value =
-            getViewState().copy(foundArticlesUi = this.articlesSearch, isEmpty = this.articlesSearch.isEmpty())
+            getViewStateValue().copy(foundArticlesUi = this.articlesSearch, isEmpty = this.articlesSearch.isEmpty())
     }
 
     private fun processFailure(failure: Failure) {
         if (failure !is Failure.EmptyResult) {
             val errorUi = errorUiMapper.map(failure)
-            viewState.value = getViewState().copy(isError = true, errorUi = errorUi, isLoading = false)
+            viewState.value = getViewStateValue().copy(isError = true, errorUi = errorUi, isLoading = false)
         }
     }
 }

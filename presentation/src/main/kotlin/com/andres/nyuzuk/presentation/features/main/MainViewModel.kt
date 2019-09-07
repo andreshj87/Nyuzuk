@@ -11,7 +11,7 @@ class MainViewModel(
     }
 
     override fun onViewReady() {
-        viewState.value = getViewState().copy(showSearchButton = true)
+        viewState.value = getViewStateValue().copy(showSearchButton = true)
     }
 
     fun onSearchClick() {

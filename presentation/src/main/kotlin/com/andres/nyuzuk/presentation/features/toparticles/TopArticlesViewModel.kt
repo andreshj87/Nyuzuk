@@ -24,7 +24,7 @@ class TopArticlesViewModel(
     }
 
     override fun onViewReady() {
-        viewState.value = getViewState().copy(isLoading = true)
+        viewState.value = getViewStateValue().copy(isLoading = true)
         getTopArticles(viewModelScope, GetTopArticles.Params()) { it.fold(::processFailure, ::processSuccess) }
     }
 
@@ -33,12 +33,12 @@ class TopArticlesViewModel(
     }
 
     fun onRefresh() {
-        viewState.value = getViewState().copy(isLoading = true)
+        viewState.value = getViewStateValue().copy(isLoading = true)
         getTopArticles(viewModelScope, GetTopArticles.Params(invalidate = true)) { it.fold(::processFailure, ::processSuccess) }
     }
 
     fun onErrorDialogDismiss() {
-        viewState.value = getViewState().copy(isError = false, errorUi = null)
+        viewState.value = getViewStateValue().copy(isError = false, errorUi = null)
     }
 
     override fun onArticleClick(articleUi: ArticleUi) {
@@ -47,7 +47,7 @@ class TopArticlesViewModel(
 
     private fun processSuccess(articles: List<Article>) {
         this.topArticlesUi.clear()
-        viewState.value = getViewState().copy(invalidateList = true)
+        viewState.value = getViewStateValue().copy(invalidateList = true)
         processArticles(articles)
     }
 
@@ -57,7 +57,7 @@ class TopArticlesViewModel(
 
     private fun processArticles(articles: List<Article>) {
         this.topArticlesUi.addAll(articleUiMapper.map(articles))
-        viewState.value = getViewState().copy(
+        viewState.value = getViewStateValue().copy(
             isLoading = false,
             topArticlesUi = this.topArticlesUi,
             invalidateList = false,
@@ -68,10 +68,10 @@ class TopArticlesViewModel(
     }
 
     private fun processFailure(failure: Failure) {
-        viewState.value = getViewState().copy(isLoading = false)
+        viewState.value = getViewStateValue().copy(isLoading = false)
         if (failure !is Failure.EmptyResult) {
             val errorUi = errorUiMapper.map(failure)
-            viewState.value = getViewState().copy(isError = true, errorUi = errorUi)
+            viewState.value = getViewStateValue().copy(isError = true, errorUi = errorUi)
         }
     }
 }

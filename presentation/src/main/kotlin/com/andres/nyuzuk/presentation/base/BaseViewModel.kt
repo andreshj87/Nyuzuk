@@ -12,7 +12,7 @@ abstract class BaseViewModel<ViewState : BaseViewState>: ViewModel() {
 
     abstract fun initViewState()
 
-    fun getViewState() = viewState.value!!
+    fun getViewStateValue() = viewState.value as ViewState
 
     abstract fun onViewReady()
 }
