@@ -8,7 +8,7 @@ import kotlin.reflect.KClass
 
 abstract class BaseActivity<ViewState : BaseViewState, ViewModel : BaseViewModel<ViewState>>(viewModelClass: KClass<ViewModel>) :
     AppCompatActivity() {
-    protected val viewModel: ViewModel by viewModel(viewModelClass)
+    val viewModel: ViewModel by viewModel(viewModelClass)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

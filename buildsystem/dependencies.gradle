@@ -19,13 +19,16 @@ ext.version = [
     browser: "1.0.0",
     customTabs: "2.0.0",
     room: "2.2.0-beta01",
+    fragment: "1.1.0",
 
     jUnit: "4.12",
     testRunner: "1.3.0-alpha02",
     espressoCore: "3.3.0-alpha02",
     mockitoKotlin: "2.1.0",
     codacy: "6.0.4",
-    assertK: "0.19"
+    assertK: "0.19",
+    robolectric: "4.3",
+    testCore: "1.2.1-alpha02"
 ]
 
 def version = ext.version
@@ -55,6 +58,8 @@ ext.dependency = [
     customTabs: "saschpe.android:customtabs:${version.customTabs}",
     room: "androidx.room:room-runtime:${version.room}",
     roomCompiler: "androidx.room:room-compiler:${version.room}",
+    fragment: "androidx.fragment:fragment:${version.fragment}",
+    fragmentKtx: "androidx.fragment:fragment-ktx:${version.fragment}",
 
     jUnit: "junit:junit:${version.jUnit}",
     testRunner: "androidx.test:runner:${version.testRunner}",
@@ -64,7 +69,10 @@ ext.dependency = [
     mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:${version.mockitoKotlin}",
     codacy: "com.github.codacy:codacy-coverage-reporter:${version.codacy}",
     assertK: "com.willowtreeapps.assertk:assertk-jvm:${version.assertK}",
-    archCoreTesting: "android.arch.core:core-testing:${version.androidArch}"
+    archCoreTesting: "android.arch.core:core-testing:${version.androidArch}",
+    robolectric: "org.robolectric:robolectric:${version.robolectric}",
+    testCore: "androidx.test:core:${version.testCore}",
+    fragmentTesting: "androidx.fragment:fragment-testing:${version.fragment}"
 ]
 
 def dependency = ext.dependency
@@ -122,7 +130,9 @@ ext.presentationDependencies = [
     pullToRefresh: "${dependency.pullToRefresh}",
     coil: "${dependency.coil}",
     browser: "${dependency.browser}",
-    customTabs: "${dependency.customTabs}"
+    customTabs: "${dependency.customTabs}",
+    fragment: "${dependency.fragment}",
+    fragmentKtx: "${dependency.fragmentKtx}"
 ]
 
 ext.presentationTestDependencies = [
@@ -133,5 +143,8 @@ ext.presentationTestDependencies = [
     kotlinTestJunit: "${dependency.kotlinTestJunit}",
     mockitoKotlin: "${dependency.mockitoKotlin}",
     assertK: "${dependency.assertK}",
-    archCoreTesting: "${dependency.archCoreTesting}"
+    archCoreTesting: "${dependency.archCoreTesting}",
+    robolectric: "${dependency.robolectric}",
+    testCore: "${dependency.testCore}",
+    fragmentTesting: "${dependency.fragmentTesting}"
 ]

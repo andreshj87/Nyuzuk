@@ -39,6 +39,12 @@ android {
         test { java.srcDirs = ['src/test/kotlin'] }
         androidTest { java.srcDirs = ['src/androidTest/kotlin'] }
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -63,12 +69,17 @@ dependencies {
     implementation "${dependency.coil}"
     implementation "${dependency.browser}"
     implementation "${dependency.customTabs}"
+    implementation "${dependency.fragment}"
+    implementation "${dependency.fragmentKtx}"
     testImplementation "${testDependency.jUnit}"
     testImplementation "${testDependency.kotlinStdlib}"
     testImplementation "${testDependency.kotlinTestJunit}"
     testImplementation "${testDependency.mockitoKotlin}"
     testImplementation "${testDependency.assertK}"
     testImplementation "${testDependency.archCoreTesting}"
+    testImplementation "${testDependency.robolectric}"
+    testImplementation "${testDependency.testCore}"
+    debugImplementation "${testDependency.fragmentTesting}"
     androidTestImplementation "${testDependency.testRunner}"
     androidTestImplementation "${testDependency.espressoCore}"
 }

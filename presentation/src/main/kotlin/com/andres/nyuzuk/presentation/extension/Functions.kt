@@ -15,6 +15,8 @@ fun View.setVisibility(visibility: Boolean) {
     this.visibility = if (visibility) View.VISIBLE else View.GONE
 }
 
+fun View.isVisible() = visibility == View.VISIBLE
+
 fun FragmentManager.doTransaction(func: FragmentTransaction.() -> FragmentTransaction) {
     beginTransaction().func().commit()
 }
