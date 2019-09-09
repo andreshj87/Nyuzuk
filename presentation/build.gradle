@@ -82,6 +82,11 @@ dependencies {
     debugImplementation("${testDependency.fragmentTesting}") {
         exclude group: 'androidx.test', module: 'core'
     }
+    androidTestImplementation "${testDependency.jUnit}"
+    androidTestImplementation "${testDependency.testCore}"
     androidTestImplementation "${testDependency.testRunner}"
     androidTestImplementation "${testDependency.espressoCore}"
+    androidTestImplementation "${testDependency.espressoIntents}"
+    androidTestImplementation "${testDependency.truth}"
+    androidTestImplementation "${testDependency.truthExt}"
 }

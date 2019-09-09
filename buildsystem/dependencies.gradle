@@ -21,14 +21,16 @@ ext.version = [
     room: "2.2.0-beta01",
     fragment: "1.1.0",
 
-    jUnit: "4.12",
+    jUnit: "1.1.1",
     testRunner: "1.3.0-alpha02",
-    espressoCore: "3.3.0-alpha02",
+    espresso: "3.3.0-alpha02",
     mockitoKotlin: "2.1.0",
     codacy: "6.0.4",
     assertK: "0.19",
     robolectric: "4.3",
-    testCore: "1.2.1-alpha02"
+    testCore: "1.2.1-alpha02",
+    truth: "0.42",
+    truthExt: "1.0.0"
 ]
 
 def version = ext.version
@@ -61,9 +63,10 @@ ext.dependency = [
     fragment: "androidx.fragment:fragment:${version.fragment}",
     fragmentKtx: "androidx.fragment:fragment-ktx:${version.fragment}",
 
-    jUnit: "junit:junit:${version.jUnit}",
+    jUnit: "androidx.test.ext:junit:${version.jUnit}",
     testRunner: "androidx.test:runner:${version.testRunner}",
-    espressoCore: "androidx.test.espresso:espresso-core:${version.espressoCore}",
+    espressoCore: "androidx.test.espresso:espresso-core:${version.espresso}",
+    espressoIntents: "androidx.test.espresso:espresso-intents:${version.espresso}",
     kotlinStdlib: "org.jetbrains.kotlin:kotlin-stdlib:${version.kotlin}",
     kotlinTestJunit: "org.jetbrains.kotlin:kotlin-test-junit:${version.kotlin}",
     mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:${version.mockitoKotlin}",
@@ -72,7 +75,9 @@ ext.dependency = [
     archCoreTesting: "android.arch.core:core-testing:${version.androidArch}",
     robolectric: "org.robolectric:robolectric:${version.robolectric}",
     testCore: "androidx.test:core:${version.testCore}",
-    fragmentTesting: "androidx.fragment:fragment-testing:${version.fragment}"
+    fragmentTesting: "androidx.fragment:fragment-testing:${version.fragment}",
+    truth: "com.google.truth:truth:${version.truth}",
+    truthExt: "androidx.test.ext:truth:${version.truthExt}"
 ]
 
 def dependency = ext.dependency
@@ -139,6 +144,7 @@ ext.presentationTestDependencies = [
     jUnit: "${dependency.jUnit}",
     testRunner: "${dependency.testRunner}",
     espressoCore: "${dependency.espressoCore}",
+    espressoIntents: "${dependency.espressoIntents}",
     kotlinStdlib: "${dependency.kotlinStdlib}",
     kotlinTestJunit: "${dependency.kotlinTestJunit}",
     mockitoKotlin: "${dependency.mockitoKotlin}",
@@ -146,5 +152,7 @@ ext.presentationTestDependencies = [
     archCoreTesting: "${dependency.archCoreTesting}",
     robolectric: "${dependency.robolectric}",
     testCore: "${dependency.testCore}",
-    fragmentTesting: "${dependency.fragmentTesting}"
+    fragmentTesting: "${dependency.fragmentTesting}",
+    truth: "${dependency.truth}",
+    truthExt: "${dependency.truthExt}"
 ]
