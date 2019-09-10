@@ -47,7 +47,7 @@ jobs:
           path: data/build/test-results
       - run:
           name: JaCoCo
-          command: ./gradlew jacocoTestReport jacocoTestReportDebug combinedTestReportDebug mergeJacocoReports jacocoTestReportMerged
+          command: ./gradlew jacocoTestReport jacocoTestReportDebug mergeJacocoReports jacocoTestReportMerged
       - run:
           name: Codacy test report
           command: ./gradlew sendCoverageToCodacy
