@@ -56,6 +56,7 @@ dependencies {
     implementation "${dependency.room}"
     kapt "${dependency.roomCompiler}"
     testImplementation "${testDependency.jUnit}"
+    testImplementation "${testDependency.jUnitExt}"
     testImplementation "${testDependency.kotlinStdlib}"
     testImplementation "${testDependency.kotlinTestJunit}"
     testImplementation "${testDependency.assertK}"

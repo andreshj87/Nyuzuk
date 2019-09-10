@@ -14,6 +14,7 @@ dependencies {
     implementation "${dependency.koin}"
     implementation "${dependency.arrowCoreData}"
     testImplementation "${testDependency.jUnit}"
+    testImplementation "${testDependency.jUnitExt}"
     testImplementation "${testDependency.kotlinStdlib}"
     testImplementation "${testDependency.kotlinTestJunit}"
     testImplementation "${testDependency.assertK}"

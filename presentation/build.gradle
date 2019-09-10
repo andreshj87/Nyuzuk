@@ -72,6 +72,7 @@ dependencies {
     implementation "${dependency.fragment}"
     implementation "${dependency.fragmentKtx}"
     testImplementation "${testDependency.jUnit}"
+    testImplementation "${testDependency.jUnitExt}"
     testImplementation "${testDependency.kotlinStdlib}"
     testImplementation "${testDependency.kotlinTestJunit}"
     testImplementation "${testDependency.mockitoKotlin}"

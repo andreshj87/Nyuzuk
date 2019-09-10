@@ -21,7 +21,8 @@ ext.version = [
     room: "2.2.0-beta01",
     fragment: "1.1.0",
 
-    jUnit: "1.1.1",
+    jUnit: "4.12",
+    jUnitExt: "1.1.1",
     testRunner: "1.3.0-alpha02",
     espresso: "3.3.0-alpha02",
     mockitoKotlin: "2.1.0",
@@ -63,7 +64,8 @@ ext.dependency = [
     fragment: "androidx.fragment:fragment:${version.fragment}",
     fragmentKtx: "androidx.fragment:fragment-ktx:${version.fragment}",
 
-    jUnit: "androidx.test.ext:junit:${version.jUnit}",
+    jUnit: "junit:junit:${version.jUnit}",
+    jUnitExt: "androidx.test.ext:junit:${version.jUnitExt}",
     testRunner: "androidx.test:runner:${version.testRunner}",
     espressoCore: "androidx.test.espresso:espresso-core:${version.espresso}",
     espressoIntents: "androidx.test.espresso:espresso-intents:${version.espresso}",
@@ -97,6 +99,7 @@ ext.dataDependencies = [
 
 ext.dataTestDependencies = [
     jUnit: "${dependency.jUnit}",
+    jUnitExt: "${dependency.jUnitExt}",
     kotlinStdlib: "${dependency.kotlinStdlib}",
     kotlinTestJunit: "${dependency.kotlinTestJunit}",
     assertK: "${dependency.assertK}",
@@ -112,6 +115,7 @@ ext.domainDependencies = [
 
 ext.domainTestDependencies = [
     jUnit: "${dependency.jUnit}",
+    jUnitExt: "${dependency.jUnitExt}",
     kotlinStdlib: "${dependency.kotlinStdlib}",
     kotlinTestJunit: "${dependency.kotlinTestJunit}",
     assertK: "${dependency.assertK}",
@@ -142,6 +146,7 @@ ext.presentationDependencies = [
 
 ext.presentationTestDependencies = [
     jUnit: "${dependency.jUnit}",
+    jUnitExt: "${dependency.jUnitExt}",
     testRunner: "${dependency.testRunner}",
     espressoCore: "${dependency.espressoCore}",
     espressoIntents: "${dependency.espressoIntents}",
