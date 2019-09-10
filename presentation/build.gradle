@@ -87,6 +87,7 @@ dependencies {
     androidTestImplementation "${testDependency.testCore}"
     androidTestImplementation "${testDependency.testRunner}"
     androidTestImplementation "${testDependency.espressoCore}"
+    androidTestImplementation "${testDependency.espressoContrib}"
     androidTestImplementation "${testDependency.espressoIntents}"
     androidTestImplementation "${testDependency.truth}"
     androidTestImplementation "${testDependency.truthExt}"
